@@ -157,6 +157,7 @@ When an ICP crosses **80%**, the engine marks it as **⭐ Validated Target**, si
 
 ## 📖 Deep-Dive Documentation
 
+* [Founder Playbook: Zero to ICP](file:///Users/shinojcm/Documents/quick-icp/docs/FOUNDER_ZERO_TO_ICP_PLAYBOOK.md) — Step-by-step manual for founders who don't know where to start or who to sell to.
 * [Architectural Specifications](file:///Users/shinojcm/Documents/quick-icp/docs/ARCHITECTURE.md)
 * [The Quick ICP Vision & Manifesto](file:///Users/shinojcm/Documents/quick-icp/docs/VISION_AND_MANIFESTO.md)
 * [Full System Reference](file:///Users/shinojcm/Documents/quick-icp/docs/quick_icp_documentation.md)

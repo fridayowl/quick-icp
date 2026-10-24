@@ -1,4 +1,5 @@
 import { api } from './api.js';
+import { renderFounderGuide } from './founder-guide.js';
 import { renderIcpLab } from './icp-lab.js';
 import { renderKanban } from './kanban.js';
 import { renderInbox } from './inbox.js';
@@ -15,7 +16,7 @@ const state = {
   leads: [],
   inboxes: [],
   templates: [],
-  activeTab: 'icp-lab',
+  activeTab: 'guide',
   selectedLeadId: null,
   activeIcpFilter: null,
   callNotesModal: null,
@@ -63,6 +64,11 @@ async function init() {
 }
 
 function setupActionButtons() {
+  // 0. Jump to Founder Guide
+  document.getElementById('btn-show-guide')?.addEventListener('click', () => {
+    switchTab('guide');
+  });
+
   // 1. Launch Guided ICP Exercise From Scratch
   document.getElementById('btn-launch-exercise')?.addEventListener('click', () => {
     state.icpExerciseModal?.open(state.product);
@@ -177,7 +183,17 @@ function setupTabs() {
 }
 
 function renderCurrentTab() {
-  if (state.activeTab === 'product') {
+  if (state.activeTab === 'guide') {
+    const container = document.getElementById('view-guide');
+    if (container) {
+      renderFounderGuide(
+        container,
+        state,
+        (tabName) => switchTab(tabName),
+        () => state.icpExerciseModal?.open(state.product)
+      );
+    }
+  } else if (state.activeTab === 'product') {
     const container = document.getElementById('view-product');
     if (container) {
       renderProductCatalog(

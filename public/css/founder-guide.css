@@ -1,0 +1,485 @@
+/* ==========================================================================
+   FOUNDER ROADMAP & ZERO-TO-ICP PLAYBOOK (SWISS EDITORIAL BRUTALISM)
+   ========================================================================== */
+
+.founder-guide-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 4rem;
+}
+
+/* 1. Founder Next Step Hero Card */
+.founder-next-step-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-left: 4px solid var(--accent-terracotta);
+  padding: 1.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.next-step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.next-step-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-terracotta);
+  text-transform: uppercase;
+}
+
+.next-step-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.next-step-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 680px;
+  margin: 0;
+}
+
+.next-step-action {
+  flex-shrink: 0;
+}
+
+/* 2. Interactive Progress Strip */
+.roadmap-progress-strip {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.progress-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progress-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.progress-count {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-terracotta);
+}
+
+.progress-bar-track {
+  height: 6px;
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-default);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--accent-terracotta);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 3. Steps Stepper Horizontal Grid */
+.stepper-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 992px) {
+  .stepper-nav-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .stepper-nav-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stepper-step-pill {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  text-align: left;
+}
+
+.stepper-step-pill:hover {
+  border-color: var(--text-muted);
+  background: var(--bg-surface-elevated);
+}
+
+.stepper-step-pill.active {
+  border-color: var(--accent-terracotta);
+  border-top: 3px solid var(--accent-terracotta);
+  background: var(--bg-surface-elevated);
+}
+
+.stepper-step-pill.completed {
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.step-pill-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step-pill-idx {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.step-pill-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.status-done {
+  color: var(--status-success);
+}
+
+.status-todo {
+  color: var(--text-muted);
+}
+
+.status-current {
+  color: var(--accent-terracotta);
+}
+
+.step-pill-name {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+/* 4. Detailed Step Workspace (Active Step Deep-Dive) */
+.guide-step-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.guide-step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  border-bottom: 1px solid var(--border-default);
+  padding-bottom: 1.5rem;
+}
+
+.guide-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.guide-step-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-terracotta);
+}
+
+.guide-step-heading {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.guide-step-sub {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 720px;
+  line-height: 1.5;
+}
+
+.guide-step-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .guide-step-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guide-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.guide-section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.guide-block-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.guide-block-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-terracotta);
+}
+
+.guide-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.guide-text strong {
+  color: var(--text-primary);
+}
+
+/* Callout Box (The "Why founders fail here" warning) */
+.guide-callout-warning {
+  background-color: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-left: 3px solid var(--status-danger);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.callout-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--status-danger);
+  text-transform: uppercase;
+}
+
+.callout-body {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Callout Box (Success Formula / Concrete Example) */
+.guide-callout-example {
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-default);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.example-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-terracotta);
+  text-transform: uppercase;
+}
+
+.example-content {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-default);
+  padding: 0.85rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  position: relative;
+}
+
+.copy-btn-inline {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.copy-btn-inline:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-terracotta);
+}
+
+/* Action Box at the foot of each step */
+.guide-step-footer {
+  border-top: 1px solid var(--border-default);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.guide-step-status-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.checkbox-custom {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-custom input {
+  accent-color: var(--accent-terracotta);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.guide-nav-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* 5. "Where Are You Stuck?" Troubleshooter Accordion */
+.troubleshooter-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.troubleshooter-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.troubleshooter-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.troubleshooter-sub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.troubleshooter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .troubleshooter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trouble-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-default);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.trouble-q {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.trouble-a {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.trouble-action {
+  margin-top: 0.5rem;
+}

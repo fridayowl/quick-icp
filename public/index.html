@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="css/inbox.css">
   <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/product-catalog.css">
+  <link rel="stylesheet" href="css/founder-guide.css">
 </head>
 <body>
 
@@ -37,25 +38,29 @@
 
     <!-- Navigation Tabs (Monospace Swiss Indexing) -->
     <nav class="nav-tabs" aria-label="Main Navigation">
-      <button class="nav-tab-btn" data-tab="product" id="tab-btn-product">
+      <button class="nav-tab-btn active" data-tab="guide" id="tab-btn-guide">
         <span class="tab-index">[00]</span>
+        <span class="tab-label">Founder Roadmap</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="product" id="tab-btn-product">
+        <span class="tab-index">[01]</span>
         <span class="tab-label">Product & Features</span>
       </button>
-      <button class="nav-tab-btn active" data-tab="icp-lab" id="tab-btn-icp-lab">
-        <span class="tab-index">[01]</span>
+      <button class="nav-tab-btn" data-tab="icp-lab" id="tab-btn-icp-lab">
+        <span class="tab-index">[02]</span>
         <span class="tab-label">Hypothesis Lab</span>
       </button>
       <button class="nav-tab-btn" data-tab="kanban" id="tab-btn-kanban">
-        <span class="tab-index">[02]</span>
+        <span class="tab-index">[03]</span>
         <span class="tab-label">Discovery Pipeline</span>
       </button>
       <button class="nav-tab-btn" data-tab="inbox" id="tab-btn-inbox">
-        <span class="tab-index">[03]</span>
+        <span class="tab-index">[04]</span>
         <span class="tab-label">Unified Inbox</span>
         <span class="tab-badge" id="badge-inbox-count">0</span>
       </button>
       <button class="nav-tab-btn" data-tab="dispatcher" id="tab-btn-dispatcher">
-        <span class="tab-index">[04]</span>
+        <span class="tab-index">[05]</span>
         <span class="tab-label">Safe Dispatcher</span>
       </button>
     </nav>
@@ -83,6 +88,9 @@
 
         <!-- Quick Start Guided Exercise Action Bar -->
         <div class="manifesto-action-bar" style="display: flex; gap: 0.75rem; margin-top: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <button class="btn btn-secondary btn-sm" id="btn-show-guide" style="border-color: var(--accent-terracotta); color: var(--accent-terracotta); font-weight: 700;" title="Open the step-by-step founder roadmap and discovery playbook">
+            [00] Zero-to-ICP Roadmap
+          </button>
           <button class="btn btn-primary" id="btn-launch-exercise">
             [+] Start ICP Exercise from Scratch
           </button>
@@ -130,21 +138,23 @@
       </div>
     </section>
 
-    <!-- TAB 0: Twenty CRM Style Product & Feature Decomposition -->
+    <!-- TAB 0: Zero-to-ICP Founder Master Roadmap & Playbook -->
+    <section id="view-guide" class="tab-view active"></section>
+
+    <!-- TAB 1: Twenty CRM Style Product & Feature Decomposition -->
     <section id="view-product" class="tab-view"></section>
 
-    <!-- TAB 1: Multi-ICP Lab & Comparison Matrix -->
-    <section id="view-icp-lab" class="tab-view active"></section>
+    <!-- TAB 2: Multi-ICP Lab & Comparison Matrix -->
+    <section id="view-icp-lab" class="tab-view"></section>
 
-    <!-- TAB 2: Discovery CRM Kanban Pipeline -->
+    <!-- TAB 3: Discovery CRM Kanban Pipeline -->
     <section id="view-kanban" class="tab-view"></section>
 
-    <!-- TAB 3: Unified Discovery Inbox -->
+    <!-- TAB 4: Unified Discovery Inbox -->
     <section id="view-inbox" class="tab-view"></section>
 
-    <!-- TAB 4: Multi-Inbox Safe Dispatcher -->
+    <!-- TAB 5: Multi-Inbox Safe Dispatcher -->
     <section id="view-dispatcher" class="tab-view"></section>
-
   </main>
 
   <!-- ==================== NATIVE HTML5 DIALOG MODALS ==================== -->
