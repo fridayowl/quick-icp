@@ -9,17 +9,17 @@ const STEPS_DATA = [
     title: 'The Honest Feature Dump',
     kicker: 'STEP 01 // PRODUCT INVENTORY',
     shortName: 'Feature Dump',
-    subtitle: 'Before you can find who wants your product, inventory what you actually built.',
-    why: 'Founders build software by stacking features (auth, database sync, UI builder, webhook triggers, exports). When you try to explain all of this to a stranger, they get overwhelmed, think "sounds complicated", and ghost you. You cannot pick a sharp weapon until you lay all your tools on the table.',
+    subtitle: 'Inventory what you actually built.',
+    why: 'Founders stack features. Strangers get overwhelmed by all-in-one claims. You need your full list before you can carve out a sharp weapon.',
     trapTitle: 'The "It Does Everything" Fallacy',
-    trapBody: 'Pitching your product as a platform or all-in-one suite. Strangers do not want another platform; they want an aspirin for the exact headache that woke them up this morning.',
-    actionHeader: 'YOUR EXACT TASK RIGHT NOW',
+    trapBody: 'Pitching a platform. Strangers want an aspirin for today\'s headache, not another suite.',
+    actionHeader: 'EXACT TASK',
     actionSteps: [
-      'Name your product and state in 1 sentence what it does without buzzwords.',
-      'List 4 to 8 distinct features you have already built or designed.',
-      'Rate each feature honestly: is it working today, in progress, or planned?'
+      'Name your product and state what it does in 1 plain sentence.',
+      'List 4 to 8 distinct features you have built or designed.',
+      'Rate each feature: working today, in progress, or planned.'
     ],
-    exampleTitle: 'Real B2B SaaS Example (SyncFlow)',
+    exampleTitle: 'B2B Example (SyncFlow)',
     exampleText: `Product: SyncFlow
 Features Built:
 1. Real-time PostgreSQL to Webhook pipeline
@@ -27,7 +27,7 @@ Features Built:
 3. Team permission roles & SSO
 4. Automated retry queue with Dead Letter Alerts
 5. Custom JavaScript data transformation blocks`,
-    toolActionLabel: '[00] Open Product & Feature Catalog',
+    toolActionLabel: '[00] Open Product Catalog',
     targetTab: 'product',
     checkCompletion: (state) => (state.product?.features?.length || 0) >= 3
   },
@@ -37,20 +37,20 @@ Features Built:
     title: 'Brainstorm 2–3 Candidate Audiences',
     kicker: 'STEP 02 // AUDIENCE HYPOTHESES',
     shortName: 'Audiences',
-    subtitle: 'Never bet your entire startup on one demographic guess. Test 3 in parallel.',
-    why: 'An "ICP" (Ideal Customer Profile) is NOT an imaginary buyer persona with a stock photo and hobbies. It is a specific job title at a specific type of company who feels intense pain every Tuesday and has corporate credit card authority to fix it.',
-    trapTitle: 'Targeting "Everyone" or "Small Businesses"',
-    trapBody: '"Anyone who uses databases" is not an audience. If you target everyone, your marketing speaks to no one. You need someone whose boss yells at them when this problem happens.',
-    actionHeader: 'THE AUDIENCE SPECIFICATION FORMULA',
+    subtitle: 'Test 2–3 cohorts in parallel. Don\'t bet on one guess.',
+    why: 'An ICP is a specific title at a specific stage with acute friction and budget authority.',
+    trapTitle: 'Targeting "Everyone"',
+    trapBody: 'Targeting everyone means your message speaks to no one. You need a role with direct friction.',
+    actionHeader: 'AUDIENCE FORMULA',
     actionSteps: [
-      'Fill in this sentence: "[Job Title] at [Company Stage] who is currently suffering because [Ugly Problem]."',
-      'Identify their current ugly workaround: are they using messy spreadsheets, hacked Python scripts, or 10-person Slack channels?',
-      'Create 2 to 3 candidate cohorts so you can compare real market pull side-by-side.'
+      'Fill in: "[Job Title] at [Company Stage] suffering from [Ugly Problem]."',
+      'Identify their current workaround: spreadsheets, scripts, or manual effort.',
+      'Create 2 to 3 candidate cohorts to compare market pull.'
     ],
-    exampleTitle: 'The 3-Cohort Contrast Example',
-    exampleText: `Cohort A: "FinTech Compliance Leads" (Problem: manual audit reconciliations taking 20 hours/month; Workaround: Shared Google Sheets)
-Cohort B: "Solo SaaS Founders" (Problem: losing trial signups due to failed webhook syncs; Workaround: Manual Zapier scripts)
-Cohort C: "Enterprise Data Platform Engineers" (Problem: custom ETL pipelines breaking on schema changes; Workaround: PagerDuty on-call)`,
+    exampleTitle: '3-Cohort Example',
+    exampleText: `Cohort A: "FinTech Compliance Leads" (Problem: manual audit reconciliations; Workaround: Shared Sheets)
+Cohort B: "Solo SaaS Founders" (Problem: losing trial signups due to failed webhooks; Workaround: Zapier)
+Cohort C: "Enterprise Platform Engineers" (Problem: ETL pipelines breaking on schema changes; Workaround: PagerDuty)`,
     toolActionLabel: '[01] Launch Hypothesis Lab',
     targetTab: 'icp-lab',
     checkCompletion: (state) => (state.icps?.length || 0) >= 2
@@ -58,52 +58,50 @@ Cohort C: "Enterprise Data Platform Engineers" (Problem: custom ETL pipelines br
   {
     id: 3,
     key: 'wedge',
-    title: 'Cut 90% of Your Product (The 1-Feature Wedge)',
+    title: 'Cut 90% of Your Product (1-Feature Wedge)',
     kicker: 'STEP 03 // DE-ENGINEERING',
     shortName: '1-Feature Wedge',
-    subtitle: 'Pick the single sharpest feature for each audience. Forbid the rest.',
-    why: 'A wedge is a piece of wood that splits an oak log. Your full product is the log. The 1-Feature Wedge is the tip of the blade. When you pitch ONE specific capability that cures their acute pain, they immediately understand what you do.',
-    trapTitle: 'Feature Vomiting on Discovery',
-    trapBody: 'When founders get insecure, they start listing every feature they spent months coding: "Oh, it also does exports, and SSO, and custom webhooks, and dark mode!" The prospect thinks: "This looks bloated and hard to learn."',
-    actionHeader: 'HOW TO DE-ENGINEER YOUR PRODUCT',
+    subtitle: 'Pick the single sharpest feature. Forbid the rest.',
+    why: 'A wedge penetrates first. Pitching 10 features creates confusion and looks hard to adopt.',
+    trapTitle: 'Feature Vomiting',
+    trapBody: 'Listing every feature on Call 1 makes your product look bloated, slow, and expensive.',
+    actionHeader: 'DE-ENGINEER YOUR PRODUCT',
     actionSteps: [
-      'Take Cohort A. Look at their #1 daily headache.',
-      'Pick the ONE feature from your catalog that directly kills that headache. That is your WEDGE.',
-      'Mark every other feature in your app as "FORBIDDEN TO MENTION" on initial discovery calls.'
+      'Look at Cohort A\'s #1 daily friction.',
+      'Pick the ONE feature from your catalog that kills that friction.',
+      'Mark all other features as "FORBIDDEN TO MENTION" on initial calls.'
     ],
-    exampleTitle: 'Wedge De-Engineering Example',
+    exampleTitle: 'Wedge Example',
     exampleText: `Product: SyncFlow (30,000 lines of code)
 Cohort: FinTech Compliance Leads
-The 1-Feature Wedge: "Audit-Ready Webhook Replay Log"
-Forbidden to mention on Call 1: Visual drag-and-drop builder, custom JS transforms, multi-tenant billing.`,
-    toolActionLabel: '[01] Assign Wedges in Hypothesis Lab',
+1-Feature Wedge: "Audit-Ready Webhook Replay Log"
+Forbidden on Call 1: Visual canvas, custom JS transforms, multi-tenant billing.`,
+    toolActionLabel: '[01] Assign Wedges in Lab',
     targetTab: 'icp-lab',
     checkCompletion: (state) => state.icps?.some(i => i.wedgeFeature && i.wedgeFeature.trim() !== '')
   },
   {
     id: 4,
     key: 'sourcing',
-    title: 'Find 15 Real Human Beings per Cohort',
+    title: 'Find 15 Real People per Cohort',
     kicker: 'STEP 04 // PROSPECT SOURCING',
     shortName: 'Source 15 People',
-    subtitle: 'You do not need 10,000 leads. You need 15 target prospects to test truth.',
-    why: 'Mass cold email blasting 5,000 people burns your domain and teaches you nothing. 15 hand-picked people with the exact job title who posted about your problem gives you 5 deep conversations in 48 hours.',
-    trapTitle: 'Buying Low-Quality Contact Lists',
-    trapBody: 'Buying scraped lead lists of 10,000 generic emails. 80% bounce, your domain gets blacklisted, and zero people reply.',
-    actionHeader: 'WHERE TO FIND 15 TARGETS IN 30 MINUTES',
+    subtitle: 'Source 15 real practitioners per cohort.',
+    why: 'Blasting thousands burns your domain. 15 targeted practitioners give you 5 real conversations.',
+    trapTitle: 'Buying Scraped Lists',
+    trapBody: 'High bounce rates, burned sender domain, and zero genuine customer insights.',
+    actionHeader: 'FIND 15 TARGETS FAST',
     actionSteps: [
-      'LinkedIn Free Search: Type "[Target Title]" in quotes, filter by "People", "Current Company: 10-100 employees".',
-      'GitHub / Open Source Issues: Look for people complaining about competitor tools or filing issues on similar open-source libraries.',
-      'Slack / Discord / Subreddits: Check communities where practitioners ask "How do you guys handle [Problem]?"',
+      'LinkedIn: Search "[Target Title]" in quotes, filter by company size 10-100.',
+      'GitHub / Communities: Check practitioners asking "How do you handle [Problem]?"',
       'Add 15 targeted names into your Discovery Pipeline.'
     ],
-    exampleTitle: 'Search Query Cheat Sheet',
-    exampleText: `LinkedIn Search Filter:
-Title: "Head of Compliance" OR "Lead Compliance Officer"
+    exampleTitle: 'Search Filter Example',
+    exampleText: `Title: "Head of Compliance" OR "Lead Compliance Officer"
 Industry: Financial Services / FinTech
-Location: United States (or your home market)
+Location: United States / UK
 Company Headcount: 20–200 employees`,
-    toolActionLabel: '[02] Add Leads to Discovery Pipeline',
+    toolActionLabel: '[02] Add to Discovery Pipeline',
     targetTab: 'kanban',
     checkCompletion: (state) => (state.leads?.length || 0) >= 6
   },
@@ -113,31 +111,29 @@ Company Headcount: 20–200 employees`,
     title: 'The 45-Word Peer Curiosity Email',
     kicker: 'STEP 05 // LOW-FRICTION DISCOVERY',
     shortName: '45-Word Touch',
-    subtitle: 'Never pitch your software. Ask an authentic practitioner question.',
-    why: 'People smell a sales pitch in 2 seconds and delete it. But when an engineer or founder asks a genuine, humble peer question about their workflow, practitioners love to share their war stories. The Mom Test principle: talk about their life, not your product.',
-    trapTitle: 'The "15-Minute Demo Pitch"',
-    trapBody: '"Hi John, I am the founder of X, an AI-powered platform for Y. Do you have 15 minutes this Thursday for a demo?" Reply rate: 0.2%. It asks for their time without offering any value.',
-    actionHeader: 'THE 45-WORD MOM TEST TEMPLATE',
+    subtitle: 'Ask an authentic practitioner curiosity question.',
+    why: 'Pitch emails get deleted. A brief peer question about their workflow gets 25%+ replies.',
+    trapTitle: 'The 15-Minute Demo Pitch',
+    trapBody: 'Asking for 15 minutes of someone\'s time without offering value converts at < 1%.',
+    actionHeader: '45-WORD RULES',
     actionSteps: [
-      'Rule 1: Keep it under 50 words total.',
-      'Rule 2: Never include a link, calendly, or attachment.',
-      'Rule 3: Ask how they handle the friction today, never if they want to buy.',
-      'Rule 4: When they reply, Quick ICP auto-kills all automated follow-ups so you can talk human-to-human.'
+      'Keep it under 50 words total.',
+      'No links, pitch decks, or calendar invites.',
+      'Ask how they handle the friction today, never if they want to buy.',
+      'When they reply, automation halts immediately for human dialogue.'
     ],
-    exampleTitle: 'Copy-Paste Curiosity Template',
+    exampleTitle: 'Peer Curiosity Template',
     exampleText: `Subject: Quick question about audit logs at {{company}}
 
 Hi {{firstName}},
 
-Saw you lead compliance at {{company}}. 
+Saw you lead compliance at {{company}}. Quick question: when webhooks fail during customer reconciliations, are you guys tracking failures in spreadsheets or an internal replay queue?
 
-Quick question: when webhooks fail during customer reconciliations, are you guys tracking failures in spreadsheets or did you build an internal replay queue?
-
-Doing some research on this workflow friction—curious how your team handles it.
+Doing some research on this workflow—curious how your team handles it.
 
 Best,
 {{my_name}}`,
-    toolActionLabel: '[04] Open Safe Dispatcher & Templates',
+    toolActionLabel: '[04] Open Safe Dispatcher',
     targetTab: 'dispatcher',
     checkCompletion: (state) => state.leads?.some(l => l.stage !== 'uncontacted')
   },
@@ -147,28 +143,27 @@ Best,
     title: 'Run a 15-Min Call & Kill or Double-Down',
     kicker: 'STEP 06 // CONVERSATION TO COMMITMENT',
     shortName: 'Call & Decision',
-    subtitle: 'Never demo your app on Call 1. Listen for past pain and budget.',
-    why: 'Compliments ("That sounds really cool!") are deadly lies. You want truth: Have they spent money on this? How much time did it waste last week? Will they introduce you to the person who signs the checks? If not, kill the ICP cohort quickly and move to the next one.',
-    trapTitle: 'Opening Your Laptop and Demoing',
-    trapBody: 'The moment you screenshare, the prospect shifts into "movie critic" mode. They give feature requests for things they will never pay for. Keep your laptop closed and ask diagnostic questions.',
-    actionHeader: 'THE 5 DIAGNOSTIC MOM-TEST QUESTIONS',
+    subtitle: 'Listen for past pain and budget. Never demo on Call 1.',
+    why: 'Compliments are polite lies. Verify past spending and willingness to commit time or money.',
+    trapTitle: 'Opening Screenshare',
+    trapBody: 'Screensharing turns prospects into passive critics asking for features they won\'t buy.',
+    actionHeader: '5 MOM-TEST QUESTIONS',
     actionSteps: [
-      '1. "Tell me about the last time [Problem] happened?" (Listen for specifics, not theories).',
-      '2. "What did you do to fix it? What did that cost in time or money?" (Past behavior = truth).',
-      '3. "What other tools have you tried? Why did you stop using them?"',
+      '1. "Tell me about the last time [Problem] happened?"',
+      '2. "What did you do to fix it? What did that cost in time or money?"',
+      '3. "What other tools have you tried? Why did you stop?"',
       '4. "Who else on your team gets paged when this breaks?"',
-      '5. "If we had this fixed by next week, what is the next step to pilot it?"'
+      '5. "If this were fixed next week, what is the next step to pilot it?"'
     ],
-    exampleTitle: 'The Kill Criteria Checklist',
-    exampleText: `Kill the ICP Cohort if:
-- 15 contacts say "We don't really have that issue"
+    exampleTitle: 'Kill / Double-Down Criteria',
+    exampleText: `Kill Cohort if:
 - They say "It's annoying, but not worth paying to fix"
-- They are unwilling to commit 20 minutes to pilot
+- Unwilling to commit 20 minutes to pilot
 
-Double down on the ICP Cohort if:
-- They say "Can I use this right now? I will pay with my credit card."
-- They introduce you to their VP or Head of Finance within 24 hours.`,
-    toolActionLabel: '[03] Open Unified Inbox & Call Analyzer',
+Double Down if:
+- They say "Can I use this right now? I will pay today."
+- They introduce you to the check-signer within 24 hours.`,
+    toolActionLabel: '[03] Open Call Analyzer',
     targetTab: 'inbox',
     checkCompletion: (state) => state.leads?.some(l => ['call_completed', 'validated'].includes(l.stage))
   }
@@ -263,13 +258,13 @@ export function renderFounderGuide(container, state, onNavigateTab, onLaunchExer
             <!-- Left Column: Why & Tasks -->
             <div class="guide-column">
               <div class="guide-section-block">
-                <span class="guide-block-title">Why this matters for a founder</span>
+                <span class="guide-block-title">WHY THIS MATTERS</span>
                 <p class="guide-text">${activeStep.why}</p>
               </div>
 
               <!-- Warning Callout -->
               <div class="guide-callout-warning">
-                <span class="callout-title">DANGER // ${activeStep.trapTitle}</span>
+                <span class="callout-title">TRAP // ${activeStep.trapTitle}</span>
                 <p class="callout-body">${activeStep.trapBody}</p>
               </div>
 
@@ -284,7 +279,7 @@ export function renderFounderGuide(container, state, onNavigateTab, onLaunchExer
             <!-- Right Column: Example & Copyable Templates -->
             <div class="guide-column">
               <div class="guide-section-block">
-                <span class="guide-block-title">Concrete Reference / Copy-Paste Formula</span>
+                <span class="guide-block-title">REFERENCE / TEMPLATE</span>
                 <div class="guide-callout-example">
                   <span class="example-tag">${activeStep.exampleTitle}</span>
                   <div class="example-content">
@@ -295,10 +290,6 @@ export function renderFounderGuide(container, state, onNavigateTab, onLaunchExer
               </div>
 
               <div class="guide-section-block" style="background: var(--bg-surface-elevated); padding: 1.25rem; border: 1px solid var(--border-default);">
-                <span class="guide-block-title">Next Action Trigger</span>
-                <p class="guide-text" style="margin-bottom: 1rem;">
-                  Ready to complete this step? Jump directly into the workspace tool configured for this stage:
-                </p>
                 <button class="btn btn-primary" id="btn-step-action-body" style="width: 100%;">
                   ${activeStep.toolActionLabel} &rarr;
                 </button>
@@ -310,19 +301,19 @@ export function renderFounderGuide(container, state, onNavigateTab, onLaunchExer
           <div class="guide-step-footer">
             <div class="guide-step-status-toggle">
               <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
-                SYSTEM STATUS:
+                STATUS:
               </span>
               <span class="badge ${activeStep.checkCompletion(state) ? 'badge-primary' : 'badge-neutral'}" style="font-family: var(--font-mono);">
-                ${activeStep.checkCompletion(state) ? '[AUTO-VERIFIED: COMPLETE]' : '[AWAITING FOUNDER ACTION]'}
+                ${activeStep.checkCompletion(state) ? '[COMPLETE]' : '[INCOMPLETE]'}
               </span>
             </div>
 
             <div class="guide-nav-buttons">
               <button class="btn btn-secondary btn-sm" id="btn-prev-step" ${activeStep.id === 1 ? 'disabled' : ''}>
-                &larr; Previous Step
+                &larr; Prev
               </button>
               <button class="btn btn-secondary btn-sm" id="btn-next-step" ${activeStep.id === STEPS_DATA.length ? 'disabled' : ''}>
-                Next Step &rarr;
+                Next &rarr;
               </button>
             </div>
           </div>
@@ -331,41 +322,40 @@ export function renderFounderGuide(container, state, onNavigateTab, onLaunchExer
         <!-- 5. Founder "Where Are You Stuck?" Troubleshooter -->
         <div class="troubleshooter-section">
           <div class="troubleshooter-header">
-            <span class="guide-step-tagline">FOUNDER DIAGNOSTIC TOOL</span>
-            <h3 class="troubleshooter-title">Where are you stuck right now?</h3>
-            <p class="troubleshooter-sub">Click any common founder bottleneck to get the exact psychological diagnosis and immediate unlock.</p>
+            <span class="guide-step-tagline">DIAGNOSTIC</span>
+            <h3 class="troubleshooter-title">Where are you stuck?</h3>
           </div>
 
           <div class="troubleshooter-grid">
             <div class="trouble-card">
-              <h4 class="trouble-q">"I don't know who to sell to or who my customer is."</h4>
-              <p class="trouble-a">You have a solution searching for a problem. Stop asking "who can use this?". Instead, ask: "Who is losing their job or wasting 10 hours a week if this isn't solved?" Test 3 cohorts in Step 02.</p>
+              <h4 class="trouble-q">"Who do I sell to?"</h4>
+              <p class="trouble-a">Stop asking who could use this. Ask who loses their job or wastes 10 hours a week without it.</p>
               <div class="trouble-action">
-                <button class="btn btn-secondary btn-sm" data-jump-step="2">Go to Step 02: Brainstorm Audiences &rarr;</button>
+                <button class="btn btn-secondary btn-sm" data-jump-step="2">Step 02: Audiences &rarr;</button>
               </div>
             </div>
 
             <div class="trouble-card">
-              <h4 class="trouble-q">"People on calls say 'sounds cool', but nobody buys."</h4>
-              <p class="trouble-a">Compliments are worthless. They are being polite to get off the phone. Never ask if they like your idea. Ask: "How did you solve this last Tuesday? How much did that cost?" If they haven't spent money trying to fix it, they never will.</p>
+              <h4 class="trouble-q">"People say 'sounds cool' but don't buy."</h4>
+              <p class="trouble-a">Compliments are polite passes. Ask how they solved this last Tuesday and what it cost.</p>
               <div class="trouble-action">
-                <button class="btn btn-secondary btn-sm" data-jump-step="6">View The 5 Mom-Test Call Questions &rarr;</button>
+                <button class="btn btn-secondary btn-sm" data-jump-step="6">Step 06: Questions &rarr;</button>
               </div>
             </div>
 
             <div class="trouble-card">
-              <h4 class="trouble-q">"Nobody is replying to my cold emails."</h4>
-              <p class="trouble-a">Your email is too long and asks for a 15-minute demo. Delete your pitch. Use a 45-word peer curiosity question asking how they manage their current friction. You will see replies jump from 1% to 25%+.</p>
+              <h4 class="trouble-q">"Zero cold email replies."</h4>
+              <p class="trouble-a">Your email is too long and pitches a demo. Ask a 45-word peer question about their workflow instead.</p>
               <div class="trouble-action">
-                <button class="btn btn-secondary btn-sm" data-jump-step="5">Copy The 45-Word Email Template &rarr;</button>
+                <button class="btn btn-secondary btn-sm" data-jump-step="5">Step 05: 45-Word Touch &rarr;</button>
               </div>
             </div>
 
             <div class="trouble-card">
-              <h4 class="trouble-q">"I feel like I need to build 3 more features before launching."</h4>
-              <p class="trouble-a">Classic founder avoidance trap. You are building software because writing code feels safe, while hearing "no" from a customer hurts. More features actually decrease conversion by confusing buyers. Cut to a 1-feature wedge today.</p>
+              <h4 class="trouble-q">"Need more features before launching."</h4>
+              <p class="trouble-a">More features reduce conversion by confusing buyers. Cut down to a 1-feature wedge.</p>
               <div class="trouble-action">
-                <button class="btn btn-secondary btn-sm" data-jump-step="3">Unbundle Your 1-Feature Wedge &rarr;</button>
+                <button class="btn btn-secondary btn-sm" data-jump-step="3">Step 03: Wedge &rarr;</button>
               </div>
             </div>
           </div>

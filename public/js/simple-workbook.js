@@ -90,26 +90,18 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
     container.innerHTML = `
       <div class="simple-workbook-wrap">
         
-        <!-- Friendly Hero -->
+        <!-- Minimal Hero -->
         <div class="workbook-hero-card">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
-            <div>
-              <span class="workbook-hero-tag">FOUNDER BLUEPRINT // ZERO JARGON</span>
-              <h1 class="workbook-hero-title">Find the first 5 people who want your product.</h1>
-            </div>
-            <div>
-              <button class="btn btn-secondary btn-sm" id="btn-toggle-pro-mode" style="font-family: var(--font-mono); font-size: 0.72rem; padding: 0.4rem 0.8rem;">
-                ⚙ Switch to Pro Mode
-              </button>
-            </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <h1 class="workbook-hero-title">Find your first 5 customers.</h1>
+            <button class="btn btn-secondary btn-sm" id="btn-toggle-pro-mode" style="font-family: var(--font-mono); font-size: 0.72rem; padding: 0.4rem 0.8rem;">
+              ⚙ Pro Mode
+            </button>
           </div>
-          <p class="workbook-hero-desc">
-            You don't need sales textbooks or complicated pipelines. Just answer 3 basic questions to get your 1-sentence pitch, a ready-to-send message, and 5 people to contact.
-          </p>
 
           <!-- Quick Fill Preset Strip -->
-          <div class="quick-fill-strip">
-            <span class="quick-fill-label">TRY AN EXAMPLE PRESET:</span>
+          <div class="quick-fill-strip" style="margin-top: 0.75rem;">
+            <span class="quick-fill-label">PRESETS:</span>
             ${PRESETS.map((p, idx) => `
               <button class="preset-chip btn-load-preset" data-idx="${idx}">
                 ✦ ${p.name}
@@ -127,7 +119,7 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
                 ${form.productName ? '[SAVED]' : (activeStep === 1 ? '[CURRENT]' : '[TODO]')}
               </span>
             </div>
-            <span class="simple-step-label">1. What Did You Build?</span>
+            <span class="simple-step-label">1. Product</span>
           </button>
           
           <button class="simple-step-indicator ${activeStep === 2 ? 'active' : ''}" data-step="2">
@@ -137,7 +129,7 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
                 ${form.audience1 ? '[SAVED]' : (activeStep === 2 ? '[CURRENT]' : '[TODO]')}
               </span>
             </div>
-            <span class="simple-step-label">2. Who Needs It Most?</span>
+            <span class="simple-step-label">2. Audiences</span>
           </button>
           
           <button class="simple-step-indicator ${activeStep === 3 ? 'active' : ''}" data-step="3">
@@ -147,7 +139,7 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
                 ${activeStep === 3 ? '[READY]' : '[ACTION]'}
               </span>
             </div>
-            <span class="simple-step-label">3. Your Action Plan</span>
+            <span class="simple-step-label">3. Action Plan</span>
           </button>
         </div>
 
@@ -166,50 +158,39 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
     if (activeStep === 1) {
       return `
         <div class="simple-card-header">
-          <span class="simple-card-step-kicker">STEP 01 OF 03 // YOUR PRODUCT</span>
-          <h2 class="simple-card-title">Tell us what you built in plain English.</h2>
-          <p class="simple-card-sub">Pretend you are explaining your product to a friend over coffee. No buzzwords like "paradigm-shifting AI platform".</p>
+          <h2 class="simple-card-title">What did you build?</h2>
         </div>
 
         <div class="easy-field-group">
-          <label class="easy-label" for="inp-product-name">
-            <span>Product Name</span>
-            <span class="easy-label-hint">What do you call it?</span>
-          </label>
-          <input type="text" class="easy-input" id="inp-product-name" placeholder="e.g. DocuSync or FeedbackPulse" value="${escapeHtml(form.productName)}">
+          <label class="easy-label" for="inp-product-name">Product Name</label>
+          <input type="text" class="easy-input" id="inp-product-name" placeholder="e.g. DocuSync" value="${escapeHtml(form.productName)}">
         </div>
 
         <div class="easy-field-group">
-          <label class="easy-label" for="inp-product-desc">
-            <span>What does it do? (In 1 sentence)</span>
-            <span class="easy-label-hint">One clear sentence</span>
-          </label>
-          <textarea class="easy-textarea" id="inp-product-desc" rows="2" placeholder="e.g. It turns raw customer feedback from Discord and Slack into organized tickets in 1 click.">${escapeHtml(form.productDesc)}</textarea>
+          <label class="easy-label" for="inp-product-desc">What does it do?</label>
+          <textarea class="easy-textarea" id="inp-product-desc" rows="2" placeholder="e.g. Turns customer feedback into tickets in 1 click.">${escapeHtml(form.productDesc)}</textarea>
         </div>
 
         <div class="easy-field-group">
-          <label class="easy-label">
-            <span>What are 2 or 3 specific capabilities you coded?</span>
-            <span class="easy-label-hint">${form.features.length} capabilities listed</span>
-          </label>
+          <label class="easy-label">Core Capabilities</label>
           <div class="easy-feature-list" id="simple-feature-list">
             ${form.features.map((feat, idx) => `
               <div class="easy-feature-row">
                 <span class="feature-num-badge">0${idx + 1}</span>
-                <input type="text" class="easy-input feature-input" data-idx="${idx}" placeholder="e.g. One-click PDF export" value="${escapeHtml(feat)}">
+                <input type="text" class="easy-input feature-input" data-idx="${idx}" placeholder="e.g. 1-click PDF export" value="${escapeHtml(feat)}">
                 ${form.features.length > 1 ? `<button class="easy-btn-remove btn-remove-feat" data-idx="${idx}" title="Remove">&times;</button>` : ''}
               </div>
             `).join('')}
           </div>
           <button class="btn btn-secondary btn-sm" id="btn-add-feature-row" style="align-self: flex-start; margin-top: 0.5rem;">
-            + Add Another Capability
+            + Add Capability
           </button>
         </div>
 
         <div class="simple-card-footer">
-          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">STEP 1 OF 3 // FOUNDATION</span>
+          <span></span>
           <button class="btn btn-primary" id="btn-step1-next" style="padding: 0.75rem 1.4rem;">
-            Next: Who Needs This? &rarr;
+            Next: Target Audiences &rarr;
           </button>
         </div>
       `;
@@ -218,9 +199,7 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
     if (activeStep === 2) {
       return `
         <div class="simple-card-header">
-          <span class="simple-card-step-kicker">STEP 02 OF 03 // TARGET AUDIENCES</span>
-          <h2 class="simple-card-title">Who is suffering from this headache today?</h2>
-          <p class="simple-card-sub">An "Ideal Customer" is just someone who is wasting time or money doing this manually. Let's pick 2 different groups to test.</p>
+          <h2 class="simple-card-title">Who needs it most?</h2>
         </div>
 
         <div class="cohort-comparison-grid">
@@ -228,22 +207,22 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
           <!-- Cohort 1 -->
           <div class="cohort-card-builder">
             <div class="cohort-builder-tag">
-              <span style="color: var(--accent-terracotta);">[GROUP A] PRIMARY CANDIDATE</span>
+              <span style="color: var(--accent-terracotta);">[GROUP A] PRIMARY</span>
               <span style="color: var(--text-muted); font-size: 0.65rem;">TIER 1</span>
             </div>
 
             <div class="easy-field-group">
               <label class="easy-label" for="inp-audience-1">Who are they?</label>
-              <input type="text" class="easy-input" id="inp-audience-1" placeholder="e.g. Product Managers at startups (20–100 people)" value="${escapeHtml(form.audience1)}">
+              <input type="text" class="easy-input" id="inp-audience-1" placeholder="e.g. Agency Owners (5–20 people)" value="${escapeHtml(form.audience1)}">
             </div>
 
             <div class="easy-field-group">
-              <label class="easy-label" for="inp-pain-1">What are they annoyed by right now?</label>
-              <textarea class="easy-textarea" id="inp-pain-1" rows="2" placeholder="e.g. Manually copy-pasting customer bug reports from Slack into Jira every Friday">${escapeHtml(form.pain1)}</textarea>
+              <label class="easy-label" for="inp-pain-1">Daily Friction</label>
+              <textarea class="easy-textarea" id="inp-pain-1" rows="2" placeholder="e.g. Manually matching CSV reports in Excel every Friday">${escapeHtml(form.pain1)}</textarea>
             </div>
 
             <div class="wedge-highlight-box">
-              <span class="wedge-box-label">The 1-Feature Wedge to Pitch</span>
+              <span class="wedge-box-label">1-Feature Wedge</span>
               <select class="form-select" id="sel-wedge-1" style="font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg-canvas); margin-top: 0.2rem;">
                 ${form.features.map(f => `<option value="${escapeHtml(f)}" ${form.wedge1 === f ? 'selected' : ''}>${escapeHtml(f)}</option>`).join('')}
               </select>
@@ -253,22 +232,22 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
           <!-- Cohort 2 -->
           <div class="cohort-card-builder">
             <div class="cohort-builder-tag">
-              <span style="color: var(--text-muted);">[GROUP B] COMPARISON CANDIDATE</span>
+              <span style="color: var(--text-muted);">[GROUP B] SECONDARY</span>
               <span style="color: var(--text-muted); font-size: 0.65rem;">TIER 2</span>
             </div>
 
             <div class="easy-field-group">
               <label class="easy-label" for="inp-audience-2">Who are they?</label>
-              <input type="text" class="easy-input" id="inp-audience-2" placeholder="e.g. Freelance Web Designers / Solo Agency Owners" value="${escapeHtml(form.audience2)}">
+              <input type="text" class="easy-input" id="inp-audience-2" placeholder="e.g. Freelance Designers" value="${escapeHtml(form.audience2)}">
             </div>
 
             <div class="easy-field-group">
-              <label class="easy-label" for="inp-pain-2">What is their main daily friction?</label>
-              <textarea class="easy-textarea" id="inp-pain-2" rows="2" placeholder="e.g. Clients messaging them on WhatsApp and losing track of revision requests">${escapeHtml(form.pain2)}</textarea>
+              <label class="easy-label" for="inp-pain-2">Daily Friction</label>
+              <textarea class="easy-textarea" id="inp-pain-2" rows="2" placeholder="e.g. Chasing client invoices and payment links">${escapeHtml(form.pain2)}</textarea>
             </div>
 
             <div class="wedge-highlight-box">
-              <span class="wedge-box-label">The 1-Feature Wedge to Pitch</span>
+              <span class="wedge-box-label">1-Feature Wedge</span>
               <select class="form-select" id="sel-wedge-2" style="font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg-canvas); margin-top: 0.2rem;">
                 ${form.features.map((f, i) => `<option value="${escapeHtml(f)}" ${(form.wedge2 === f || (!form.wedge2 && i === 1)) ? 'selected' : ''}>${escapeHtml(f)}</option>`).join('')}
               </select>
@@ -279,10 +258,10 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
 
         <div class="simple-card-footer">
           <button class="btn btn-secondary" id="btn-step2-prev">
-            &larr; Back to Product
+            &larr; Back
           </button>
           <button class="btn btn-primary" id="btn-step2-next" style="padding: 0.75rem 1.4rem;">
-            Generate My Action Plan &rarr;
+            Generate Action Plan &rarr;
           </button>
         </div>
       `;
@@ -290,16 +269,16 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh,
 
     if (activeStep === 3) {
       const prodName = form.productName || 'Your Product';
-      const targetAudience = form.audience1 || 'Product Managers';
-      const targetPain = form.pain1 || 'wasting 4 hours a week on manual copy-pasting';
-      const wedgeFeature = form.wedge1 || form.features[0] || '1-click automated sync';
+      const targetAudience = form.audience1 || 'Agency Owners';
+      const targetPain = form.pain1 || 'reconciling reports manually in Excel';
+      const wedgeFeature = form.wedge1 || form.features[0] || '1-click summary export';
 
       const pitch = `We help ${targetAudience} eliminate ${targetPain} using ${wedgeFeature}.`;
 
       const emailSubject = `Quick question about ${targetPain.split(' ')[0] || 'workflow'} at {{company}}`;
       const emailBody = `Hi {{firstName}},
 
-Saw you lead ${targetAudience.split(' ')[0] || 'product'} at {{company}}.
+Saw you lead ${targetAudience.split(' ')[0] || 'your team'} at {{company}}.
 
 Quick question: when ${targetPain}, how are you guys handling that today? Are you doing it manually or did you hack together an internal tool?
 
@@ -313,9 +292,7 @@ Best,
 
       return `
         <div class="simple-card-header">
-          <span class="simple-card-step-kicker">STEP 03 OF 03 // YOUR ACTION PLAN</span>
-          <h2 class="simple-card-title">Here is your exact playbook for tomorrow morning.</h2>
-          <p class="simple-card-sub">No confusion. You now have a clear pitch, a copy-paste message that gets replies, and 5 questions to ask.</p>
+          <h2 class="simple-card-title">Action Plan</h2>
         </div>
 
         <div class="cheat-sheet-grid">
@@ -323,83 +300,58 @@ Best,
           <!-- Block 1: 1-Sentence Pitch -->
           <div class="cheat-sheet-block">
             <div class="cheat-sheet-tag">
-              <span>[01] YOUR 1-SENTENCE CLARITY PITCH</span>
-              <button class="cheat-sheet-copy-btn" id="btn-copy-pitch">COPY PITCH</button>
+              <span>[01] 1-SENTENCE PITCH</span>
+              <button class="cheat-sheet-copy-btn" id="btn-copy-pitch">COPY</button>
             </div>
             <h3 class="cheat-sheet-headline">${escapeHtml(pitch)}</h3>
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-              Use this whenever anyone asks "So what does your product do?". Notice how it leads with the customer's headache, not code.
-            </p>
           </div>
 
           <!-- Block 2: 40-Word Curiosity Email -->
           <div class="cheat-sheet-block">
             <div class="cheat-sheet-tag">
-              <span>[02] THE 40-WORD MESSAGE (SEND TO 5 PEOPLE ON LINKEDIN OR EMAIL)</span>
+              <span>[02] CURIOSITY OUTREACH (NO PITCHING)</span>
               <button class="cheat-sheet-copy-btn" id="btn-copy-email">COPY MESSAGE</button>
             </div>
 
             <div class="terminal-message-window">
               <div class="terminal-window-bar">
-                <span class="dot-circle" style="background: #ef4444;"></span>
-                <span class="dot-circle" style="background: #eab308;"></span>
-                <span class="dot-circle" style="background: #22c55e;"></span>
-                <span class="terminal-title">outreach_touch_01.txt</span>
+                <span class="dot-circle" style="background: #000000;"></span>
+                <span class="terminal-title">message_template.txt</span>
               </div>
               <div class="cheat-sheet-box">${escapeHtml(emailBody)}</div>
             </div>
-
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-              <strong>Why this gets a 25–40% reply rate:</strong> You are NOT asking them to buy, and you are NOT pitching a 15-minute demo. You are asking an authentic peer question.
-            </p>
           </div>
 
           <!-- Block 3: The 5 Golden Call Questions -->
           <div class="cheat-sheet-block">
             <div class="cheat-sheet-tag">
-              <span>[03] WHAT TO ASK WHEN THEY REPLY (THE 15-MINUTE CALL)</span>
-              <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--status-danger);">[NEVER DEMO ON CALL 1]</span>
+              <span>[03] 5 CALL QUESTIONS (ZERO PITCHING)</span>
             </div>
             
             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
               <div class="question-item-row">
                 <span class="q-num-badge">Q1</span>
-                <div class="q-text-body">
-                  "Walk me through the last time [Problem] happened at your company?"
-                  <span class="q-text-reason">Forces them to recall real past behavior instead of theoretical wishes.</span>
-                </div>
+                <div class="q-text-body">"Walk me through the last time [Problem] happened at your company?"</div>
               </div>
 
               <div class="question-item-row">
                 <span class="q-num-badge">Q2</span>
-                <div class="q-text-body">
-                  "How did you fix it? (What tools or spreadsheets did you use?)"
-                  <span class="q-text-reason">If they didn't try to fix it, the problem is not painful enough for them to pay.</span>
-                </div>
+                <div class="q-text-body">"How did you fix it? (What tools or spreadsheets did you use?)"</div>
               </div>
 
               <div class="question-item-row">
                 <span class="q-num-badge">Q3</span>
-                <div class="q-text-body">
-                  "What did that cost your team in wasted hours or money?"
-                  <span class="q-text-reason">Establishes the anchor value for your future pricing.</span>
-                </div>
+                <div class="q-text-body">"What did that cost your team in wasted hours or money?"</div>
               </div>
 
               <div class="question-item-row">
                 <span class="q-num-badge">Q4</span>
-                <div class="q-text-body">
-                  "Have you tried paying for other software before? Why didn't you stick with it?"
-                  <span class="q-text-reason">Identifies competitor deficiencies and procurement friction.</span>
-                </div>
+                <div class="q-text-body">"Have you tried paying for other software before? Why didn't you stick with it?"</div>
               </div>
 
               <div class="question-item-row">
                 <span class="q-num-badge">Q5</span>
-                <div class="q-text-body">
-                  "If we solved this by next Monday, would you be open to testing a prototype?"
-                  <span class="q-text-reason">Tests commitment currency without sounding like a pushy salesman.</span>
-                </div>
+                <div class="q-text-body">"If we solved this by next Monday, would you be open to testing an early prototype?"</div>
               </div>
             </div>
           </div>
@@ -407,42 +359,31 @@ Best,
           <!-- Block 4: Your 5 People Checklist -->
           <div class="cheat-sheet-block">
             <div class="cheat-sheet-tag">
-              <span>[04] YOUR FIRST 5 TARGET CONTACTS</span>
-              <button class="btn btn-secondary btn-sm" id="btn-add-contact-row" style="font-size: 0.7rem; padding: 0.25rem 0.6rem;">+ Add Person</button>
+              <span>[04] FIRST 5 TARGET CONTACTS</span>
+              <button class="btn btn-secondary btn-sm" id="btn-add-contact-row" style="font-size: 0.7rem; padding: 0.25rem 0.6rem;">+ Add Contact</button>
             </div>
             
             <!-- Progress Strip -->
             <div class="contact-progress-strip">
               <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-terracotta); font-weight: 700;">
-                OUTREACH PROGRESS: ${contactedCount} / ${form.simpleContacts.length} (${progressPct}%)
+                PROGRESS: ${contactedCount} / ${form.simpleContacts.length} (${progressPct}%)
               </span>
               <div class="contact-progress-bar">
                 <div class="contact-progress-fill" style="width: ${progressPct}%;"></div>
               </div>
             </div>
 
-            <!-- Gamified Conversation Callout -->
-            <div style="background: var(--dp-color-surface); border: 2px solid var(--dp-color-ink); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                <div>
-                  <span style="font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; color: var(--dp-color-accent); text-transform: uppercase;">🎮 CONVERSATION GAME // ZERO OVERWHELM</span>
-                  <h4 style="font-size: 1.25rem; font-weight: 800; margin: 0.25rem 0; color: var(--dp-color-ink); letter-spacing: -0.02em;">Nervous about talking to customers or writing notes?</h4>
-                  <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">Play the 4-Round Call Deck with 1-tap note snapping, or practice with a virtual prospect persona before calling real people.</p>
-                </div>
-                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                  <button class="btn btn-secondary btn-sm" id="btn-workbook-open-sim" style="font-family: var(--font-mono); font-size: 0.75rem;">
-                    🕹️ Practice with AI Persona
-                  </button>
-                  <button class="btn btn-primary btn-sm" id="btn-workbook-open-deck" style="font-family: var(--font-mono); font-size: 0.75rem;">
-                    🎮 Open 1-Tap Call Deck
-                  </button>
-                </div>
+            <!-- Minimal Gamified Banner -->
+            <div style="background: var(--dp-color-surface); border: 1px solid var(--dp-color-ink); padding: 0.85rem 1.25rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+              <div>
+                <strong style="font-size: 0.95rem; color: var(--dp-color-ink);">Customer Conversation Game</strong>
+                <span style="font-size: 0.8rem; color: var(--text-secondary); margin-left: 0.5rem;">1-tap notes & AI practice simulator.</span>
+              </div>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-sm" id="btn-workbook-open-sim" style="font-family: var(--font-mono); font-size: 0.72rem;">🕹️ Practice Simulator</button>
+                <button class="btn btn-primary btn-sm" id="btn-workbook-open-deck" style="font-family: var(--font-mono); font-size: 0.72rem;">🎮 1-Tap Call Deck</button>
               </div>
             </div>
-
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-              Search LinkedIn for: <strong>${escapeHtml(targetAudience)}</strong>. Enter 5 real names and update their status as you message them.
-            </p>
 
             <table class="simple-contacts-table">
               <thead>

@@ -322,22 +322,21 @@ export function setupCallCompanion(dialogEl, leads = [], onSaved = () => {}) {
     if (round === 1) {
       return `
         <div class="round-card">
-          <div class="round-kicker">ROUND 01 // CONTEXT & DAILY REALITY (0 - 3 MINS)</div>
-          <h4 class="round-script-heading">&ldquo;Thanks for making time! How does your team currently tackle [X] on a day-to-day basis?&rdquo;</h4>
-          <p class="round-guidance">Rule: Do NOT mention your product, AI, or your tech stack. Just listen to their current routine.</p>
+          <div class="round-kicker">ROUND 01 // CONTEXT (0 - 3 MINS)</div>
+          <h4 class="round-script-heading">&ldquo;How does your team currently handle this daily?&rdquo;</h4>
 
           <div class="signal-button-grid">
-            <span class="grid-label">TAP TO RECORD COMPANY CONTEXT (+25 XP):</span>
+            <span class="grid-label">TEAM SIZE (+25 XP):</span>
             <div class="chips-container">
-              <button class="chip-action-btn" data-type="context" data-val="Solo Founder / 1-5 Team">🏢 1 - 5 People</button>
-              <button class="chip-action-btn" data-type="context" data-val="Growing Team (5-25)">🏢 5 - 25 People</button>
-              <button class="chip-action-btn" data-type="context" data-val="Mid-Market (25-100)">🏢 25 - 100 People</button>
-              <button class="chip-action-btn" data-type="context" data-val="Enterprise (100+)">🏢 100+ Enterprise</button>
+              <button class="chip-action-btn" data-type="context" data-val="Solo Founder / 1-5 Team">1 - 5</button>
+              <button class="chip-action-btn" data-type="context" data-val="Growing Team (5-25)">5 - 25</button>
+              <button class="chip-action-btn" data-type="context" data-val="Mid-Market (25-100)">25 - 100</button>
+              <button class="chip-action-btn" data-type="context" data-val="Enterprise (100+)">100+</button>
             </div>
           </div>
 
           <div class="round-next-row">
-            <button class="btn btn-secondary btn-sm" id="btn-next-round-2">Proceed to Round 2: The Real Agony &rarr;</button>
+            <button class="btn btn-secondary btn-sm" id="btn-next-round-2">Round 2: Pain &rarr;</button>
           </div>
         </div>
       `;
@@ -346,33 +345,32 @@ export function setupCallCompanion(dialogEl, leads = [], onSaved = () => {}) {
     if (round === 2) {
       return `
         <div class="round-card">
-          <div class="round-kicker">ROUND 02 // THE REAL OPERATIONAL AGONY (3 - 8 MINS)</div>
-          <h4 class="round-script-heading">&ldquo;When was the last time that broke or took way too much time? What did you do to fix it?&rdquo;</h4>
-          <p class="round-guidance">Probe for emotional pain. If they say "it's not a big deal", they will NOT pay for your SaaS.</p>
+          <div class="round-kicker">ROUND 02 // FRICTION (3 - 8 MINS)</div>
+          <h4 class="round-script-heading">&ldquo;When was the last time that broke? What did you do to fix it?&rdquo;</h4>
 
           <div class="signal-button-grid">
-            <span class="grid-label">1-TAP PAIN SEVERITY (+40 XP):</span>
+            <span class="grid-label">PAIN SEVERITY (+40 XP):</span>
             <div class="chips-container">
               <button class="chip-action-btn ${callSession.painSeverity === 5 ? 'selected' : ''}" data-type="pain" data-val="5">🔥 Hair-on-Fire (5/5)</button>
-              <button class="chip-action-btn ${callSession.painSeverity === 4 ? 'selected' : ''}" data-type="pain" data-val="4">⚡ Severe Agony (4/5)</button>
+              <button class="chip-action-btn ${callSession.painSeverity === 4 ? 'selected' : ''}" data-type="pain" data-val="4">⚡ Severe (4/5)</button>
               <button class="chip-action-btn ${callSession.painSeverity === 3 ? 'selected' : ''}" data-type="pain" data-val="3">⚠️ Annoying (3/5)</button>
-              <button class="chip-action-btn ${callSession.painSeverity <= 2 ? 'selected' : ''}" data-type="pain" data-val="2">🤷 Mild / Shrug (2/5)</button>
+              <button class="chip-action-btn ${callSession.painSeverity <= 2 ? 'selected' : ''}" data-type="pain" data-val="2">🤷 Mild (2/5)</button>
             </div>
           </div>
 
           <div class="signal-button-grid" style="margin-top: 1rem;">
-            <span class="grid-label">1-TAP EXISTING WORKAROUND (+50 XP):</span>
+            <span class="grid-label">EXISTING WORKAROUND (+50 XP):</span>
             <div class="chips-container">
-              <button class="chip-action-btn" data-type="workaround" data-val="Excel & Google Sheets">📊 Excel / Sheets</button>
-              <button class="chip-action-btn" data-type="workaround" data-val="Manual Copy-Paste">✍️ Manual Copy-Paste</button>
-              <button class="chip-action-btn" data-type="workaround" data-val="Custom Zapier / Python Script">🐍 Custom Scripts</button>
-              <button class="chip-action-btn" data-type="workaround" data-val="Hired VA or Contractor">👥 Outsource / Contractor</button>
-              <button class="chip-action-btn" data-type="workaround" data-val="Competitor Tool (Overpriced)">💼 Competitor Tool</button>
+              <button class="chip-action-btn" data-type="workaround" data-val="Excel & Google Sheets">Excel / Sheets</button>
+              <button class="chip-action-btn" data-type="workaround" data-val="Manual Copy-Paste">Manual Tasks</button>
+              <button class="chip-action-btn" data-type="workaround" data-val="Custom Zapier / Python Script">Custom Scripts</button>
+              <button class="chip-action-btn" data-type="workaround" data-val="Hired VA or Contractor">Contractors</button>
+              <button class="chip-action-btn" data-type="workaround" data-val="Competitor Tool (Overpriced)">Competitor Tool</button>
             </div>
           </div>
 
           <div class="round-next-row">
-            <button class="btn btn-secondary btn-sm" id="btn-next-round-3">Proceed to Round 3: The 1-Feature Wedge &rarr;</button>
+            <button class="btn btn-secondary btn-sm" id="btn-next-round-3">Round 3: Wedge &rarr;</button>
           </div>
         </div>
       `;
@@ -381,31 +379,30 @@ export function setupCallCompanion(dialogEl, leads = [], onSaved = () => {}) {
     if (round === 3) {
       return `
         <div class="round-card">
-          <div class="round-kicker">ROUND 03 // THE 1-FEATURE WEDGE TEST (8 - 12 MINS)</div>
-          <h4 class="round-script-heading">&ldquo;If you could press a button and only solve ONE specific friction tomorrow, which single part matters most?&rdquo;</h4>
-          <p class="round-guidance">Find what feature they care about vs. what feature is useless bloat.</p>
+          <div class="round-kicker">ROUND 03 // 1-FEATURE WEDGE (8 - 12 MINS)</div>
+          <h4 class="round-script-heading">&ldquo;If you could solve only ONE friction tomorrow, which matters most?&rdquo;</h4>
 
           <div class="signal-button-grid">
             <span class="grid-label">WEDGE REACTION (+50 XP):</span>
             <div class="chips-container">
-              <button class="chip-action-btn ${callSession.wedgeReaction === 'resonated' ? 'selected' : ''}" data-type="wedge" data-val="resonated">🔥 Loved the 1-Wedge</button>
-              <button class="chip-action-btn ${callSession.wedgeReaction === 'neutral' ? 'selected' : ''}" data-type="wedge" data-val="neutral">😐 Lukewarm / Unsure</button>
+              <button class="chip-action-btn ${callSession.wedgeReaction === 'resonated' ? 'selected' : ''}" data-type="wedge" data-val="resonated">🔥 Loved It</button>
+              <button class="chip-action-btn ${callSession.wedgeReaction === 'neutral' ? 'selected' : ''}" data-type="wedge" data-val="neutral">😐 Lukewarm</button>
               <button class="chip-action-btn ${callSession.wedgeReaction === 'rejected' ? 'selected' : ''}" data-type="wedge" data-val="rejected">❌ Didn't Care</button>
             </div>
           </div>
 
           <div class="signal-button-grid" style="margin-top: 1rem;">
-            <span class="grid-label">FLAG BLOAT (Features they confirmed they DON'T need) (+50 XP):</span>
+            <span class="grid-label">FLAG BLOAT (Confirmed Not Needed) (+50 XP):</span>
             <div class="chips-container">
-              <button class="chip-action-btn" data-type="bloat" data-val="No Dashboards Needed">🚫 Doesn't Need Dashboards</button>
-              <button class="chip-action-btn" data-type="bloat" data-val="No AI Automation Needed">🚫 Doesn't Need AI</button>
-              <button class="chip-action-btn" data-type="bloat" data-val="No Team Collaboration">🚫 Doesn't Need Multi-user</button>
-              <button class="chip-action-btn" data-type="bloat" data-val="No Mobile App">🚫 Doesn't Need Mobile App</button>
+              <button class="chip-action-btn" data-type="bloat" data-val="No Dashboards Needed">No Dashboards</button>
+              <button class="chip-action-btn" data-type="bloat" data-val="No AI Automation Needed">No AI</button>
+              <button class="chip-action-btn" data-type="bloat" data-val="No Team Collaboration">No Multi-user</button>
+              <button class="chip-action-btn" data-type="bloat" data-val="No Mobile App">No Mobile App</button>
             </div>
           </div>
 
           <div class="round-next-row">
-            <button class="btn btn-secondary btn-sm" id="btn-next-round-4">Proceed to Round 4: Budget & WTP &rarr;</button>
+            <button class="btn btn-secondary btn-sm" id="btn-next-round-4">Round 4: Commitment &rarr;</button>
           </div>
         </div>
       `;
@@ -414,25 +411,17 @@ export function setupCallCompanion(dialogEl, leads = [], onSaved = () => {}) {
     if (round === 4) {
       return `
         <div class="round-card">
-          <div class="round-kicker">ROUND 04 // COMMITMENT & WILLINGNESS TO PAY (12 - 15 MINS)</div>
-          <h4 class="round-script-heading">&ldquo;We're building an early alpha specifically for this 1 piece. Would you want to test it next week?&rdquo;</h4>
-          <p class="round-guidance">Test real commitment: Time or Money. A polite "looks cool" without commitment is a polite pass.</p>
+          <div class="round-kicker">ROUND 04 // COMMITMENT & WTP (12 - 15 MINS)</div>
+          <h4 class="round-script-heading">&ldquo;We're building an early alpha for this 1 piece. Want to test it next week?&rdquo;</h4>
 
           <div class="signal-button-grid">
-            <span class="grid-label">1-TAP COMMITMENT LEVEL (+100 XP):</span>
+            <span class="grid-label">COMMITMENT (+100 XP):</span>
             <div class="chips-container">
-              <button class="chip-action-btn" data-type="wtp" data-val="$100 - $300 / mo (High WTP)">💰 Will Pay ($100 - $300/mo)</button>
-              <button class="chip-action-btn" data-type="wtp" data-val="$50 - $100 / mo (Standard)">💰 Will Pay ($50 - $100/mo)</button>
-              <button class="chip-action-btn" data-type="wtp" data-val="Alpha Partner (Free Beta)">🤝 Wants Free Alpha Access</button>
-              <button class="chip-action-btn" data-type="wtp" data-val="No Budget / Politely Passed">👋 Politely Passed / No Budget</button>
+              <button class="chip-action-btn" data-type="wtp" data-val="$100 - $300 / mo (High WTP)">💰 $100 - $300 / mo</button>
+              <button class="chip-action-btn" data-type="wtp" data-val="$50 - $100 / mo (Standard)">💰 $50 - $100 / mo</button>
+              <button class="chip-action-btn" data-type="wtp" data-val="Alpha Partner (Free Beta)">🤝 Free Alpha Partner</button>
+              <button class="chip-action-btn" data-type="wtp" data-val="No Budget / Politely Passed">👋 Passed / No Budget</button>
             </div>
-          </div>
-
-          <div style="margin-top: 1.5rem; padding: 1rem; background: var(--dp-color-surface); border: 1px solid var(--dp-color-ink);">
-            <strong style="display: block; font-size: 0.85rem; margin-bottom: 0.35rem; color: var(--dp-color-ink);">READY TO LOG DISCOVERY OUTCOME?</strong>
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
-              Clicking &ldquo;Finish Call & Bank XP&rdquo; will automatically compile your signals into clean bullet notes, advance the contact stage, recalculate your ICP Scorecard, and award your founder XP!
-            </p>
           </div>
         </div>
       `;
