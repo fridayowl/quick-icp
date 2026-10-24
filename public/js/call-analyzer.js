@@ -1,4 +1,4 @@
-// Discovery Call & Transcript Insight Extractor Controller
+// Discovery Call & Transcript Insight Extractor Controller (Swiss Editorial System)
 import { api } from './api.js';
 
 export function setupCallNotesModal(dialogEl, leads, onSaved) {
@@ -7,34 +7,35 @@ export function setupCallNotesModal(dialogEl, leads, onSaved) {
   dialogEl.innerHTML = `
     <div class="modal-header">
       <div class="modal-title-group">
-        <h3 id="modal-lead-title">Log Discovery Call Notes & Extract Insights</h3>
-        <p>Unbundle your over-engineered product. Find which 10% slice this customer actually cares about.</p>
+        <div class="modal-kicker">INTERVIEW ANALYSIS // THE MOM TEST PROTOCOL</div>
+        <h3 id="modal-lead-title">Log Discovery Notes & Extract Signals</h3>
+        <p>De-engineer your product. Identify the precise operational friction and verified willingness to pay.</p>
       </div>
-      <button class="modal-close-btn" id="modal-close-x">&times;</button>
+      <button class="modal-close-btn" id="modal-close-x" aria-label="Close dialog">&times;</button>
     </div>
 
     <div class="modal-body">
-      <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
-        <span style="font-size: 0.75rem; color: var(--text-dim); align-self: center;">Quick test samples:</span>
-        <button class="btn btn-secondary btn-sm" id="btn-sample-agency" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">
-          Agency Call (High Pain)
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 0.25rem;">
+        <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-tertiary); align-self: center;">TEST SAMPLES:</span>
+        <button class="btn btn-secondary btn-sm" id="btn-sample-agency" style="font-family: var(--font-mono); font-size: 0.7rem; padding: 0.2rem 0.5rem;">
+          [SAMPLE] Agency (Severe Pain)
         </button>
-        <button class="btn btn-secondary btn-sm" id="btn-sample-cto" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">
-          CTO Call (Existing Tool)
+        <button class="btn btn-secondary btn-sm" id="btn-sample-cto" style="font-family: var(--font-mono); font-size: 0.7rem; padding: 0.2rem 0.5rem;">
+          [SAMPLE] CTO (Existing Tool)
         </button>
       </div>
 
       <div class="form-group">
-        <label class="form-label">
-          <span>Raw Call Notes / Audio Transcript</span>
-          <span style="font-weight: normal; font-size: 0.72rem; color: var(--accent-cyan);">Paste notes or spoken feedback</span>
+        <label class="form-label" for="call-raw-text">
+          <span>Raw Call Notes or Audio Transcript</span>
+          <span class="label-aside">[Paste Zoom / Meet transcript]</span>
         </label>
-        <textarea class="form-textarea" id="call-raw-text" rows="5" placeholder="Paste notes from your 15-min call: What did they complain about? What made their eyes light up? What features did they ignore?"></textarea>
+        <textarea class="form-textarea" id="call-raw-text" rows="5" placeholder="Paste notes from your 15-minute call: What caused visible frustration? What made their eyes light up? What features did they ignore?"></textarea>
       </div>
 
       <div style="display: flex; justify-content: flex-end;">
         <button class="btn btn-primary btn-sm" id="btn-run-analyzer">
-          ✨ Extract ICP Insights
+          Extract Quantified Signals &rarr;
         </button>
       </div>
 
@@ -43,10 +44,10 @@ export function setupCallNotesModal(dialogEl, leads, onSaved) {
         <div class="extracted-card">
           <div class="extracted-grid">
             <div class="extracted-item">
-              <span class="extracted-label">Pain Severity (1-5)</span>
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <input type="range" min="1" max="5" value="4" class="form-range" id="field-pain-score" style="width: 120px;">
-                <span class="extracted-val" id="val-pain-score" style="color: var(--accent-amber);">4 / 5</span>
+              <span class="extracted-label">Pain Severity Rating (1 to 5)</span>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <input type="range" min="1" max="5" value="4" class="form-range" id="field-pain-score" style="width: 130px; accent-color: var(--terracotta);">
+                <span class="extracted-val" id="val-pain-score">4 / 5</span>
               </div>
             </div>
 
@@ -57,26 +58,26 @@ export function setupCallNotesModal(dialogEl, leads, onSaved) {
           </div>
 
           <div class="extracted-item">
-            <span class="extracted-label">⚡ The 1-Feature Wedge That Resonated</span>
+            <span class="extracted-label">[WEDGE RESONANCE] Feature that solved the headache</span>
             <input type="text" class="form-input" id="field-wedge-resonance">
           </div>
 
           <div class="extracted-item">
-            <span class="extracted-label">🚫 Monster Features They Didn't Care About</span>
+            <span class="extracted-label">[DISCARDED] Features they confirmed they do NOT want</span>
             <input type="text" class="form-input" id="field-discarded">
           </div>
 
           <div class="extracted-item">
-            <span class="extracted-label">💬 Verbatim Customer Quote</span>
+            <span class="extracted-label">Verbatim Customer Quote</span>
             <input type="text" class="form-input" id="field-quotes">
           </div>
 
           <div class="form-group" style="margin-top: 0.5rem;">
-            <label class="form-label">Move Lead To Stage</label>
+            <label class="form-label" for="field-next-stage">Advance Lead Stage</label>
             <select class="form-select" id="field-next-stage">
               <option value="call_completed">Call Completed / Evaluated</option>
-              <option value="validated" selected>⭐ ICP Validated (Design Partner Alpha)</option>
-              <option value="disqualified">Wrong ICP / Disqualify</option>
+              <option value="validated" selected>Target Validated (Design Partner Alpha)</option>
+              <option value="disqualified">Cohort Disqualified</option>
             </select>
           </div>
         </div>
@@ -85,7 +86,7 @@ export function setupCallNotesModal(dialogEl, leads, onSaved) {
 
     <div class="modal-footer">
       <button class="btn btn-secondary btn-sm" id="btn-cancel-modal">Cancel</button>
-      <button class="btn btn-success btn-sm" id="btn-save-notes">Save Notes & Update Scorecard</button>
+      <button class="btn btn-primary btn-sm" id="btn-save-notes">Save Notes & Recalculate Scorecard</button>
     </div>
   `;
 
@@ -104,17 +105,18 @@ export function setupCallNotesModal(dialogEl, leads, onSaved) {
   dialogEl.querySelector('#btn-sample-agency')?.addEventListener('click', () => {
     const rawBox = dialogEl.querySelector('#call-raw-text');
     if (rawBox) {
-      rawBox.value = `Spoke with the agency owner for 18 minutes. She said pulling Meta ad metrics into Google slides is a complete nightmare every single Friday. Her team loses 12 collective hours. 
-She loved our 1-click export prototype. Didn't care at all about live dashboards or client login portals. 
-She said: "If this saves my account managers 12 collective hours every week, $200 a month is a total no-brainer. Take my card."`;
+      rawBox.value = `Spoke with agency managing partner for 17 minutes. She stated that aggregating client performance CSVs is an agony every single Friday afternoon. Her account directors lose 8 hours.
+She reacted strongly to our 1-click white-label summary export. Did not care about custom dashboards or webhook sync.
+She stated: "If this eliminates the Friday reporting bottleneck, paying $250 a month is an immediate no-brainer."`;
     }
   });
 
   dialogEl.querySelector('#btn-sample-cto')?.addEventListener('click', () => {
     const rawBox = dialogEl.querySelector('#call-raw-text');
     if (rawBox) {
-      rawBox.value = `CTO was nice but already locked into Census on an annual contract. They wrote an internal script for Postgres sync and works okay for now. Pain severity is low.
-Said they have $0 budget for new ETL tooling right now. Said: "Census is pricey at $400/mo, but our engineers already set it up. Switching cost is too high right now."`;
+      rawBox.value = `VP of Engineering was polite but already committed to existing internal bash scripts and GitHub Actions runners.
+Pain intensity is low. Said budget is frozen for new developer infrastructure tools this quarter.
+Said: "It is an interesting wedge, but our current workflow is already acceptable enough that switching creates friction."`;
     }
   });
 
@@ -124,7 +126,7 @@ Said they have $0 budget for new ETL tooling right now. Said: "Census is pricey 
     if (!rawText) return;
 
     const btn = dialogEl.querySelector('#btn-run-analyzer');
-    if (btn) btn.innerHTML = `<span>⏳ Extracting...</span>`;
+    if (btn) btn.innerHTML = `<span>Processing Signals...</span>`;
 
     try {
       const res = await api.analyzeCallText(rawText, currentLead?.icpId);
@@ -155,7 +157,7 @@ Said they have $0 budget for new ETL tooling right now. Said: "Census is pricey 
     } catch (err) {
       alert('Analysis error: ' + err.message);
     } finally {
-      if (btn) btn.innerHTML = `<span>✨ Extract ICP Insights</span>`;
+      if (btn) btn.innerHTML = `<span>Extract Quantified Signals &rarr;</span>`;
     }
   });
 
@@ -188,9 +190,8 @@ Said they have $0 budget for new ETL tooling right now. Said: "Census is pricey 
     open(lead) {
       currentLead = lead;
       const titleEl = dialogEl.querySelector('#modal-lead-title');
-      if (titleEl) titleEl.textContent = `Call Notes & Insights: ${lead.name} (${lead.company})`;
+      if (titleEl) titleEl.textContent = `Discovery Call Notes: ${lead.name} (${lead.company})`;
       
-      // Populate existing if available
       const rawBox = dialogEl.querySelector('#call-raw-text');
       const resultContainer = dialogEl.querySelector('#analysis-result-container');
       

@@ -29,7 +29,7 @@ async function init() {
   if (callNotesDialog) {
     state.callNotesModal = setupCallNotesModal(callNotesDialog, state.leads, async () => {
       await refreshData();
-      showToast('Discovery Call notes saved & ICP Scorecard updated! 🎯');
+      showToast('Discovery call notes logged. Validation scorecard updated.');
     });
   }
 
@@ -219,7 +219,7 @@ async function simulateReplyFlow(leadId) {
   const res = await api.simulateReply(leadId);
   await refreshData();
   state.selectedLeadId = leadId;
-  showToast('⚡ Inbound reply received! Sequence killed & moved to "In Conversation"');
+  showToast('[AUTOKILL] Inbound reply received. Sequence permanently halted.');
 }
 
 // Modal: Add New ICP Hypothesis
@@ -300,7 +300,7 @@ function setupAddLeadModal() {
 
     modal.close();
     await refreshData();
-    showToast(`Lead "${name}" added and assigned to rotated inbox sequence!`);
+    showToast(`Lead "${name}" enrolled in discovery dispatch.`);
   });
 }
 
@@ -338,11 +338,11 @@ function setupAddInboxModal() {
 
     modal.close();
     await refreshData();
-    showToast(`Sender inbox "${email}" added to rotation pool!`);
+    showToast(`Sender domain "${email}" connected to rotation pool.`);
   });
 }
 
-// Toast notification helper
+// Toast notification helper (Swiss Brutalist Ledger)
 function showToast(message) {
   let toast = document.getElementById('app-toast');
   if (!toast) {
@@ -352,18 +352,19 @@ function showToast(message) {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: rgba(15, 20, 32, 0.95);
-      color: white;
-      padding: 0.85rem 1.4rem;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--accent-primary);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.3);
-      font-size: 0.88rem;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      padding: 0.85rem 1.25rem;
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--terracotta);
+      box-shadow: 4px 4px 0px #000000;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
       font-weight: 600;
       z-index: 9999;
-      transform: translateY(20px);
+      transform: translateY(12px);
       opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
       display: flex;
       align-items: center;
       gap: 0.6rem;
@@ -376,7 +377,7 @@ function showToast(message) {
   toast.style.opacity = '1';
 
   setTimeout(() => {
-    toast.style.transform = 'translateY(20px)';
+    toast.style.transform = 'translateY(12px)';
     toast.style.opacity = '0';
   }, 4000);
 }

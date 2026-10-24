@@ -1,96 +1,87 @@
-/* ICP Lab & Matrix Styling */
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-}
-
-.section-title-group h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 0.25rem;
-}
-
-.section-title-group p {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
+/* ==========================================================
+   ICP LAB & COMPARISON MATRIX (Swiss Neo-Brutalist Grid)
+   ========================================================== */
 
 .icp-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 1.5rem;
 }
 
 .icp-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
   padding: 1.75rem;
-  backdrop-filter: blur(14px);
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  transition: all var(--transition-normal);
-  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-hard);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
 
 .icp-card:hover {
-  background: var(--bg-card-hover);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
 }
 
 .icp-card-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: flex-start;
-  justify-content: space-between;
   gap: 1rem;
+  border-bottom: 1px solid var(--border-hairline);
+  padding-bottom: 1rem;
 }
 
 .icp-title-wrap {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 .icp-tier-badge {
-  display: inline-block;
-  font-size: 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.2rem 0.65rem;
-  border-radius: var(--radius-full);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.5rem;
+  width: fit-content;
+  border: 1px solid var(--border-default);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
 }
 
 .icp-name {
-  font-size: 1.25rem;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
   font-weight: 700;
-  color: white;
-  margin-bottom: 0.35rem;
+  color: var(--text-primary);
+  line-height: 1.2;
 }
 
 .icp-role-sub {
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
 }
 
-/* Validation Score Gauge */
+/* Precision Swiss Circular Gauge */
 .validation-gauge {
-  width: 72px;
-  height: 72px;
+  width: 64px;
+  height: 64px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-default);
 }
 
 .validation-gauge svg {
@@ -101,57 +92,57 @@
 
 .gauge-bg {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.08);
-  stroke-width: 6;
+  stroke: var(--border-hairline);
+  stroke-width: 5;
 }
 
 .gauge-val {
   fill: none;
-  stroke-width: 6;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 1s ease;
+  stroke-width: 5;
+  transition: stroke-dashoffset 0.8s var(--ease-mechanical);
 }
 
 .gauge-text {
   position: absolute;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
 }
 
-/* Wedge Highlight Box */
+/* The 1-Feature Wedge Block (Editorial Pull-Quote Style) */
 .wedge-box {
-  background: rgba(99, 102, 241, 0.08);
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  border-radius: var(--radius-lg);
-  padding: 1rem 1.25rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--terracotta);
+  padding: 1rem 1.15rem;
 }
 
 .wedge-title {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #a5b4fc;
+  letter-spacing: 0.08em;
+  color: var(--terracotta);
   margin-bottom: 0.35rem;
 }
 
 .wedge-desc {
-  font-size: 0.92rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
   font-weight: 600;
-  color: white;
-  line-height: 1.4;
+  color: var(--text-primary);
+  line-height: 1.45;
 }
 
-/* Problem & Workaround */
+/* Problem & Workaround Matrix */
 .problem-details {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
   font-size: 0.85rem;
 }
 
@@ -162,61 +153,77 @@
 }
 
 .detail-label {
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-tertiary);
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 
 .detail-text {
-  color: var(--text-muted);
-  line-height: 1.45;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-size: 0.82rem;
 }
 
-/* Discarded Features (Monster De-Engineering) */
+/* Discarded Features Box */
 .discarded-features-tag {
-  background: rgba(244, 63, 94, 0.08);
-  border: 1px dashed rgba(244, 63, 94, 0.3);
-  border-radius: var(--radius-md);
-  padding: 0.6rem 0.85rem;
+  background: var(--bg-canvas);
+  border: 1px dashed var(--border-strong);
+  padding: 0.65rem 0.85rem;
   font-size: 0.78rem;
-  color: #fda4af;
+  color: var(--text-secondary);
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.65rem;
 }
 
-/* Metrics Mini Bar */
+.discarded-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--status-danger);
+  background: var(--status-danger-bg);
+  padding: 0.1rem 0.35rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.discarded-body {
+  line-height: 1.4;
+}
+
+/* Metrics Monospace Bar */
 .icp-metrics-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: var(--radius-md);
-  padding: 0.75rem;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-default);
+  padding: 0.65rem 0.5rem;
   text-align: center;
-  border: 1px solid var(--border-subtle);
 }
 
 .mini-metric-num {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 1.05rem;
-  color: white;
+  font-size: 1rem;
+  color: var(--text-primary);
 }
 
 .mini-metric-lbl {
-  font-size: 0.7rem;
-  color: var(--text-dim);
-  margin-top: 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-tertiary);
+  margin-top: 0.2rem;
 }
 
 /* Card Actions */
 .icp-card-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.75rem;
   margin-top: auto;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-hairline);
 }

@@ -442,7 +442,21 @@ app.post('/api/templates', async (req, res) => {
   }
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Quick ICP engine running on http://localhost:${PORT}`);
-});
+// Start Server with Graceful Port Fallback
+function startServer(portToTry) {
+  const server = app.listen(portToTry, () => {
+    console.log(`⚡ Quick ICP engine active on http://localhost:${portToTry}`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      const nextPort = Number(portToTry) + 1;
+      console.warn(`[Port ${portToTry} in use. Attempting fallback to port ${nextPort}...]`);
+      startServer(nextPort);
+    } else {
+      console.error('Server error:', err);
+    }
+  });
+}
+
+startServer(PORT);

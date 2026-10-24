@@ -1,6 +1,5 @@
-// Unified Discovery Inbox Controller
+// Unified Discovery Inbox Controller (Swiss Editorial System)
 export function renderInbox(container, leads, icps, activeLeadId, onSelectLead, onSendMessage, onSimulateReply, onOpenCallNotes) {
-  // Sort leads so those with latest messages appear first
   const sortedLeads = [...leads].filter(l => l.threads && l.threads.length > 0).sort((a, b) => {
     const aTime = a.lastContacted || '2000-01-01';
     const bTime = b.lastContacted || '2000-01-01';
@@ -13,16 +12,16 @@ export function renderInbox(container, leads, icps, activeLeadId, onSelectLead, 
     <div class="section-header">
       <div class="section-title-group">
         <h2>Unified Discovery Inbox</h2>
-        <p>Real-time conversations across rotated inboxes. Sequences automatically halt the second a lead responds.</p>
+        <p>Live peer conversations across secondary domains. All robotic sequences terminate the microsecond a prospect responds.</p>
       </div>
 
       ${selectedLead ? `
         <div style="display: flex; gap: 0.5rem;">
           <button class="btn btn-secondary btn-sm" id="inbox-sim-reply-btn">
-            ⚡ Simulate Inbound Prospect Reply
+            SIMULATE INBOUND REPLY
           </button>
           <button class="btn btn-primary btn-sm" id="inbox-log-notes-btn">
-            🎙️ Log Discovery Call Notes
+            LOG CALL NOTES
           </button>
         </div>
       ` : ''}
@@ -32,12 +31,12 @@ export function renderInbox(container, leads, icps, activeLeadId, onSelectLead, 
       <!-- Threads Sidebar -->
       <div class="threads-sidebar">
         <div class="threads-search-bar">
-          <input type="text" class="search-input" id="thread-search" placeholder="Search conversations...">
+          <input type="text" class="search-input" id="thread-search" placeholder="FILTER CONVERSATIONS...">
         </div>
         <div class="threads-list" id="threads-container">
           ${sortedLeads.map(lead => {
             const isSelected = selectedLead && selectedLead.id === lead.id;
-            const icp = icps.find(i => i.id === lead.icpId) || { name: 'ICP' };
+            const icp = icps.find(i => i.id === lead.icpId) || { name: 'Cohort' };
             const lastMsg = lead.threads[lead.threads.length - 1];
             const hasInbound = lead.threads.some(t => t.sender === 'inbound');
 
@@ -51,7 +50,7 @@ export function renderInbox(container, leads, icps, activeLeadId, onSelectLead, 
                 <div class="thread-snippet">${lastMsg ? truncate(lastMsg.body, 55) : ''}</div>
                 <div class="thread-badge-row">
                   <span class="lead-icp-pill">${icp.name}</span>
-                  ${hasInbound ? `<span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; font-size: 0.68rem; padding: 0.1rem 0.4rem; border-radius: 4px;">Replied</span>` : ''}
+                  ${hasInbound ? `<span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--terracotta); font-weight: 700; background: var(--terracotta-deep); padding: 0.1rem 0.4rem; border: 1px solid var(--terracotta-border);">REPLIED</span>` : ''}
                 </div>
               </div>
             `;
@@ -60,10 +59,10 @@ export function renderInbox(container, leads, icps, activeLeadId, onSelectLead, 
       </div>
 
       <!-- Active Conversation Panel -->
-      <div class="conversation-panel">
+      <div class="thread-detail-pane">
         ${selectedLead ? renderActiveConversation(selectedLead, icps) : `
-          <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-dim);">
-            Select a conversation to read and reply.
+          <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.85rem;">
+            [SELECT A THREAD FROM THE DIRECTORY TO REVIEW]
           </div>
         `}
       </div>
@@ -100,40 +99,48 @@ export function renderInbox(container, leads, icps, activeLeadId, onSelectLead, 
   document.getElementById('btn-insert-discovery-template')?.addEventListener('click', () => {
     const textarea = document.getElementById('reply-text');
     if (textarea && selectedLead) {
-      textarea.value = `Hey ${selectedLead.name.split(' ')[0]}, that makes total sense. We're keeping this prototype deliberately simple to fix that exact headache.\n\nWould you have 15 minutes Tuesday or Wednesday for a quick look? No sales pitch whatsoever—just want to see if our 1-click approach solves it for you.`;
+      textarea.value = `Hey ${selectedLead.name.split(' ')[0]}, that makes total sense. We deliberately stripped away the complex features to fix that single headache.\n\nWould you be open to a 15-minute coffee chat this Tuesday or Wednesday? No sales pitch whatsoever; just want to walk through your current workflow and see if our wedge solves it for you.`;
     }
   });
 }
 
 function renderActiveConversation(lead, icps) {
-  const icp = icps.find(i => i.id === lead.icpId) || { name: 'ICP' };
+  const icp = icps.find(i => i.id === lead.icpId) || { name: 'Cohort' };
   const hasReplied = lead.threads.some(t => t.sender === 'inbound');
 
   return `
-    <div class="convo-header">
-      <div class="convo-lead-info">
+    <div class="thread-detail-header">
+      <div class="thread-detail-meta">
         <h3>${lead.name}</h3>
-        <p>${lead.title} @ <strong>${lead.company}</strong> (${lead.email}) • ${icp.name}</p>
-      </div>
-
-      <div class="convo-header-actions">
-        ${hasReplied ? `
-          <div class="auto-pause-banner">
-            <span>⚡ Cold Sequence Auto-Terminated (Live Conversation)</span>
-          </div>
-        ` : `
-          <div style="font-size: 0.78rem; color: var(--text-dim);">
-            Sequence Active (Touch 1 of 2)
-          </div>
-        `}
+        <div class="thread-detail-meta-sub">
+          <span>${lead.title.toUpperCase()} @ ${lead.company.toUpperCase()}</span>
+          <span>&middot;</span>
+          <span>${lead.email}</span>
+          <span>&middot;</span>
+          <span style="color: var(--terracotta);">${icp.name.toUpperCase()}</span>
+        </div>
       </div>
     </div>
 
-    <div class="messages-stream">
+    ${hasReplied ? `
+      <div class="sequence-autokill-banner">
+        <div>
+          <span class="autokill-tag">SEQUENCE KILLED</span>
+          <span>Live response detected. Automated sequence permanently halted for this contact.</span>
+        </div>
+        <span style="font-size: 0.65rem; color: var(--text-tertiary);">HANDOFF: ACTIVE</span>
+      </div>
+    ` : `
+      <div style="background: var(--bg-subtle); padding: 0.5rem 1.75rem; border-bottom: 1px solid var(--border-default); font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-tertiary);">
+        OUTREACH DISPATCH: ENQUEUED TOUCH 01 (WAITING FOR PROSPECT RESPONSE)
+      </div>
+    `}
+
+    <div class="messages-container">
       ${lead.threads.map(msg => `
-        <div class="message-card ${msg.sender === 'outbound' ? 'message-outbound' : 'message-inbound'}">
-          <div class="message-meta">
-            <span><strong>${msg.sender === 'outbound' ? 'You (Rotated Inbox)' : lead.name}</strong> &lt;${msg.from}&gt;</span>
+        <div class="message-card ${msg.sender === 'outbound' ? 'outbound' : 'inbound'}">
+          <div class="message-header">
+            <span class="message-author">${msg.sender === 'outbound' ? 'YOU (ROTATED INBOX)' : lead.name.toUpperCase()}</span>
             <span>${formatDateTime(msg.timestamp)}</span>
           </div>
           <div class="message-body">${escapeHtml(msg.body)}</div>
@@ -141,22 +148,24 @@ function renderActiveConversation(lead, icps) {
       `).join('')}
     </div>
 
-    <div class="reply-composer-area">
+    <div class="thread-composer">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Reply to ${lead.name}:</span>
-        <button class="quick-templates-btn" id="btn-insert-discovery-template">
-          ⚡ Insert "15-Min Discovery Ask" Template
+        <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); font-weight: 600;">
+          DISPATCH DIRECT REPLY:
+        </span>
+        <button class="btn btn-secondary btn-sm" id="btn-insert-discovery-template" style="font-size: 0.72rem; padding: 0.25rem 0.5rem;">
+          [+] Insert 15-Min Discovery Ask
         </button>
       </div>
 
-      <textarea class="composer-textarea" id="reply-text" placeholder="Type your response or proposed time..."></textarea>
+      <textarea class="composer-textarea" id="reply-text" placeholder="Draft your conversational response or proposed call times..."></textarea>
 
       <div class="composer-actions">
-        <span style="font-size: 0.75rem; color: var(--text-dim);">
-          Sending via rotated sender account to protect deliverability
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-tertiary);">
+          ROUTED VIA ROTATED DISPATCH DOMAIN
         </span>
         <button class="btn btn-primary btn-sm" id="btn-send-reply">
-          Send Message &rarr;
+          Transmit Message &rarr;
         </button>
       </div>
     </div>

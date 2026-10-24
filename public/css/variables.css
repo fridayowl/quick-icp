@@ -1,50 +1,70 @@
 :root {
-  /* Color Palette: Deep Slate & Neon Accents */
-  --bg-primary: #0a0d14;
-  --bg-secondary: #0f1420;
-  --bg-card: rgba(18, 24, 38, 0.75);
-  --bg-card-hover: rgba(26, 34, 54, 0.85);
-  --bg-glass: rgba(15, 20, 32, 0.65);
-  --bg-input: #141b2d;
-  
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-focus: rgba(99, 102, 241, 0.5);
-  --border-glow: 0 0 20px rgba(99, 102, 241, 0.25);
-  
-  /* Text */
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
-  
-  /* Vibrant Accents */
-  --accent-primary: #6366f1;
-  --accent-primary-hover: #4f46e5;
-  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-  --accent-cyan: #06b6d4;
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
-  --accent-rose: #f43f5e;
-  
-  /* Tiers */
-  --tier-1: #10b981;
-  --tier-2: #3b82f6;
-  --tier-3: #8b5cf6;
-  
-  /* Radii */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 9999px;
+  /* ==========================================================
+     SWISS EDITORIAL & NEO-BRUTALIST ARCHITECTURAL DESIGN SYSTEM
+     Palette: Matte Charcoal Canvas + Single Warm Terracotta Accent
+     Typography: Heavy Editorial Serif (Fraunces) + Clean Geometric Sans + Monospace
+     ========================================================== */
 
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.2);
+  /* Surface & Canvas Tokens */
+  --bg-canvas: #0c0e12;
+  --bg-surface: #14171d;
+  --bg-elevated: #1a1e26;
+  --bg-subtle: #101318;
+  --bg-input: #0e1014;
+  --bg-hover: #202530;
+
+  /* Structural Borders (Razor-sharp, zero blurry glow) */
+  --border-hairline: #1e232d;
+  --border-default: #272d3a;
+  --border-strong: #384152;
+  --border-focus: #ea580c;
+
+  /* Typography Colors */
+  --text-primary: #f4f4f6;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --text-inverse: #0c0e12;
+
+  /* Single Warm Terracotta Accent System */
+  --terracotta: #ea580c;
+  --terracotta-hover: #c2410c;
+  --terracotta-deep: #271208;
+  --terracotta-tint: #ffedd5;
+  --terracotta-border: #9a3412;
+
+  /* Functional Status (Restrained, muted, non-fluorescent) */
+  --status-active: #ea580c;
+  --status-positive: #22c55e;
+  --status-positive-bg: #092612;
+  --status-positive-border: #15803d;
+  --status-neutral: #64748b;
+  --status-danger: #dc2626;
+  --status-danger-bg: #290b0b;
+
+  /* Cohort Tiers (Restrained monochromatic index) */
+  --tier-1-color: #f97316;
+  --tier-1-bg: #241108;
+  --tier-2-color: #cbd5e1;
+  --tier-2-bg: #1e2430;
+  --tier-3-color: #94a3b8;
+  --tier-3-bg: #171b22;
+
+  /* Typography Families */
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Geometry & Metrics */
+  --radius-sharp: 0px;
+  --radius-subtle: 3px;
+  --radius-pill: 999px;
+
+  /* Tactile Physical Press (No fuzzy blurry drop-shadows) */
+  --shadow-hard: 3px 3px 0px #000000;
+  --shadow-hard-sm: 2px 2px 0px #000000;
+  --shadow-hard-terracotta: 3px 3px 0px #ea580c;
 
   /* Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-mechanical: cubic-bezier(0.2, 0, 0, 1);
+  --transition-fast: 0.12s var(--ease-mechanical);
 }

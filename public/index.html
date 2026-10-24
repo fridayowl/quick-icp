@@ -3,9 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quick ICP - The Hypothesis-to-Conversation Discovery Engine</title>
-  <meta name="description" content="Quick ICP helps solo founders and early-stage startups discover their winning ICP, unbundle over-engineered products into sharp wedges, and manage discovery conversations.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+  <title>Quick ICP | Hypothesis-to-Conversation Discovery Engine</title>
+  <meta name="description" content="Quick ICP helps solo founders and early-stage engineering teams unbundle over-engineered products into sharp 1-feature wedges and validate customer willingness to pay.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230c0e12%22/><text y=%2270%22 x=%2222%22 font-size=%2265%22 font-family=%22monospace%22 font-weight=%22bold%22 fill=%22%23ea580c%22>Q</text></svg>">
+  
+  <!-- Typography: Heavy Editorial Serif (Fraunces) + Clean Geometric Sans + Monospace -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600..900;1,9..144,600..900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/icp-lab.css">
@@ -15,92 +21,94 @@
 </head>
 <body>
 
-  <!-- Top Navigation & Brand Header -->
+  <!-- Top Technical Navigation Bar -->
   <header class="app-header">
     <div class="brand-section">
-      <div class="brand-logo">Q</div>
-      <div>
-        <span class="brand-title">Quick ICP</span>
-        <span class="founder-badge">Founder Mode</span>
+      <div class="brand-mark">
+        <span class="mark-letter">Q</span>
+        <span class="mark-sub">ICP</span>
+      </div>
+      <div class="brand-meta">
+        <div class="brand-title">Quick ICP</div>
+        <div class="brand-index-tag">ENGINE // V1.0.0-LOCAL</div>
       </div>
     </div>
 
-    <!-- Navigation Tabs -->
+    <!-- Navigation Tabs (Monospace Swiss Indexing) -->
     <nav class="nav-tabs" aria-label="Main Navigation">
       <button class="nav-tab-btn active" data-tab="icp-lab" id="tab-btn-icp-lab">
-        <span>🧪 ICP Lab & Matrix</span>
+        <span class="tab-index">[01]</span>
+        <span class="tab-label">Hypothesis Lab</span>
       </button>
       <button class="nav-tab-btn" data-tab="kanban" id="tab-btn-kanban">
-        <span>📊 Discovery Pipeline</span>
+        <span class="tab-index">[02]</span>
+        <span class="tab-label">Discovery Pipeline</span>
       </button>
       <button class="nav-tab-btn" data-tab="inbox" id="tab-btn-inbox">
-        <span>💬 Discovery Inbox</span>
-        <span class="tab-badge" id="badge-inbox-count">2</span>
+        <span class="tab-index">[03]</span>
+        <span class="tab-label">Unified Inbox</span>
+        <span class="tab-badge" id="badge-inbox-count">0</span>
       </button>
       <button class="nav-tab-btn" data-tab="dispatcher" id="tab-btn-dispatcher">
-        <span>⚡ Multi-Inbox & Dispatch</span>
+        <span class="tab-index">[04]</span>
+        <span class="tab-label">Safe Dispatcher</span>
       </button>
     </nav>
 
-    <!-- Top Winning Signal Indicator -->
+    <!-- Real-time Top Wedge Signal -->
     <div class="header-actions">
-      <div class="header-metric-pill" title="Current Leading ICP by Validation Score">
-        <span style="color: var(--text-dim); font-size: 0.72rem; text-transform: uppercase; font-weight: 700;">Top Wedge:</span>
-        <span class="header-metric-val" id="header-top-icp">Boutique Agencies (82%)</span>
+      <div class="top-wedge-telemetry" title="Leading candidate ICP by multi-factor validation score">
+        <span class="telemetry-label">LEAD WEDGE:</span>
+        <span class="telemetry-value" id="header-top-icp">Evaluating...</span>
       </div>
     </div>
   </header>
 
-  <!-- Main Workspace Container -->
+  <!-- Main Workspace -->
   <main class="app-container">
     
-    <!-- Founder Guidance Banner -->
-    <section class="founder-insight-banner">
-      <div class="banner-content">
-        <div class="banner-icon">🎯</div>
-        <div class="banner-text">
-          <h1>Hypothesis-Driven Customer Discovery & ICP Validation</h1>
-          <p>Don't pitch all 15 features of your product. Test a single <strong>1-feature wedge</strong> per ICP until one emerges with high urgency and clear willingness to pay.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Real-time Stats Strip -->
-    <section class="stats-strip" aria-label="Discovery Performance Metrics">
-      <div class="stat-card">
-        <div class="stat-label">
-          <span>Active Hypotheses</span>
-          <span>🧪</span>
-        </div>
-        <div class="stat-number" id="stat-active-icps">3</div>
-        <div class="stat-subtext">Testing in parallel</div>
+    <!-- Asymmetric Editorial Brief & Live Telemetry -->
+    <section class="editorial-brief-grid">
+      <div class="brief-manifesto">
+        <div class="manifesto-kicker">FOUNDER DIRECTIVE // THE 1-FEATURE WEDGE</div>
+        <h1 class="manifesto-headline">De-engineer before you run out of runway.</h1>
+        <p class="manifesto-body">
+          Stop pitching a 15-feature monolith. Test a single 10% wedge per cohort with curiosity-driven peer questions. When a prospect replies, all automated sequences terminate instantly so you can hold a real 15-minute discovery conversation.
+        </p>
       </div>
 
-      <div class="stat-card">
-        <div class="stat-label">
-          <span>Target Contacts</span>
-          <span>📬</span>
+      <!-- Asymmetric Telemetry Metrics -->
+      <div class="brief-telemetry-panel">
+        <div class="telemetry-header">
+          <span class="telemetry-code">TELEMETRY // LIVE HYPOTHESES</span>
+          <span class="telemetry-status-dot"></span>
         </div>
-        <div class="stat-number" id="stat-contacted">64</div>
-        <div class="stat-subtext">Dispatched via rotated inboxes</div>
-      </div>
 
-      <div class="stat-card">
-        <div class="stat-label">
-          <span>In Conversation</span>
-          <span>💬</span>
-        </div>
-        <div class="stat-number" style="color: var(--accent-cyan);" id="stat-in-conversation">5</div>
-        <div class="stat-subtext"><span class="trend-up">Sequence auto-paused</span></div>
-      </div>
+        <div class="telemetry-grid">
+          <div class="telemetry-cell">
+            <span class="cell-index">[COHORTS]</span>
+            <div class="cell-number" id="stat-active-icps">3</div>
+            <span class="cell-label">Parallel Audiences</span>
+          </div>
 
-      <div class="stat-card">
-        <div class="stat-label">
-          <span>Discovery Calls</span>
-          <span>🎙️</span>
+          <div class="telemetry-cell">
+            <span class="cell-index">[CONTACTS]</span>
+            <div class="cell-number" id="stat-contacted">64</div>
+            <span class="cell-label">Rotated Dispatch</span>
+          </div>
+
+          <div class="telemetry-cell highlight-terracotta">
+            <span class="cell-index">[REPLIES]</span>
+            <div class="cell-number" id="stat-in-conversation">5</div>
+            <span class="cell-label">Sequences Killed</span>
+          </div>
+
+          <div class="telemetry-cell">
+            <span class="cell-index">[CALLS]</span>
+            <div class="cell-number" id="stat-calls-booked">4</div>
+            <span class="cell-label">Interviews Logged</span>
+          </div>
         </div>
-        <div class="stat-number" style="color: var(--accent-emerald);" id="stat-calls-booked">4</div>
-        <div class="stat-subtext">15-min pain interviews</div>
       </div>
     </section>
 
@@ -113,12 +121,12 @@
     <!-- TAB 3: Unified Discovery Inbox -->
     <section id="view-inbox" class="tab-view"></section>
 
-    <!-- TAB 4: Multi-Inbox Dispatcher (UZonMail Engine) -->
+    <!-- TAB 4: Multi-Inbox Safe Dispatcher -->
     <section id="view-dispatcher" class="tab-view"></section>
 
   </main>
 
-  <!-- ==================== MODALS (Native HTML5 Dialogs) ==================== -->
+  <!-- ==================== NATIVE HTML5 DIALOG MODALS ==================== -->
 
   <!-- Modal: Call Notes & AI Insight Extractor -->
   <dialog id="call-notes-modal"></dialog>
@@ -127,68 +135,69 @@
   <dialog id="add-icp-modal">
     <div class="modal-header">
       <div class="modal-title-group">
-        <h3>Create New ICP Hypothesis</h3>
-        <p>Define a candidate customer, their bleeding-neck pain, and the single wedge feature.</p>
+        <div class="modal-kicker">NEW COHORT SPECIFICATION</div>
+        <h3>Add ICP Hypothesis</h3>
+        <p>Define a target audience, their primary daily operational agony, and the single 1-feature wedge.</p>
       </div>
-      <button class="modal-close-btn" id="modal-close-icp">&times;</button>
+      <button class="modal-close-btn" id="modal-close-icp" aria-label="Close modal">&times;</button>
     </div>
 
     <div class="modal-body">
       <div class="form-group">
-        <label class="form-label">Hypothesis Name</label>
+        <label class="form-label" for="icp-name-input">Audience Hypothesis Name</label>
         <input type="text" class="form-input" id="icp-name-input" placeholder="e.g. Fintech Series A Compliance Leads">
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="form-grid-2">
         <div class="form-group">
-          <label class="form-label">Priority Tier</label>
+          <label class="form-label" for="icp-tier-select">Validation Tier</label>
           <select class="form-select" id="icp-tier-select">
-            <option value="Tier 1">Tier 1 (High Priority / Urgency)</option>
-            <option value="Tier 2" selected>Tier 2 (Moderate Priority)</option>
+            <option value="Tier 1">Tier 1 (Highest Urgency)</option>
+            <option value="Tier 2" selected>Tier 2 (Secondary Hypothesis)</option>
             <option value="Tier 3">Tier 3 (Experimental)</option>
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Target Role / Title</label>
+          <label class="form-label" for="icp-role-input">Target Role & Title</label>
           <input type="text" class="form-input" id="icp-role-input" placeholder="e.g. Head of Compliance / VP Eng">
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Industry & Vertical</label>
-        <input type="text" class="form-input" id="icp-industry-input" placeholder="e.g. B2B FinTech / RegTech">
+        <label class="form-label" for="icp-industry-input">Industry & Company Size</label>
+        <input type="text" class="form-input" id="icp-industry-input" placeholder="e.g. B2B FinTech (25 - 100 employees)">
       </div>
 
       <div class="form-group">
-        <label class="form-label">Hair-on-Fire Pain (Problem Hypothesis)</label>
-        <textarea class="form-textarea" id="icp-problem-input" rows="2" placeholder="What is breaking for them today? (e.g. Manual audit reconciliations take 20 hours every month)"></textarea>
+        <label class="form-label" for="icp-problem-input">Core Operational Friction (Problem Hypothesis)</label>
+        <textarea class="form-textarea" id="icp-problem-input" rows="2" placeholder="What breaks for them today? (e.g. Manual audit reconciliations take 20 hours every month)"></textarea>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Current Workaround</label>
-        <input type="text" class="form-input" id="icp-workaround-input" placeholder="e.g. Shared Google Sheets + Slack chaos">
+        <label class="form-label" for="icp-workaround-input">Current Workaround</label>
+        <input type="text" class="form-input" id="icp-workaround-input" placeholder="e.g. Shared Google Sheets and Slack messages">
       </div>
 
       <div class="form-group">
-        <label class="form-label">
-          <span>⚡ The 1-Feature Wedge (Single Slice)</span>
-          <span style="color: var(--accent-cyan); font-size: 0.72rem;">What 10% of your product are you pitching?</span>
+        <label class="form-label" for="icp-wedge-input">
+          <span>The 1-Feature Wedge (Single Slice)</span>
+          <span class="label-aside">[The 10% slice to pitch]</span>
         </label>
         <input type="text" class="form-input" id="icp-wedge-input" placeholder="e.g. 1-Click SOC2 Evidence Export Bot">
       </div>
 
       <div class="form-group">
-        <label class="form-label">
-          <span>🚫 Features To Discard / Stop Pitching</span>
-          <span style="color: var(--accent-rose); font-size: 0.72rem;">De-engineer the monster!</span>
+        <label class="form-label" for="icp-discarded-input">
+          <span>Discarded Features</span>
+          <span class="label-aside-warn">[Forbidden to mention on calls]</span>
         </label>
-        <input type="text" class="form-input" id="icp-discarded-input" placeholder="e.g. Custom database connector, visual drag-and-drop workflow editor">
+        <input type="text" class="form-input" id="icp-discarded-input" placeholder="e.g. Custom database connector, visual workflow canvas">
       </div>
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-secondary btn-sm" id="btn-cancel-icp">Cancel</button>
-      <button class="btn btn-primary btn-sm" id="btn-submit-icp">Add Hypothesis to Lab</button>
+      <button class="btn btn-secondary" id="btn-cancel-icp">Cancel</button>
+      <button class="btn btn-primary" id="btn-submit-icp">Save Hypothesis</button>
     </div>
   </dialog>
 
@@ -196,49 +205,53 @@
   <dialog id="add-lead-modal">
     <div class="modal-header">
       <div class="modal-title-group">
-        <h3>Add Prospect to Discovery Outreach</h3>
-        <p>Assign a lead directly to an ICP cohort and dispatch a casual discovery touch.</p>
+        <div class="modal-kicker">CONTACT ENROLLMENT</div>
+        <h3>Add Prospect to Discovery</h3>
+        <p>Assign a lead directly to an ICP cohort and enqueue a low-friction discovery touch.</p>
       </div>
-      <button class="modal-close-btn" id="modal-close-lead">&times;</button>
+      <button class="modal-close-btn" id="modal-close-lead" aria-label="Close modal">&times;</button>
     </div>
 
     <div class="modal-body">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="form-grid-2">
         <div class="form-group">
-          <label class="form-label">Prospect Name</label>
-          <input type="text" class="form-input" id="lead-name-input" placeholder="e.g. Daniel Miller">
+          <label class="form-label" for="lead-name-input">Full Name</label>
+          <input type="text" class="form-input" id="lead-name-input" placeholder="e.g. Marcus Vance">
         </div>
         <div class="form-group">
-          <label class="form-label">Email Address</label>
-          <input type="email" class="form-input" id="lead-email-input" placeholder="daniel@company.com">
+          <label class="form-label" for="lead-email-input">Work Email</label>
+          <input type="email" class="form-input" id="lead-email-input" placeholder="marcus@company.com">
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="form-grid-2">
         <div class="form-group">
-          <label class="form-label">Job Title</label>
-          <input type="text" class="form-input" id="lead-title-input" placeholder="e.g. Founder & CEO">
+          <label class="form-label" for="lead-title-input">Job Title</label>
+          <input type="text" class="form-input" id="lead-title-input" placeholder="e.g. Managing Director">
         </div>
         <div class="form-group">
-          <label class="form-label">Company Name</label>
-          <input type="text" class="form-input" id="lead-company-input" placeholder="e.g. Miller Logistics">
+          <label class="form-label" for="lead-company-input">Company</label>
+          <input type="text" class="form-input" id="lead-company-input" placeholder="e.g. Vance Media Group">
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Assign to ICP Hypothesis</label>
+        <label class="form-label" for="lead-icp-select">Assign to ICP Cohort</label>
         <select class="form-select" id="lead-icp-select"></select>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Casual Discovery Question (Touch 1)</label>
-        <textarea class="form-textarea" id="lead-touch-input" rows="3" placeholder="Hey Daniel, curious how your team currently handles..."></textarea>
+        <label class="form-label" for="lead-touch-input">
+          <span>Curiosity Question (Touch 01)</span>
+          <span class="label-aside">[No pitching allowed]</span>
+        </label>
+        <textarea class="form-textarea" id="lead-touch-input" rows="3" placeholder="Hey Marcus, curious how your team currently handles..."></textarea>
       </div>
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-secondary btn-sm" id="btn-cancel-lead">Cancel</button>
-      <button class="btn btn-primary btn-sm" id="btn-submit-lead">Enqueue Outreach</button>
+      <button class="btn btn-secondary" id="btn-cancel-lead">Cancel</button>
+      <button class="btn btn-primary" id="btn-submit-lead">Enqueue Lead</button>
     </div>
   </dialog>
 
@@ -246,39 +259,43 @@
   <dialog id="add-inbox-modal">
     <div class="modal-header">
       <div class="modal-title-group">
+        <div class="modal-kicker">INFRASTRUCTURE</div>
         <h3>Connect Secondary Sending Account</h3>
-        <p>Protect your primary brand domain. Add secondary inboxes for round-robin rotation.</p>
+        <p>Protect your primary brand domain by dispatching via warm secondary domains.</p>
       </div>
-      <button class="modal-close-btn" id="modal-close-inbox">&times;</button>
+      <button class="modal-close-btn" id="modal-close-inbox" aria-label="Close modal">&times;</button>
     </div>
 
     <div class="modal-body">
       <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" id="inbox-email-input" placeholder="alex@getcompany.io">
+        <label class="form-label" for="inbox-email-input">Sender Email</label>
+        <input type="email" class="form-input" id="inbox-email-input" placeholder="alex@syncflow-outreach.io">
       </div>
 
       <div class="form-group">
-        <label class="form-label">Account Provider</label>
+        <label class="form-label" for="inbox-provider-select">Provider Infrastructure</label>
         <select class="form-select" id="inbox-provider-select">
           <option value="Google Workspace (Secondary Domain)">Google Workspace (Secondary Domain)</option>
           <option value="Microsoft 365 (Secondary Domain)">Microsoft 365 (Secondary Domain)</option>
-          <option value="Custom SMTP/IMAP">Custom SMTP/IMAP (Roundcube/Zoho)</option>
+          <option value="Custom SMTP/IMAP">Custom SMTP/IMAP (Dedicated IP)</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Safe Daily Dispatch Cap</label>
+        <label class="form-label" for="inbox-limit-input">Daily Dispatch Threshold</label>
         <input type="number" class="form-input" id="inbox-limit-input" value="30" min="10" max="60">
-        <span style="font-size: 0.72rem; color: var(--text-dim); margin-top: 0.2rem;">Recommended for new domains: 25 - 35 emails/day</span>
+        <span class="form-hint">Safe protocol recommendation: 25 to 35 messages per day per inbox.</span>
       </div>
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-secondary btn-sm" id="btn-cancel-inbox">Cancel</button>
-      <button class="btn btn-primary btn-sm" id="btn-submit-inbox">Connect Inbox</button>
+      <button class="btn btn-secondary" id="btn-cancel-inbox">Cancel</button>
+      <button class="btn btn-primary" id="btn-submit-inbox">Connect Domain</button>
     </div>
   </dialog>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
   <!-- App Bootstrap JS -->
   <script type="module" src="js/app.js"></script>

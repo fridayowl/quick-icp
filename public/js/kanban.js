@@ -1,11 +1,11 @@
-// Kanban Discovery CRM Controller
+// Kanban Discovery CRM Controller (Swiss Editorial System)
 const STAGES = [
   { id: 'contacted', label: 'Outreach Active', color: '#64748b' },
-  { id: 'in_conversation', label: 'In Conversation', color: '#3b82f6' },
-  { id: 'call_scheduled', label: 'Discovery Call Booked', color: '#06b6d4' },
+  { id: 'in_conversation', label: 'In Conversation', color: '#ea580c' },
+  { id: 'call_scheduled', label: 'Discovery Call Booked', color: '#cbd5e1' },
   { id: 'call_completed', label: 'Call Logged / Evaluated', color: '#f59e0b' },
-  { id: 'validated', label: 'ICP Validated ⭐', color: '#10b981' },
-  { id: 'disqualified', label: 'Wrong ICP / Archive', color: '#f43f5e' }
+  { id: 'validated', label: 'Target Validated', color: '#22c55e' },
+  { id: 'disqualified', label: 'Cohort Disqualified', color: '#dc2626' }
 ];
 
 export function renderKanban(container, leads, icps, activeIcpFilter, onStageChange, onOpenCallNotes, onOpenThread, onSimulateReply, onAddLead) {
@@ -14,14 +14,14 @@ export function renderKanban(container, leads, icps, activeIcpFilter, onStageCha
   container.innerHTML = `
     <div class="section-header">
       <div class="section-title-group">
-        <h2>Discovery CRM & Conversation Pipeline</h2>
-        <p>Track early customer discovery calls. Move prospects through validation stages.</p>
+        <h2>Discovery CRM Pipeline</h2>
+        <p>Track early customer discovery interviews. Advance prospects as problem severity and willingness to pay are confirmed.</p>
       </div>
 
       <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <select class="form-select" id="kanban-icp-filter" style="width: 240px; font-size: 0.85rem;">
-          <option value="">All ICP Hypotheses</option>
-          ${icps.map(i => `<option value="${i.id}" ${i.id === activeIcpFilter ? 'selected' : ''}>${i.name}</option>`).join('')}
+        <select class="form-select" id="kanban-icp-filter" style="width: 250px; font-size: 0.8rem; font-family: var(--font-mono);">
+          <option value="">ALL COHORTS</option>
+          ${icps.map(i => `<option value="${i.id}" ${i.id === activeIcpFilter ? 'selected' : ''}>${i.name.toUpperCase()}</option>`).join('')}
         </select>
 
         <button class="btn btn-primary" id="btn-add-lead">
@@ -31,14 +31,14 @@ export function renderKanban(container, leads, icps, activeIcpFilter, onStageCha
     </div>
 
     <div class="kanban-wrapper">
-      ${STAGES.map(stage => {
+      ${STAGES.map((stage, idx) => {
         const stageLeads = filteredLeads.filter(l => l.stage === stage.id);
         return `
           <div class="kanban-column" data-stage="${stage.id}">
             <div class="kanban-column-header">
               <div class="col-title-group">
-                <span class="col-indicator" style="background: ${stage.color}; box-shadow: 0 0 8px ${stage.color}80"></span>
-                <span class="col-title">${stage.label}</span>
+                <span class="col-indicator" style="background: ${stage.color};"></span>
+                <span class="col-title">[0${idx + 1}] ${stage.label}</span>
               </div>
               <span class="col-count">${stageLeads.length}</span>
             </div>
@@ -88,9 +88,9 @@ export function renderKanban(container, leads, icps, activeIcpFilter, onStageCha
 }
 
 function renderLeadCard(lead, icps) {
-  const icp = icps.find(i => i.id === lead.icpId) || { name: 'Unknown ICP', tierColor: '#6366f1' };
+  const icp = icps.find(i => i.id === lead.icpId) || { name: 'Unknown Cohort', tierColor: '#64748b' };
   const hasNotes = lead.callNotes && lead.callNotes.painSeverity;
-  const replyCount = lead.threads ? lead.threads.filter(t => t.sender === 'inbound').length : 0;
+  const threadCount = lead.threads ? lead.threads.length : 0;
 
   return `
     <div class="lead-card" draggable="true" data-lead-id="${lead.id}">
@@ -101,38 +101,38 @@ function renderLeadCard(lead, icps) {
         </div>
       </div>
 
-      <span class="lead-icp-pill" style="border-left: 3px solid ${icp.tierColor};">
+      <span class="lead-icp-pill" style="border-left: 2px solid var(--terracotta);">
         ${icp.name}
       </span>
 
       <div class="lead-sentiment-tag">
-        <span>💬 ${lead.sentiment || 'Waiting for Reply'}</span>
+        <span>STATUS // ${lead.sentiment ? lead.sentiment.toUpperCase() : 'WAITING FOR REPLY'}</span>
       </div>
 
       ${hasNotes ? `
         <div class="lead-pain-meter">
-          <span>🔥 Pain Score: ${lead.callNotes.painSeverity}/5</span>
+          <span>PAIN RATING: ${lead.callNotes.painSeverity}/5</span>
         </div>
         ${lead.callNotes.verbatimQuotes ? `
           <div class="lead-quote-preview">
-            ${lead.callNotes.verbatimQuotes}
+            &ldquo;${lead.callNotes.verbatimQuotes}&rdquo;
           </div>
         ` : ''}
       ` : ''}
 
       <div class="lead-card-actions">
-        <button class="card-btn-icon btn-view-thread" data-id="${lead.id}" title="View Email Conversation">
-          <span>✉️ ${lead.threads ? lead.threads.length : 0}</span>
+        <button class="card-btn-icon btn-view-thread" data-id="${lead.id}" title="Inspect Thread">
+          <span>THREAD [${threadCount}]</span>
         </button>
 
         ${lead.stage === 'contacted' ? `
-          <button class="btn btn-secondary btn-sm btn-sim-reply" data-id="${lead.id}" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;" title="Simulate a reply to test auto-pause">
-            ⚡ Sim Reply
+          <button class="card-btn-icon action-highlight btn-sim-reply" data-id="${lead.id}" title="Simulate human prospect response to trigger instant auto-kill">
+            SIM REPLY
           </button>
         ` : ''}
 
-        <button class="btn btn-secondary btn-sm btn-log-call" data-id="${lead.id}" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">
-          ${hasNotes ? '📝 Edit Notes' : '🎙️ Log Call'}
+        <button class="card-btn-icon btn-log-call" data-id="${lead.id}">
+          ${hasNotes ? 'EDIT NOTES' : 'LOG CALL'}
         </button>
       </div>
     </div>
