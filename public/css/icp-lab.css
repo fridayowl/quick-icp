@@ -1,28 +1,29 @@
 /* ==========================================================
-   ICP LAB & COMPARISON MATRIX (Swiss Neo-Brutalist Grid)
+   ICP LAB & COMPARISON MATRIX (Sketch Working Sheet Matrix)
    ========================================================== */
 
 .icp-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .icp-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  padding: 1.75rem;
+  background: #ffffff;
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-scrap);
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.35rem;
   position: relative;
-  box-shadow: var(--shadow-hard);
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  box-shadow: 3px 4px 0px var(--dp-color-ink);
+  transition: all var(--dp-motion-control) ease;
 }
 
 .icp-card:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
+  transform: rotate(-0.5deg) translate(-1px, -1px);
+  box-shadow: 4px 5px 0px var(--dp-color-ink);
 }
 
 .icp-card-header {
@@ -30,8 +31,8 @@
   grid-template-columns: 1fr auto;
   align-items: flex-start;
   gap: 1rem;
-  border-bottom: 1px solid var(--border-hairline);
-  padding-bottom: 1rem;
+  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding-bottom: 1.15rem;
 }
 
 .icp-title-wrap {
@@ -44,44 +45,47 @@
   display: inline-flex;
   align-items: center;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.55rem;
   width: fit-content;
-  border: 1px solid var(--border-default);
-  background: var(--bg-subtle);
-  color: var(--text-secondary);
+  border: 1px solid var(--dp-color-line);
+  border-radius: 4px;
+  background: var(--dp-color-scrap);
+  color: var(--dp-color-annotation);
 }
 
 .icp-name {
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-family: var(--dp-typography-display-face);
+  font-size: 1.65rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--dp-color-ink);
   line-height: 1.2;
 }
 
 .icp-role-sub {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  font-size: 1.05rem;
+  color: var(--dp-color-ink-muted);
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--font-sans);
+  font-family: var(--dp-typography-reading-face);
 }
 
-/* Precision Swiss Circular Gauge */
+/* Hand-drawn Circular Validation Gauge */
 .validation-gauge {
-  width: 64px;
-  height: 64px;
+  width: 68px;
+  height: 68px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: var(--bg-canvas);
-  border: 1px solid var(--border-default);
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: 50%;
+  box-shadow: 1px 2px 0px var(--dp-color-ink);
 }
 
 .validation-gauge svg {
@@ -92,30 +96,33 @@
 
 .gauge-bg {
   fill: none;
-  stroke: var(--border-hairline);
+  stroke: var(--dp-color-line);
   stroke-width: 5;
 }
 
 .gauge-val {
   fill: none;
+  stroke: var(--dp-color-accent);
   stroke-width: 5;
-  transition: stroke-dashoffset 0.8s var(--ease-mechanical);
+  transition: stroke-dashoffset 0.6s ease;
 }
 
 .gauge-text {
   position: absolute;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-family: var(--dp-typography-display-face);
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--dp-color-ink);
 }
 
-/* The 1-Feature Wedge Block (Editorial Pull-Quote Style) */
+/* The 1-Feature Wedge Block (Yellow Marker Highlight) */
 .wedge-box {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-default);
-  border-left: 3px solid var(--terracotta);
-  padding: 1rem 1.15rem;
+  background: var(--dp-color-highlight);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-control);
+  padding: 1.15rem 1.35rem;
+  box-shadow: 2px 2px 0px var(--dp-color-ink);
+  transform: rotate(-0.5deg);
 }
 
 .wedge-title {
@@ -123,27 +130,27 @@
   align-items: center;
   gap: 0.45rem;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--terracotta);
+  color: var(--dp-color-accent);
   margin-bottom: 0.35rem;
 }
 
 .wedge-desc {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  line-height: 1.45;
+  font-family: var(--dp-typography-reading-face);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dp-color-ink);
+  line-height: 1.4;
 }
 
 /* Problem & Workaround Matrix */
 .problem-details {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  font-size: 0.85rem;
+  gap: 0.95rem;
+  font-size: 1rem;
 }
 
 .detail-row {
@@ -154,76 +161,44 @@
 
 .detail-label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-tertiary);
-  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--dp-color-annotation);
+  font-weight: 700;
   letter-spacing: 0.06em;
 }
 
 .detail-text {
-  color: var(--text-secondary);
+  color: var(--dp-color-ink);
   line-height: 1.5;
-  font-size: 0.82rem;
+  font-size: 1.05rem;
+  font-family: var(--dp-typography-reading-face);
 }
 
 /* Discarded Features Box */
 .discarded-features-tag {
-  background: var(--bg-canvas);
-  border: 1px dashed var(--border-strong);
-  padding: 0.65rem 0.85rem;
-  font-size: 0.78rem;
-  color: var(--text-secondary);
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: var(--dp-color-ink-muted);
   display: flex;
   align-items: flex-start;
   gap: 0.65rem;
+  font-family: var(--dp-typography-reading-face);
 }
 
-.discarded-indicator {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: var(--status-danger);
-  background: var(--status-danger-bg);
-  padding: 0.1rem 0.35rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.discarded-body {
-  line-height: 1.4;
-}
-
-/* Metrics Monospace Bar */
-.icp-metrics-bar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background: var(--bg-canvas);
-  border: 1px solid var(--border-default);
-  padding: 0.65rem 0.5rem;
-  text-align: center;
-}
-
-.mini-metric-num {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--text-primary);
-}
-
-.mini-metric-lbl {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-tertiary);
-  margin-top: 0.2rem;
-}
-
-/* Card Actions */
-.icp-card-actions {
+/* Matrix Footer Actions */
+.icp-card-footer {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  margin-top: auto;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--border-hairline);
+  border-top: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding-top: 1rem;
+}
+
+.btn-view-pipeline {
+  font-family: var(--dp-typography-display-face);
+  font-size: 0.95rem;
+  padding: 0.4rem 0.9rem;
 }

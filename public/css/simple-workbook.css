@@ -1,5 +1,7 @@
 /* ==========================================================================
-   SIMPLE FOUNDER WORKBOOK // SWISS ARCHITECTURAL DESIGN SYSTEM
+   SIMPLE FOUNDER WORKBOOK // SKETCH DESIGN SYSTEM
+   Warm paper, handwritten notes, pencil drawings, blue notes, red corrections,
+   yellow highlights, irregular lines, and taped references.
    ========================================================================== */
 
 /* Mode Visibility Toggles */
@@ -14,169 +16,159 @@ body:not(.simple-mode-active) #view-simple-workbook {
   display: none !important;
 }
 
-/* 1. Header Mode Switcher */
+/* 1. Header Mode Switcher (Drawn Button Pill) */
 .mode-switch-container {
   display: flex;
   align-items: center;
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-default);
-  padding: 0.25rem;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-control);
+  padding: 0.2rem;
   gap: 0.35rem;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 0px var(--dp-color-ink);
 }
 
 .mode-switch-btn {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-family: var(--dp-typography-display-face);
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.95rem;
   border: 1px solid transparent;
+  border-radius: var(--dp-radius-control);
   background: transparent;
-  color: var(--text-secondary);
+  color: var(--dp-color-ink-muted);
   cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all var(--dp-motion-control) ease;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
 }
 
 .mode-switch-btn.active {
-  background: var(--accent-terracotta);
-  border-color: var(--accent-terracotta-hover);
+  background: var(--dp-color-accent);
   color: #ffffff;
-  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.35);
+  border-color: var(--dp-color-ink);
+  box-shadow: 1px 2px 0px var(--dp-color-ink);
 }
 
 .mode-switch-btn:hover:not(.active) {
-  color: var(--text-primary);
-  background: var(--bg-surface);
-  border-color: var(--border-default);
+  color: var(--dp-color-ink);
+  background: var(--dp-color-highlight);
 }
 
 /* 2. Main Wrapper Layout */
 .simple-workbook-wrap {
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 1.5rem 0 5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  animation: fadeIn 0.25s ease-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* 3. Hero Card (Swiss Editorial Header) */
+/* 3. Hero Card (Working Sheet with Tape Strip) */
 .workbook-hero-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-left: 4px solid var(--accent-terracotta);
-  padding: 2.25rem 2.5rem;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-scrap);
+  padding: 2.5rem 2.75rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  gap: 1.15rem;
+  box-shadow: 3px 4px 0px var(--dp-color-ink);
   position: relative;
-  overflow: hidden;
 }
 
-.workbook-hero-card::after {
-  content: "ICP // 01";
+/* Taped reference strip on the top edge */
+.workbook-hero-card::before {
+  content: "";
   position: absolute;
-  right: 1.5rem;
-  bottom: 1rem;
-  font-family: var(--font-mono);
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.02);
-  pointer-events: none;
-  user-select: none;
+  top: -9px;
+  right: 60px;
+  width: 100px;
+  height: 24px;
+  background: rgba(220, 214, 195, 0.7);
+  border: 1px solid rgba(179, 172, 157, 0.45);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transform: rotate(2.5deg);
+  z-index: 5;
 }
 
 .workbook-hero-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--accent-terracotta);
-  letter-spacing: 0.1em;
+  color: var(--dp-color-accent);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.workbook-hero-tag::before {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: var(--accent-terracotta);
+  gap: 0.4rem;
 }
 
 .workbook-hero-title {
-  font-family: var(--font-serif);
-  font-size: 2.3rem;
+  font-family: var(--dp-typography-display-face);
+  font-size: 2.6rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--dp-color-ink);
   margin: 0;
   line-height: 1.15;
-  letter-spacing: -0.02em;
 }
 
 .workbook-hero-desc {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
+  font-size: 1.2rem;
+  color: var(--dp-color-ink-muted);
   line-height: 1.6;
   margin: 0;
-  max-width: 680px;
+  max-width: 720px;
+  font-family: var(--dp-typography-reading-face);
 }
 
 /* Quick Fill Preset Pills */
 .quick-fill-strip {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
   flex-wrap: wrap;
-  padding-top: 0.5rem;
-  border-top: 1px dashed var(--border-default);
+  padding-top: 0.85rem;
+  border-top: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
 }
 
 .quick-fill-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
+  color: var(--dp-color-annotation);
+  letter-spacing: 0.06em;
 }
 
 .preset-chip {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  padding: 0.3rem 0.65rem;
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-default);
-  color: var(--text-secondary);
+  font-family: var(--dp-typography-reading-face);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  background: #ffffff;
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  color: var(--dp-color-ink);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--dp-motion-control) ease;
   user-select: none;
+  box-shadow: 1px 1px 0px rgba(56, 53, 47, 0.15);
 }
 
 .preset-chip:hover {
-  background: var(--bg-canvas);
-  color: var(--accent-terracotta);
-  border-color: var(--accent-terracotta);
-  transform: translateY(-1px);
+  background: var(--dp-color-highlight);
+  border-color: var(--dp-color-ink);
+  transform: rotate(-1deg) translate(-1px, -1px);
+  box-shadow: 2px 2px 0px var(--dp-color-ink);
 }
 
-/* 4. Three-Step Stepper Navigation */
+/* 4. Three-Step Navigation Tabs (Drawn Index Notes) */
 .simple-step-tabs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
 @media (max-width: 700px) {
@@ -186,37 +178,31 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .simple-step-indicator {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  padding: 1.1rem 1.35rem;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  padding: 1.15rem 1.4rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35rem;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--dp-motion-control) ease;
   text-align: left;
-  position: relative;
+  box-shadow: 2px 2px 0px rgba(56, 53, 47, 0.12);
 }
 
 .simple-step-indicator:hover {
-  background: var(--bg-surface-elevated);
-  border-color: var(--text-muted);
+  background: #ffffff;
+  border-color: var(--dp-color-ink);
+  transform: rotate(-0.5deg) translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--dp-color-ink);
 }
 
 .simple-step-indicator.active {
-  border-color: var(--accent-terracotta);
-  background: var(--bg-surface-elevated);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-}
-
-.simple-step-indicator.active::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--accent-terracotta);
+  background: var(--dp-color-highlight);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  box-shadow: 2px 3px 0px var(--dp-color-ink);
+  transform: rotate(0.5deg);
 }
 
 .step-indicator-top {
@@ -227,164 +213,181 @@ body:not(.simple-mode-active) #view-simple-workbook {
 
 .simple-step-num {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--text-muted);
-}
-
-.simple-step-indicator.active .simple-step-num {
-  color: var(--accent-terracotta);
+  color: var(--dp-color-annotation);
 }
 
 .step-badge-status {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 700;
 }
 
 .step-badge-status.done {
-  color: var(--status-success);
+  color: var(--status-positive);
 }
 
 .step-badge-status.current {
-  color: var(--accent-terracotta);
+  color: var(--dp-color-accent);
 }
 
 .simple-step-label {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-family: var(--dp-typography-display-face);
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.25;
+  color: var(--dp-color-ink);
+  line-height: 1.2;
 }
 
-/* 5. Main Card Panel */
+/* 5. Main Card Panel (Clean Paper Working Sheet) */
 .simple-card-panel {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  padding: 2.5rem;
+  background: #ffffff;
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-scrap);
+  padding: 2.75rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  gap: 2.25rem;
+  box-shadow: 4px 5px 0px var(--dp-color-ink);
+  position: relative;
+}
+
+/* Tape strip on top left of paper */
+.simple-card-panel::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 40px;
+  width: 80px;
+  height: 22px;
+  background: rgba(220, 214, 195, 0.65);
+  border: 1px solid rgba(179, 172, 157, 0.4);
+  transform: rotate(-3deg);
+  z-index: 5;
 }
 
 .simple-card-header {
-  border-bottom: 1px solid var(--border-default);
+  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
   padding-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.5rem;
 }
 
 .simple-card-step-kicker {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--accent-terracotta);
+  color: var(--dp-color-accent);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .simple-card-title {
-  font-family: var(--font-serif);
-  font-size: 1.85rem;
+  font-family: var(--dp-typography-display-face);
+  font-size: 2.1rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--dp-color-ink);
   margin: 0;
   line-height: 1.2;
 }
 
 .simple-card-sub {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
+  font-size: 1.15rem;
+  color: var(--dp-color-ink-muted);
+  line-height: 1.6;
   margin: 0;
-  max-width: 720px;
+  max-width: 740px;
+  font-family: var(--dp-typography-reading-face);
 }
 
 /* 6. Form Fields & Controls */
 .easy-field-group {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .easy-label {
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-family: var(--dp-typography-reading-face);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dp-color-ink);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .easy-label-hint {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-family: var(--dp-typography-reading-face);
+  font-size: 0.95rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--dp-color-annotation);
 }
 
 .easy-input {
-  background: var(--bg-canvas);
-  border: 1px solid var(--border-default);
-  padding: 0.85rem 1.1rem;
-  font-size: 0.95rem;
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  border-radius: 0;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  padding: 0.85rem 1.15rem;
+  font-size: 1.15rem;
+  color: var(--dp-color-ink);
+  font-family: var(--dp-typography-reading-face);
+  transition: all var(--dp-motion-control) ease;
 }
 
 .easy-input:focus {
-  border-color: var(--accent-terracotta);
-  box-shadow: 0 0 0 1px var(--accent-terracotta);
-  outline: none;
+  border-color: var(--dp-color-annotation);
+  background: #ffffff;
 }
 
 .easy-textarea {
-  background: var(--bg-canvas);
-  border: 1px solid var(--border-default);
-  padding: 0.85rem 1.1rem;
-  font-size: 0.95rem;
-  color: var(--text-primary);
-  font-family: var(--font-sans);
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  padding: 0.85rem 1.15rem;
+  font-size: 1.15rem;
+  color: var(--dp-color-ink);
+  font-family: var(--dp-typography-reading-face);
   resize: vertical;
-  min-height: 85px;
+  min-height: 90px;
   line-height: 1.6;
-  border-radius: 0;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: all var(--dp-motion-control) ease;
 }
 
 .easy-textarea:focus {
-  border-color: var(--accent-terracotta);
-  box-shadow: 0 0 0 1px var(--accent-terracotta);
-  outline: none;
+  border-color: var(--dp-color-annotation);
+  background: #ffffff;
 }
 
 /* Feature Item Row */
 .easy-feature-list {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.75rem;
 }
 
 .easy-feature-row {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.65rem;
   align-items: center;
 }
 
 .feature-num-badge {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  color: var(--text-muted);
-  width: 28px;
-  text-align: center;
+  color: var(--dp-color-annotation);
+  background: var(--dp-color-scrap);
+  border: 1px solid var(--dp-color-line);
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .easy-feature-row input {
@@ -392,30 +395,32 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .easy-btn-remove {
-  background: transparent;
-  border: 1px solid var(--border-default);
-  color: var(--text-muted);
-  width: 42px;
-  height: 42px;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  color: var(--dp-color-ink-muted);
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1.2rem;
-  transition: all 0.15s ease;
+  font-size: 1.35rem;
+  transition: all var(--dp-motion-control) ease;
 }
 
 .easy-btn-remove:hover {
-  color: var(--status-danger);
-  border-color: var(--status-danger);
-  background: rgba(239, 68, 68, 0.08);
+  color: var(--dp-color-accent);
+  border-color: var(--dp-color-accent);
+  background: #fae5e3;
+  transform: rotate(2deg);
 }
 
-/* 7. Step 2 Comparison Cards */
+/* 7. Step 2 Comparison Cards (Hand-mounted Scraps) */
 .cohort-comparison-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 @media (max-width: 768px) {
@@ -425,42 +430,51 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .cohort-card-builder {
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-default);
-  padding: 1.5rem;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-scrap);
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
+  gap: 1.25rem;
+  box-shadow: 2px 3px 0px rgba(56, 53, 47, 0.12);
   position: relative;
+}
+
+.cohort-card-builder:first-child {
+  border-color: var(--dp-color-accent);
+  background: #fdfaf6;
 }
 
 .cohort-builder-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border-default);
+  padding-bottom: 0.6rem;
+  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
 }
 
+/* Yellow Highlight Box for the 1 Wedge */
 .wedge-highlight-box {
-  background: rgba(234, 88, 12, 0.06);
-  border: 1px solid rgba(234, 88, 12, 0.25);
-  border-left: 3px solid var(--accent-terracotta);
-  padding: 0.75rem 1rem;
+  background: var(--dp-color-highlight);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-control);
+  padding: 0.85rem 1.15rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
+  box-shadow: 2px 2px 0px var(--dp-color-ink);
+  transform: rotate(-0.5deg);
 }
 
 .wedge-box-label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--accent-terracotta);
+  color: var(--dp-color-accent);
   text-transform: uppercase;
 }
 
@@ -468,24 +482,25 @@ body:not(.simple-mode-active) #view-simple-workbook {
 .cheat-sheet-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 2rem;
 }
 
 .cheat-sheet-block {
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-default);
-  padding: 1.5rem 1.75rem;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-scrap);
+  padding: 1.85rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  gap: 1rem;
+  box-shadow: 3px 4px 0px var(--dp-color-ink);
 }
 
 .cheat-sheet-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--accent-terracotta);
+  color: var(--dp-color-accent);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -493,156 +508,168 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .cheat-sheet-headline {
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-family: var(--dp-typography-display-face);
+  font-size: 1.65rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--dp-color-ink);
   margin: 0;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
-/* Monospace Message Box with macOS Dots */
+/* Terminal / Note Window */
 .terminal-message-window {
-  background: var(--bg-canvas);
-  border: 1px solid var(--border-default);
+  background: #ffffff;
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-control);
   position: relative;
   overflow: hidden;
+  box-shadow: 2px 3px 0px rgba(56, 53, 47, 0.15);
 }
 
 .terminal-window-bar {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 0.85rem;
-  background: var(--bg-surface);
-  border-bottom: 1px solid var(--border-default);
+  gap: 0.45rem;
+  padding: 0.6rem 1rem;
+  background: var(--dp-color-scrap);
+  border-bottom: var(--dp-border-fine-stroke) solid var(--dp-color-line);
 }
 
 .dot-circle {
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: #334155;
+  border: 1px solid var(--dp-color-ink);
 }
 
 .terminal-title {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: var(--dp-color-annotation);
+  font-weight: 700;
   margin-left: 0.5rem;
 }
 
 .cheat-sheet-box {
-  padding: 1.1rem 1.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-primary);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--dp-typography-reading-face);
+  font-size: 1.15rem;
+  color: var(--dp-color-ink);
   line-height: 1.65;
   white-space: pre-wrap;
   position: relative;
 }
 
 .cheat-sheet-copy-btn {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-control);
+  color: var(--dp-color-ink);
+  font-family: var(--dp-typography-display-face);
+  font-size: 0.95rem;
   font-weight: 700;
-  padding: 0.35rem 0.75rem;
+  padding: 0.45rem 0.95rem;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--dp-motion-control) ease;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  box-shadow: 1px 2px 0px var(--dp-color-ink);
 }
 
 .cheat-sheet-copy-btn:hover {
-  background: var(--accent-terracotta);
-  border-color: var(--accent-terracotta);
+  background: var(--dp-color-accent);
   color: #ffffff;
-  transform: translateY(-1px);
+  transform: rotate(-0.5deg) translate(-1px, -1px);
+  box-shadow: 2px 3px 0px var(--dp-color-ink);
 }
 
 /* 9. Question Bank Styling */
 .question-item-row {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.85rem;
   align-items: flex-start;
-  padding: 0.65rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 0;
+  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
 }
 
 .q-num-badge {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  color: var(--accent-terracotta);
-  background: rgba(234, 88, 12, 0.1);
-  padding: 0.15rem 0.45rem;
-  border: 1px solid rgba(234, 88, 12, 0.25);
+  color: var(--dp-color-accent);
+  background: var(--dp-color-highlight);
+  padding: 0.2rem 0.55rem;
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: 4px;
   flex-shrink: 0;
+  box-shadow: 1px 1px 0px var(--dp-color-ink);
 }
 
 .q-text-body {
-  font-size: 0.92rem;
-  color: var(--text-primary);
+  font-size: 1.15rem;
+  color: var(--dp-color-ink);
   line-height: 1.5;
+  font-family: var(--dp-typography-reading-face);
 }
 
 .q-text-reason {
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  font-size: 0.95rem;
+  color: var(--dp-color-annotation);
   display: block;
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
+  font-family: var(--dp-typography-reading-face);
 }
 
 /* 10. 5 Contacts Simple Tracker Table */
 .simple-contacts-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.88rem;
+  font-size: 1.05rem;
   margin-top: 0.5rem;
+  font-family: var(--dp-typography-reading-face);
 }
 
 .simple-contacts-table th {
   text-align: left;
-  padding: 0.75rem;
+  padding: 0.85rem;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border-default);
-  background: var(--bg-surface);
+  font-size: 0.78rem;
+  color: var(--dp-color-annotation);
+  border-bottom: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  background: var(--dp-color-scrap);
 }
 
 .simple-contacts-table td {
-  padding: 0.6rem 0.75rem;
-  border-bottom: 1px solid var(--border-default);
-  color: var(--text-primary);
+  padding: 0.65rem 0.75rem;
+  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  color: var(--dp-color-ink);
 }
 
 .contact-progress-strip {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.75rem 1rem;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
+  padding: 0.85rem 1.25rem;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
   margin-bottom: 0.5rem;
 }
 
 .contact-progress-bar {
   flex: 1;
-  height: 6px;
-  background: var(--bg-canvas);
-  border: 1px solid var(--border-default);
+  height: 8px;
+  background: #ffffff;
+  border: 1px solid var(--dp-color-line);
+  border-radius: 4px;
   position: relative;
   overflow: hidden;
 }
 
 .contact-progress-fill {
   height: 100%;
-  background: var(--accent-terracotta);
+  background: var(--dp-color-accent);
   transition: width 0.3s ease;
 }
 
@@ -651,8 +678,8 @@ body:not(.simple-mode-active) #view-simple-workbook {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid var(--border-default);
-  padding-top: 1.75rem;
+  border-top: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding-top: 1.85rem;
   margin-top: 0.5rem;
   flex-wrap: wrap;
   gap: 1rem;

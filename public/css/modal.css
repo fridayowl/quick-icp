@@ -1,130 +1,140 @@
 /* ==========================================================
-   MODAL & NATIVE HTML5 DIALOG (Swiss Architectural System)
+   MODAL & NATIVE HTML5 DIALOG (Sketch Working Sheet Dialog)
    ========================================================== */
 
 dialog {
-  border: 1px solid var(--border-strong);
-  background: var(--bg-surface);
-  color: var(--text-primary);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-scrap);
+  background: var(--dp-color-scrap);
+  color: var(--dp-color-ink);
   padding: 0;
   max-width: 680px;
   width: 92vw;
-  box-shadow: 8px 8px 0px #000000;
+  box-shadow: 5px 6px 0px var(--dp-color-ink);
   margin: auto;
   overflow: hidden;
   overscroll-behavior: contain;
+  font-family: var(--dp-typography-reading-face);
+  position: relative;
+}
+
+/* Tape strip on modal */
+dialog::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50px;
+  width: 80px;
+  height: 22px;
+  background: rgba(220, 214, 195, 0.7);
+  border: 1px solid rgba(179, 172, 157, 0.45);
+  transform: rotate(-2deg);
+  z-index: 10;
 }
 
 dialog::backdrop {
-  background: rgba(8, 10, 14, 0.82);
+  background: rgba(56, 53, 47, 0.45);
+  backdrop-filter: blur(1px);
 }
 
 .modal-header {
-  padding: 1.25rem 1.75rem;
-  border-bottom: 1px solid var(--border-default);
+  padding: 1.5rem 2rem;
+  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  background: var(--bg-subtle);
+  background: var(--dp-color-ground);
 }
 
 .modal-kicker {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--terracotta);
+  color: var(--dp-color-accent);
   margin-bottom: 0.25rem;
 }
 
 .modal-title-group h3 {
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-family: var(--dp-typography-display-face);
+  font-size: 1.8rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--dp-color-ink);
   line-height: 1.2;
 }
 
 .modal-title-group p {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  font-size: 1.05rem;
+  color: var(--dp-color-ink-muted);
   margin-top: 0.25rem;
+  font-family: var(--dp-typography-reading-face);
 }
 
 .modal-close-btn {
-  background: transparent;
-  border: 1px solid var(--border-default);
-  color: var(--text-secondary);
-  font-size: 1.2rem;
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-control);
+  color: var(--dp-color-ink);
+  font-size: 1.4rem;
   cursor: pointer;
-  padding: 0.25rem 0.55rem;
+  padding: 0.2rem 0.65rem;
   line-height: 1;
-  font-family: var(--font-mono);
-  transition: all var(--transition-fast);
+  transition: all var(--dp-motion-control) ease;
+  box-shadow: 1px 1px 0px var(--dp-color-ink);
 }
 
 .modal-close-btn:hover {
-  color: var(--text-primary);
-  border-color: var(--border-strong);
-  background: var(--bg-hover);
+  background: var(--dp-color-accent);
+  color: #ffffff;
+  transform: rotate(3deg);
 }
 
 .modal-body {
-  padding: 1.5rem 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.15rem;
-  max-height: 75vh;
+  padding: 2rem;
+  max-height: 70vh;
   overflow-y: auto;
-  background: var(--bg-canvas);
-}
-
-/* Insight Extractor Card inside Modal */
-.extracted-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-left: 3px solid var(--terracotta);
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  box-shadow: var(--shadow-hard-sm);
-}
-
-.extracted-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.extracted-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.extracted-label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-.extracted-val {
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  color: var(--terracotta);
-  font-weight: 700;
+  background: #ffffff;
 }
 
 .modal-footer {
-  padding: 1rem 1.75rem;
-  border-top: 1px solid var(--border-default);
+  padding: 1.25rem 2rem;
+  border-top: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
   display: flex;
-  align-items: center;
   justify-content: flex-end;
   gap: 0.75rem;
-  background: var(--bg-subtle);
+  background: var(--dp-color-ground);
+}
+
+/* Call Analysis Specific Blocks */
+.analysis-transcript-box {
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  padding: 1rem;
+  font-family: var(--dp-typography-reading-face);
+  font-size: 1rem;
+  color: var(--dp-color-ink);
+  min-height: 110px;
+}
+
+.insight-metric-card {
+  background: var(--dp-color-scrap);
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-control);
+  padding: 1rem;
+  box-shadow: 2px 2px 0px rgba(56,53,47,0.15);
+}
+
+.insight-metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--dp-color-annotation);
+  font-weight: 700;
+}
+
+.insight-metric-val {
+  font-family: var(--dp-typography-display-face);
+  font-size: 1.8rem;
+  color: var(--dp-color-ink);
+  font-weight: 700;
 }

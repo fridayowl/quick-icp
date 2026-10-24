@@ -1,43 +1,45 @@
 /* ==========================================================
-   UNIFIED DISCOVERY INBOX (Swiss Technical Ledger)
+   UNIFIED DISCOVERY INBOX (Sketch Speech Note & Thread Sheet)
    ========================================================== */
 
 .inbox-layout {
   display: grid;
-  grid-template-columns: 360px 1fr;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
+  grid-template-columns: 380px 1fr;
+  background: #ffffff;
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-radius: var(--dp-radius-scrap);
   overflow: hidden;
   height: calc(100vh - 240px);
-  box-shadow: var(--shadow-hard);
+  box-shadow: 4px 5px 0px var(--dp-color-ink);
 }
 
 /* Left: Threads Sidebar */
 .threads-sidebar {
-  border-right: 1px solid var(--border-default);
+  border-right: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
   display: flex;
   flex-direction: column;
-  background: var(--bg-subtle);
+  background: var(--dp-color-scrap);
 }
 
 .threads-search-bar {
-  padding: 0.85rem 1rem;
-  border-bottom: 1px solid var(--border-default);
+  padding: 1rem 1.25rem;
+  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
 }
 
 .search-input {
   width: 100%;
-  background: var(--bg-input);
-  border: 1px solid var(--border-default);
-  padding: 0.5rem 0.75rem;
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  background: #ffffff;
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  padding: 0.6rem 0.85rem;
+  color: var(--dp-color-ink);
+  font-family: var(--dp-typography-reading-face);
+  font-size: 1.05rem;
   outline: none;
 }
 
 .search-input:focus {
-  border-color: var(--terracotta);
+  border-color: var(--dp-color-annotation);
 }
 
 .threads-list {
@@ -48,181 +50,166 @@
 }
 
 .thread-item {
-  padding: 1rem 1.15rem;
-  border-bottom: 1px solid var(--border-hairline);
+  padding: 1rem 1.25rem;
+  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--dp-motion-control) ease;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  position: relative;
 }
 
 .thread-item:hover {
-  background: var(--bg-hover);
+  background: #ffffff;
 }
 
 .thread-item.active {
-  background: var(--bg-surface);
-  border-left: 3px solid var(--terracotta);
+  background: var(--dp-color-highlight);
+  border-left: 4px solid var(--dp-color-accent);
 }
 
 .thread-header-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .thread-lead-name {
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-family: var(--dp-typography-display-face);
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--dp-color-ink);
+  font-size: 1.15rem;
 }
 
 .thread-time {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-tertiary);
+  font-size: 0.72rem;
+  color: var(--dp-color-annotation);
 }
 
 .thread-subject {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--dp-color-ink);
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: var(--dp-typography-reading-face);
 }
 
 .thread-snippet {
-  font-size: 0.75rem;
-  color: var(--text-tertiary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  color: var(--dp-color-ink-muted);
   line-height: 1.4;
+  font-family: var(--dp-typography-reading-face);
 }
 
 .thread-badge-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
 }
 
-/* Right: Thread Conversation Pane */
+.lead-icp-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--dp-color-annotation);
+  background: #ffffff;
+  border: 1px solid var(--dp-color-line);
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
+}
+
+/* Right: Active Conversation Panel */
 .thread-detail-pane {
   display: flex;
   flex-direction: column;
+  background: #ffffff;
   height: 100%;
-  background: var(--bg-canvas);
 }
 
 .thread-detail-header {
-  padding: 1rem 1.75rem;
-  border-bottom: 1px solid var(--border-default);
+  padding: 1.25rem 1.75rem;
+  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  background: var(--dp-color-ground);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background: var(--bg-surface);
-}
-
-.thread-detail-meta h3 {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  margin-bottom: 0.25rem;
-}
-
-.thread-detail-meta-sub {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-tertiary);
-  display: flex;
-  gap: 0.5rem;
-}
-
-/* Sequence Auto-Kill Notice Banner */
-.sequence-autokill-banner {
-  background: var(--terracotta-deep);
-  border-bottom: 1px solid var(--terracotta-border);
-  padding: 0.65rem 1.75rem;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--terracotta-tint);
 }
 
-.autokill-tag {
-  background: var(--terracotta);
-  color: var(--text-inverse);
-  padding: 0.1rem 0.4rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  margin-right: 0.5rem;
+.thread-contact-info h3 {
+  font-family: var(--dp-typography-display-face);
+  font-size: 1.6rem;
+  margin: 0;
+  color: var(--dp-color-ink);
 }
 
-/* Message Bubbles / Ledger Rows */
+.thread-contact-meta {
+  font-size: 0.95rem;
+  color: var(--dp-color-ink-muted);
+  font-family: var(--dp-typography-reading-face);
+}
+
 .messages-container {
   flex: 1;
   overflow-y: auto;
-  padding: 1.5rem 1.75rem;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  background: #ffffff;
 }
 
+/* Speech Notes for Messages */
 .message-card {
-  border: 1px solid var(--border-default);
-  background: var(--bg-surface);
-  padding: 1.15rem 1.35rem;
-  max-width: 85%;
-  box-shadow: var(--shadow-hard-sm);
+  padding: 1.25rem 1.5rem;
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  max-width: 82%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 1px 2px 0px rgba(56,53,47,0.1);
 }
 
 .message-card.outbound {
   align-self: flex-end;
-  background: var(--bg-subtle);
-  border-color: var(--border-strong);
+  background: var(--dp-color-scrap);
+  border-color: var(--dp-color-ink);
 }
 
 .message-card.inbound {
   align-self: flex-start;
-  background: var(--bg-surface);
-  border-left: 3px solid var(--terracotta);
+  background: var(--dp-color-highlight);
+  border-color: var(--dp-color-ink);
 }
 
 .message-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-tertiary);
-  margin-bottom: 0.65rem;
-  border-bottom: 1px solid var(--border-hairline);
+  font-size: 0.72rem;
+  color: var(--dp-color-annotation);
+  font-weight: 700;
+  border-bottom: 1px dashed rgba(56, 53, 47, 0.2);
   padding-bottom: 0.35rem;
 }
 
-.message-author {
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
 .message-body {
-  font-size: 0.88rem;
+  font-size: 1.1rem;
+  color: var(--dp-color-ink);
   line-height: 1.6;
-  color: var(--text-primary);
   white-space: pre-wrap;
+  font-family: var(--dp-typography-reading-face);
 }
 
-/* Reply Compose Box */
+/* Thread Composer */
 .thread-composer {
   padding: 1.25rem 1.75rem;
-  border-top: 1px solid var(--border-default);
-  background: var(--bg-surface);
+  border-top: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  background: var(--dp-color-scrap);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -230,30 +217,23 @@
 
 .composer-textarea {
   width: 100%;
-  background: var(--bg-input);
-  border: 1px solid var(--border-default);
-  padding: 0.75rem 1rem;
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  line-height: 1.5;
+  min-height: 85px;
+  background: #ffffff;
+  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-radius: var(--dp-radius-control);
+  padding: 0.85rem;
+  color: var(--dp-color-ink);
+  font-family: var(--dp-typography-reading-face);
+  font-size: 1.1rem;
   resize: vertical;
-  min-height: 80px;
-  outline: none;
 }
 
 .composer-textarea:focus {
-  border-color: var(--terracotta);
-  background: var(--bg-canvas);
+  border-color: var(--dp-color-annotation);
 }
 
 .composer-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.template-quick-actions {
-  display: flex;
-  gap: 0.5rem;
 }
