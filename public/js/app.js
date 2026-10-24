@@ -9,6 +9,8 @@ import { renderProductCatalog } from './product-catalog.js';
 import { setupOnboardingWizard } from './onboarding-wizard.js';
 import { setupIcpBuilderExercise } from './icp-builder-exercise.js';
 import { setupCallNotesModal } from './call-analyzer.js';
+import { setupCallCompanion } from './call-companion.js';
+import { getGamificationState, getCurrentLevel } from './gamification-store.js';
 
 // Application State
 const state = {
@@ -22,6 +24,7 @@ const state = {
   selectedLeadId: null,
   activeIcpFilter: null,
   callNotesModal: null,
+  callCompanionModal: null,
   onboardingWizard: null,
   icpExerciseModal: null
 };
@@ -43,6 +46,22 @@ async function init() {
       showToast('Discovery call notes logged. Validation scorecard updated.');
     });
   }
+
+  // Setup Gamified Call Companion & Conversation Practice Simulator
+  const companionDialog = document.getElementById('gamified-companion-modal');
+  if (companionDialog) {
+    state.callCompanionModal = setupCallCompanion(companionDialog, state.leads, async () => {
+      await refreshData();
+      updateHeaderGameBadge();
+    });
+  }
+
+  // Header Game Button Listener
+  document.getElementById('btn-open-companion-header')?.addEventListener('click', () => {
+    state.callCompanionModal?.open(state.leads[0] || null, 'companion');
+  });
+
+  updateHeaderGameBadge();
 
   // Setup Guided ICP Building Exercise Modal
   const exerciseDialog = document.getElementById('icp-exercise-modal');
@@ -100,8 +119,20 @@ function renderSimpleMode() {
       },
       async () => {
         await refreshData();
+      },
+      (lead, mode) => {
+        state.callCompanionModal?.open(lead, mode);
       }
     );
+  }
+}
+
+function updateHeaderGameBadge() {
+  const gState = getGamificationState();
+  const lvl = getCurrentLevel(gState.xp);
+  const badgeText = document.getElementById('header-game-lvl-text');
+  if (badgeText) {
+    badgeText.textContent = `GAME: LVL ${lvl.level} (${gState.xp} XP)`;
   }
 }
 
@@ -153,6 +184,7 @@ async function refreshData() {
     state.templates = templates;
 
     updateHeaderStats();
+    updateHeaderGameBadge();
     populateProductFeatureDropdown();
     if (state.appMode === 'simple') {
       renderSimpleMode();
@@ -276,7 +308,9 @@ function renderCurrentTab() {
         },
         (leadId) => {
           const lead = state.leads.find(l => l.id === leadId);
-          if (lead && state.callNotesModal) {
+          if (lead && state.callCompanionModal) {
+            state.callCompanionModal.open(lead, 'companion');
+          } else if (lead && state.callNotesModal) {
             state.callNotesModal.open(lead);
           }
         },
@@ -321,7 +355,9 @@ function renderCurrentTab() {
         },
         (leadId) => {
           const lead = state.leads.find(l => l.id === leadId);
-          if (lead && state.callNotesModal) {
+          if (lead && state.callCompanionModal) {
+            state.callCompanionModal.open(lead, 'companion');
+          } else if (lead && state.callNotesModal) {
             state.callNotesModal.open(lead);
           }
         }

@@ -51,7 +51,7 @@ const PRESETS = [
   }
 ];
 
-export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh) {
+export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh, onOpenCompanion = () => {}) {
   let activeStep = 1;
 
   // Local form state seeded from app state
@@ -421,6 +421,25 @@ Best,
               </div>
             </div>
 
+            <!-- Gamified Conversation Callout -->
+            <div style="background: var(--dp-color-surface); border: 2px solid var(--dp-color-ink); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <div>
+                  <span style="font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; color: var(--dp-color-accent); text-transform: uppercase;">🎮 CONVERSATION GAME // ZERO OVERWHELM</span>
+                  <h4 style="font-size: 1.25rem; font-weight: 800; margin: 0.25rem 0; color: var(--dp-color-ink); letter-spacing: -0.02em;">Nervous about talking to customers or writing notes?</h4>
+                  <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">Play the 4-Round Call Deck with 1-tap note snapping, or practice with a virtual prospect persona before calling real people.</p>
+                </div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button class="btn btn-secondary btn-sm" id="btn-workbook-open-sim" style="font-family: var(--font-mono); font-size: 0.75rem;">
+                    🕹️ Practice with AI Persona
+                  </button>
+                  <button class="btn btn-primary btn-sm" id="btn-workbook-open-deck" style="font-family: var(--font-mono); font-size: 0.75rem;">
+                    🎮 Open 1-Tap Call Deck
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
               Search LinkedIn for: <strong>${escapeHtml(targetAudience)}</strong>. Enter 5 real names and update their status as you message them.
             </p>
@@ -428,10 +447,11 @@ Best,
             <table class="simple-contacts-table">
               <thead>
                 <tr>
-                  <th style="width: 25%;">NAME</th>
-                  <th style="width: 25%;">COMPANY</th>
-                  <th style="width: 22%;">CHANNEL</th>
-                  <th style="width: 28%;">STATUS</th>
+                  <th style="width: 22%;">NAME</th>
+                  <th style="width: 22%;">COMPANY</th>
+                  <th style="width: 18%;">CHANNEL</th>
+                  <th style="width: 20%;">STATUS</th>
+                  <th style="width: 18%;">1-TAP GAME</th>
                 </tr>
               </thead>
               <tbody id="simple-contacts-tbody">
@@ -455,6 +475,11 @@ Best,
                         <option value="call_scheduled" ${c.status === 'call_scheduled' ? 'selected' : ''}>[★] Call Booked</option>
                         <option value="validated" ${c.status === 'validated' ? 'selected' : ''}>[✓] Validated Customer</option>
                       </select>
+                    </td>
+                    <td>
+                      <button class="btn btn-secondary btn-sm btn-contact-call-deck" data-idx="${idx}" style="font-family: var(--font-mono); font-size: 0.72rem; padding: 0.35rem 0.5rem; width: 100%; white-space: nowrap;">
+                        🎮 Call Deck
+                      </button>
                     </td>
                   </tr>
                 `).join('')}
@@ -607,6 +632,31 @@ Best,
       sel.addEventListener('change', () => {
         saveCurrentInput();
         render();
+      });
+    });
+
+    // Gamified Call Companion & Simulator buttons
+    container.querySelector('#btn-workbook-open-sim')?.addEventListener('click', () => {
+      onOpenCompanion(null, 'simulator');
+    });
+
+    container.querySelector('#btn-workbook-open-deck')?.addEventListener('click', () => {
+      onOpenCompanion(null, 'companion');
+    });
+
+    container.querySelectorAll('.btn-contact-call-deck').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = parseInt(e.currentTarget.dataset.idx, 10);
+        const contact = form.simpleContacts[idx];
+        const leadObj = {
+          id: 'lead_' + idx,
+          name: contact?.name || 'Contact ' + (idx + 1),
+          company: contact?.company || 'Prospective Company',
+          email: `${(contact?.name || 'user').toLowerCase().replace(/\s+/g, '')}@example.com`,
+          channel: contact?.channel || 'LinkedIn',
+          stage: contact?.status || 'not_contacted'
+        };
+        onOpenCompanion(leadObj, 'companion');
       });
     });
 

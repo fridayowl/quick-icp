@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/product-catalog.css">
   <link rel="stylesheet" href="css/founder-guide.css">
   <link rel="stylesheet" href="css/simple-workbook.css">
+  <link rel="stylesheet" href="css/call-companion.css">
 </head>
 <body class="simple-mode-active">
 
@@ -66,10 +67,17 @@
       </button>
     </nav>
 
-    <!-- Mode Switcher: Simple (Beginner) vs Pro (Advanced) -->
-    <div class="mode-switch-container" id="app-mode-switch">
-      <button class="mode-switch-btn active" id="btn-mode-simple" data-mode="simple">✦ Simple Mode</button>
-      <button class="mode-switch-btn" id="btn-mode-pro" data-mode="pro">⚙ Pro Dashboard</button>
+    <!-- Gamified Call & Conversation Button in Header -->
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <button class="btn btn-primary btn-sm" id="btn-open-companion-header" style="font-family: var(--font-mono); font-size: 0.75rem; padding: 0.4rem 0.85rem;" title="Open Gamified Call Companion & Conversation Practice Simulator">
+        🎮 <span id="header-game-lvl-text">CONVERSATION GAME [LVL 1]</span>
+      </button>
+
+      <!-- Mode Switcher: Simple (Beginner) vs Pro (Advanced) -->
+      <div class="mode-switch-container" id="app-mode-switch">
+        <button class="mode-switch-btn active" id="btn-mode-simple" data-mode="simple">✦ Simple Mode</button>
+        <button class="mode-switch-btn" id="btn-mode-pro" data-mode="pro">⚙ Pro Dashboard</button>
+      </div>
     </div>
 
     <!-- Real-time Top Wedge Signal -->
@@ -177,6 +185,9 @@
 
   <!-- Modal: Call Notes & AI Insight Extractor -->
   <dialog id="call-notes-modal"></dialog>
+
+  <!-- Modal: Gamified Call Companion & Conversation Practice Simulator -->
+  <dialog id="gamified-companion-modal" style="max-width: 1080px; width: 96vw;"></dialog>
 
   <!-- Modal: Add New ICP Hypothesis -->
   <dialog id="add-icp-modal">
