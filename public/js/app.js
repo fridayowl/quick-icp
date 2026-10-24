@@ -3,10 +3,13 @@ import { renderIcpLab } from './icp-lab.js';
 import { renderKanban } from './kanban.js';
 import { renderInbox } from './inbox.js';
 import { renderDispatcher } from './dispatcher.js';
+import { renderProductCatalog } from './product-catalog.js';
+import { setupOnboardingWizard } from './onboarding-wizard.js';
 import { setupCallNotesModal } from './call-analyzer.js';
 
 // Application State
 const state = {
+  product: { features: [] },
   icps: [],
   leads: [],
   inboxes: [],
@@ -14,7 +17,8 @@ const state = {
   activeTab: 'icp-lab',
   selectedLeadId: null,
   activeIcpFilter: null,
-  callNotesModal: null
+  callNotesModal: null,
+  onboardingWizard: null
 };
 
 // Initialization
@@ -33,25 +37,45 @@ async function init() {
     });
   }
 
+  // Setup Twenty CRM Onboarding Wizard Modal
+  const onboardingDialog = document.getElementById('product-onboarding-modal');
+  if (onboardingDialog) {
+    state.onboardingWizard = setupOnboardingWizard(onboardingDialog, state.product, state.icps, async () => {
+      await refreshData();
+      showToast('Product and features registered. Discovery engine ready.');
+    });
+  }
+
   await refreshData();
+
+  // Re-bind wizard if product was refreshed
+  if (onboardingDialog) {
+    state.onboardingWizard = setupOnboardingWizard(onboardingDialog, state.product, state.icps, async () => {
+      await refreshData();
+      showToast('Product and features registered. Discovery engine ready.');
+    });
+  }
 }
 
 // Data Refresh
 async function refreshData() {
   try {
-    const [icps, leads, inboxes, templates] = await Promise.all([
+    const [product, icps, leads, inboxes, templates] = await Promise.all([
+      api.getProduct(),
       api.getICPs(),
       api.getLeads(),
       api.getInboxes(),
       api.getTemplates()
     ]);
 
+    state.product = product || { features: [] };
     state.icps = icps;
     state.leads = leads;
     state.inboxes = inboxes;
     state.templates = templates;
 
     updateHeaderStats();
+    populateProductFeatureDropdown();
     renderCurrentTab();
   } catch (err) {
     console.error('Failed to load Quick ICP data:', err);
@@ -74,14 +98,21 @@ function updateHeaderStats() {
     }
   });
 
-  document.getElementById('stat-active-icps').textContent = state.icps.length;
-  document.getElementById('stat-contacted').textContent = totalContacted;
-  document.getElementById('stat-in-conversation').textContent = inConversation;
-  document.getElementById('stat-calls-booked').textContent = callsBooked;
+  const activeIcpsEl = document.getElementById('stat-active-icps');
+  if (activeIcpsEl) activeIcpsEl.textContent = state.icps.length;
+
+  const contactedEl = document.getElementById('stat-contacted');
+  if (contactedEl) contactedEl.textContent = totalContacted;
+
+  const inConversationEl = document.getElementById('stat-in-conversation');
+  if (inConversationEl) inConversationEl.textContent = inConversation;
+
+  const callsBookedEl = document.getElementById('stat-calls-booked');
+  if (callsBookedEl) callsBookedEl.textContent = callsBooked;
   
   const topIcpEl = document.getElementById('header-top-icp');
   if (topIcpEl) {
-    topIcpEl.textContent = topIcp ? `${topIcp.name} (${maxScore}%)` : 'Evaluating...';
+    topIcpEl.textContent = topIcp ? `${topIcp.name} [${maxScore}% CONFIRMED]` : 'Evaluating...';
   }
 
   // Update tab badges
@@ -116,14 +147,25 @@ function setupTabs() {
 }
 
 function renderCurrentTab() {
-  if (state.activeTab === 'icp-lab') {
+  if (state.activeTab === 'product') {
+    const container = document.getElementById('view-product');
+    if (container) {
+      renderProductCatalog(
+        container,
+        state.product,
+        state.icps,
+        refreshData,
+        () => state.onboardingWizard?.open()
+      );
+    }
+  } else if (state.activeTab === 'icp-lab') {
     const container = document.getElementById('view-icp-lab');
     if (container) {
       renderIcpLab(container, state.icps, (icpId) => {
-        // Switch to Kanban with this ICP selected
         state.activeIcpFilter = icpId;
         switchTab('kanban');
       }, () => {
+        populateProductFeatureDropdown();
         document.getElementById('add-icp-modal')?.showModal();
       });
     }
@@ -180,7 +222,7 @@ function renderCurrentTab() {
             body: replyText
           });
           await refreshData();
-          showToast('Reply dispatched via rotated sender inbox!');
+          showToast('Reply dispatched via rotated sender inbox.');
         },
         async (leadId) => {
           await simulateReplyFlow(leadId);
@@ -216,10 +258,22 @@ function switchTab(tabName) {
 
 // Simulate Reply Helper
 async function simulateReplyFlow(leadId) {
-  const res = await api.simulateReply(leadId);
+  await api.simulateReply(leadId);
   await refreshData();
   state.selectedLeadId = leadId;
   showToast('[AUTOKILL] Inbound reply received. Sequence permanently halted.');
+}
+
+// Populate Feature Selector in Add ICP Modal
+function populateProductFeatureDropdown() {
+  const select = document.getElementById('icp-wedge-feature-select');
+  if (!select) return;
+
+  const features = state.product?.features || [];
+  select.innerHTML = `
+    <option value="">-- Or choose from Product Feature Catalog --</option>
+    ${features.map(f => `<option value="${f.id}">${f.name} [${f.category || 'General'}]</option>`).join('')}
+  `;
 }
 
 // Modal: Add New ICP Hypothesis
@@ -229,6 +283,28 @@ function setupAddIcpModal() {
 
   modal.querySelector('#modal-close-icp')?.addEventListener('click', () => modal.close());
   modal.querySelector('#btn-cancel-icp')?.addEventListener('click', () => modal.close());
+
+  // Link feature dropdown to wedge and auto-calculate discarded features
+  const featureSelect = modal.querySelector('#icp-wedge-feature-select');
+  const wedgeInput = modal.querySelector('#icp-wedge-input');
+  const discardedInput = modal.querySelector('#icp-discarded-input');
+
+  featureSelect?.addEventListener('change', (e) => {
+    const featId = e.target.value;
+    if (!featId) return;
+
+    const chosen = state.product.features.find(f => f.id === featId);
+    if (chosen) {
+      wedgeInput.value = chosen.name;
+
+      // Other features become discarded bloat
+      const otherFeatures = state.product.features
+        .filter(f => f.id !== featId)
+        .map(f => f.name);
+      
+      discardedInput.value = otherFeatures.join(', ');
+    }
+  });
 
   modal.querySelector('#btn-submit-icp')?.addEventListener('click', async () => {
     const name = modal.querySelector('#icp-name-input')?.value?.trim();
@@ -241,11 +317,11 @@ function setupAddIcpModal() {
     const discardedFeatures = modal.querySelector('#icp-discarded-input')?.value?.trim();
 
     if (!name || !targetRole || !coreProblem || !productWedge) {
-      alert('Please fill out Name, Role, Hair-on-Fire Pain, and The 1-Feature Wedge.');
+      alert('Please fill out Name, Target Role, Operational Pain, and The 1-Feature Wedge.');
       return;
     }
 
-    await api.createICP({
+    const createdIcp = await api.createICP({
       name,
       tier,
       targetRole,
@@ -258,9 +334,19 @@ function setupAddIcpModal() {
       validationThreshold: '5 discovery calls with high urgency'
     });
 
+    // If selected from catalog, update feature wedge mapping
+    const featId = featureSelect?.value;
+    if (featId && createdIcp && createdIcp.id) {
+      const feat = state.product.features.find(f => f.id === featId);
+      if (feat) {
+        const updatedWedges = Array.from(new Set([...(feat.isWedgeFor || []), createdIcp.id]));
+        await api.updateProductFeature(featId, { isWedgeFor: updatedWedges });
+      }
+    }
+
     modal.close();
     await refreshData();
-    showToast(`New ICP Hypothesis "${name}" added to lab!`);
+    showToast(`New ICP Hypothesis "${name}" enrolled in lab.`);
   });
 }
 
@@ -291,11 +377,7 @@ function setupAddLeadModal() {
       company,
       email,
       icpId,
-      stage: 'contacted',
-      firstMessage: firstTouch ? {
-        subject: `Quick question on ${company}`,
-        body: firstTouch
-      } : null
+      firstTouch
     });
 
     modal.close();
@@ -307,7 +389,7 @@ function setupAddLeadModal() {
 function populateIcpDropdown() {
   const select = document.getElementById('lead-icp-select');
   if (select) {
-    select.innerHTML = state.icps.map(i => `<option value="${i.id}">${i.name} (${i.tier})</option>`).join('');
+    select.innerHTML = state.icps.map(i => `<option value="${i.id}">${i.name} [${i.tier}]</option>`).join('');
   }
 }
 

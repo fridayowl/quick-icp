@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="css/kanban.css">
   <link rel="stylesheet" href="css/inbox.css">
   <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/product-catalog.css">
 </head>
 <body>
 
@@ -36,6 +37,10 @@
 
     <!-- Navigation Tabs (Monospace Swiss Indexing) -->
     <nav class="nav-tabs" aria-label="Main Navigation">
+      <button class="nav-tab-btn" data-tab="product" id="tab-btn-product">
+        <span class="tab-index">[00]</span>
+        <span class="tab-label">Product & Features</span>
+      </button>
       <button class="nav-tab-btn active" data-tab="icp-lab" id="tab-btn-icp-lab">
         <span class="tab-index">[01]</span>
         <span class="tab-label">Hypothesis Lab</span>
@@ -112,6 +117,9 @@
       </div>
     </section>
 
+    <!-- TAB 0: Twenty CRM Style Product & Feature Decomposition -->
+    <section id="view-product" class="tab-view"></section>
+
     <!-- TAB 1: Multi-ICP Lab & Comparison Matrix -->
     <section id="view-icp-lab" class="tab-view active"></section>
 
@@ -127,6 +135,9 @@
   </main>
 
   <!-- ==================== NATIVE HTML5 DIALOG MODALS ==================== -->
+
+  <!-- Modal: Twenty CRM Product Onboarding Wizard -->
+  <dialog id="product-onboarding-modal"></dialog>
 
   <!-- Modal: Call Notes & AI Insight Extractor -->
   <dialog id="call-notes-modal"></dialog>
@@ -179,11 +190,14 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="icp-wedge-input">
+        <label class="form-label" for="icp-wedge-feature-select">
           <span>The 1-Feature Wedge (Single Slice)</span>
-          <span class="label-aside">[The 10% slice to pitch]</span>
+          <span class="label-aside">[Pick from Feature Inventory]</span>
         </label>
-        <input type="text" class="form-input" id="icp-wedge-input" placeholder="e.g. 1-Click SOC2 Evidence Export Bot">
+        <select class="form-select" id="icp-wedge-feature-select">
+          <option value="">-- Choose from Product Feature Catalog --</option>
+        </select>
+        <input type="text" class="form-input" id="icp-wedge-input" placeholder="Or type a custom 1-feature wedge..." style="margin-top: 0.4rem;">
       </div>
 
       <div class="form-group">

@@ -1,0 +1,452 @@
+/* ==========================================================
+   TWENTY CRM INSPIRED PRODUCT CATALOG & FEATURE DECOMPOSITION
+   ========================================================== */
+
+/* Product Overview Banner */
+.product-overview-banner {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-hard);
+}
+
+.product-identity-block {
+  padding: 1.75rem 2rem;
+  border-right: 1px solid var(--border-default);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.identity-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--terracotta);
+  margin-bottom: 0.35rem;
+}
+
+.product-identity-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 0.25rem;
+}
+
+.product-identity-tagline {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.product-identity-desc {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+/* De-engineering Meter */
+.product-de-engineering-meter {
+  padding: 1.75rem 2rem;
+  background: var(--bg-subtle);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.meter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.meter-title {
+  color: var(--text-tertiary);
+  letter-spacing: 0.06em;
+}
+
+.meter-pct {
+  color: var(--terracotta);
+  font-weight: 700;
+}
+
+.meter-bar {
+  height: 6px;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-hairline);
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  background: var(--terracotta);
+  transition: width 0.4s var(--ease-mechanical);
+}
+
+.meter-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+/* Twenty CRM Style Data Table */
+.twenty-table-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-hard);
+  overflow: hidden;
+}
+
+.table-toolbar {
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border-default);
+  background: var(--bg-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.table-search-box {
+  flex: 1;
+  max-width: 400px;
+}
+
+.table-status-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-chip {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.55rem;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.filter-chip.active {
+  background: var(--terracotta-deep);
+  border-color: var(--terracotta-border);
+  color: var(--terracotta-tint);
+  font-weight: 700;
+}
+
+.twenty-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.82rem;
+}
+
+.twenty-data-table th {
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  border-bottom: 1px solid var(--border-default);
+  background: var(--bg-canvas);
+  font-weight: 700;
+}
+
+.twenty-table-row {
+  border-bottom: 1px solid var(--border-hairline);
+  transition: background var(--transition-fast);
+}
+
+.twenty-table-row:hover {
+  background: var(--bg-hover);
+}
+
+.twenty-table-row.row-wedge {
+  background: rgba(234, 88, 12, 0.03);
+}
+
+.twenty-data-table td {
+  padding: 1rem 1.25rem;
+  vertical-align: middle;
+}
+
+.col-code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.feat-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+  font-size: 0.88rem;
+}
+
+.feat-desc {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+  max-width: 48ch;
+}
+
+.category-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-hairline);
+  padding: 0.15rem 0.45rem;
+  color: var(--text-secondary);
+}
+
+.complexity-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+}
+
+.complexity-badge.low {
+  background: var(--status-positive-bg);
+  color: var(--status-positive);
+  border: 1px solid var(--status-positive-border);
+}
+
+.complexity-badge.medium {
+  background: var(--bg-canvas);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
+}
+
+.complexity-badge.high {
+  background: var(--terracotta-deep);
+  color: var(--terracotta-tint);
+  border: 1px solid var(--terracotta-border);
+}
+
+.wedge-role-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.wedge-role-badge .badge-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--terracotta);
+}
+
+.wedge-role-badge .badge-cohorts {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.bloat-role-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.bloat-role-badge .badge-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-tertiary);
+}
+
+.bloat-role-badge .badge-note {
+  font-size: 0.72rem;
+  color: var(--status-danger);
+}
+
+.table-btn-delete {
+  background: transparent;
+  border: 1px solid var(--border-hairline);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 0.2rem 0.45rem;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: var(--font-mono);
+}
+
+.table-btn-delete:hover {
+  color: var(--status-danger);
+  border-color: var(--status-danger);
+}
+
+/* ==========================================================
+   TWENTY CRM ONBOARDING WIZARD STYLES
+   ========================================================== */
+.wizard-steps-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.75rem;
+  background: var(--bg-canvas);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.wizard-step-node {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.wizard-step-node.active {
+  color: var(--terracotta);
+  font-weight: 700;
+}
+
+.wizard-step-node.completed {
+  color: var(--status-positive);
+}
+
+.wizard-step-divider {
+  flex: 1;
+  height: 1px;
+  background: var(--border-default);
+  margin: 0 1rem;
+}
+
+.wizard-notice-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--terracotta);
+  padding: 0.85rem 1.15rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.chip-suggestion {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.chip-suggestion:hover {
+  border-color: var(--terracotta);
+  color: var(--text-primary);
+}
+
+.wiz-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--border-default);
+  background: var(--bg-input);
+  padding: 0.65rem;
+}
+
+.wiz-feature-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  padding: 0.65rem 0.85rem;
+}
+
+.wiz-feat-index {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+}
+
+.wiz-feat-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.wiz-feat-sub {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+}
+
+.wiz-remove-feat {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.2rem;
+}
+
+.wiz-remove-feat:hover {
+  color: var(--status-danger);
+}
+
+/* Wedge Picker List (Step 3) */
+.wiz-wedge-picker-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.wiz-wedge-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.wiz-wedge-label:hover {
+  border-color: var(--border-strong);
+}
+
+.wiz-wedge-label.selected {
+  border-color: var(--terracotta);
+  background: var(--terracotta-deep);
+}
+
+.wedge-tag-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--terracotta);
+}
+
+.wiz-wedge-check {
+  margin-top: 0.2rem;
+  accent-color: var(--terracotta);
+}

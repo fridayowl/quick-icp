@@ -1,4 +1,101 @@
 {
+  "product": {
+    "name": "SyncFlow",
+    "tagline": "The multi-source automation and data pipeline engine",
+    "description": "Full-stack developer platform designed to connect SQL databases, third-party APIs, and client-facing exports.",
+    "category": "Developer Tools & Workflow Automation",
+    "stage": "Alpha Discovery",
+    "onboardingCompleted": true,
+    "features": [
+      {
+        "id": "feat_report_gen",
+        "name": "1-Click White-Label Client Report Generator",
+        "category": "Export & Reporting",
+        "complexity": "Medium",
+        "status": "Shipped (Core Wedge)",
+        "description": "Automated weekly slide decks and PDF summary exports pulling live metrics from ad platforms without manual copy-paste.",
+        "isWedgeFor": [
+          "icp_agency"
+        ]
+      },
+      {
+        "id": "feat_postgres_sync",
+        "name": "Postgres-to-CRM Realtime Webhook Bridge",
+        "category": "Data Integration",
+        "complexity": "High",
+        "status": "Shipped (Core Wedge)",
+        "description": "Instant two-way schema mirror pushing user production DB changes into sales CRM objects.",
+        "isWedgeFor": [
+          "icp_saas_cto"
+        ]
+      },
+      {
+        "id": "feat_fraud_rules",
+        "name": "Zero-Chargeback Fraud Scoring Engine",
+        "category": "Risk & Finance",
+        "complexity": "Medium",
+        "status": "Shipped (Core Wedge)",
+        "description": "Lightweight heuristic checkout rule evaluator blocking stolen proxy card attempts in under 50ms.",
+        "isWedgeFor": [
+          "icp_ecom_ops"
+        ]
+      },
+      {
+        "id": "feat_workflow_canvas",
+        "name": "Visual Drag-and-Drop Node Workflow Canvas",
+        "category": "Workflow Automation",
+        "complexity": "High",
+        "status": "Shipped (Monster Feature)",
+        "description": "Complex visual canvas for chaining custom triggers, filters, and branching logic.",
+        "isWedgeFor": []
+      },
+      {
+        "id": "feat_sso_rbac",
+        "name": "Enterprise SAML/SSO & Granular RBAC Permissions",
+        "category": "Security & Identity",
+        "complexity": "High",
+        "status": "Shipped (Monster Feature)",
+        "description": "Okta, Azure AD, and Google Workspace SSO integration with per-table read/write permission tiers.",
+        "isWedgeFor": []
+      },
+      {
+        "id": "feat_js_sandbox",
+        "name": "Custom JavaScript / Python Transformation Sandbox",
+        "category": "Compute & Extensibility",
+        "complexity": "High",
+        "status": "Shipped (Monster Feature)",
+        "description": "Serverless isolated V8 micro-isolate runner for executing arbitrary client transforms on payload ingestion.",
+        "isWedgeFor": []
+      },
+      {
+        "id": "feat_warehouse_sync",
+        "name": "Bi-directional Snowflake & BigQuery Reverse ETL",
+        "category": "Data Integration",
+        "complexity": "High",
+        "status": "In Progress (Monster Feature)",
+        "description": "Scheduled incremental sync from cloud data warehouses back into operational tools.",
+        "isWedgeFor": []
+      },
+      {
+        "id": "feat_metered_billing",
+        "name": "Automated Stripe Metered Billing & Usage Invoicing",
+        "category": "Billing & Commerce",
+        "complexity": "Medium",
+        "status": "Planned",
+        "description": "Tiered usage tracking with Stripe customer portal checkout and invoice webhook reconciliations.",
+        "isWedgeFor": []
+      },
+      {
+        "id": "feat_client_portal",
+        "name": "Realtime WebSocket Client Login Portal",
+        "category": "Client Facing",
+        "complexity": "Medium",
+        "status": "Shipped (Monster Feature)",
+        "description": "Customizable branded end-customer dashboard with live charts, filtering, and role switching.",
+        "isWedgeFor": []
+      }
+    ]
+  },
   "icps": [
     {
       "id": "icp_agency",

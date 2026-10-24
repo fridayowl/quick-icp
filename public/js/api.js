@@ -1,5 +1,55 @@
 // API Client for Quick ICP
 export const api = {
+  // Product & Feature Decomposition
+  async getProduct() {
+    const res = await fetch('/api/product');
+    return res.json();
+  },
+
+  async updateProduct(data) {
+    const res = await fetch('/api/product', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async addProductFeature(data) {
+    const res = await fetch('/api/product/features', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async updateProductFeature(id, data) {
+    const res = await fetch(`/api/product/features/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async deleteProductFeature(id) {
+    const res = await fetch(`/api/product/features/${id}`, {
+      method: 'DELETE'
+    });
+    return res.json();
+  },
+
+  async completeOnboarding(data) {
+    const res = await fetch('/api/product/onboarding', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  // ICP Hypotheses
   async getICPs() {
     const res = await fetch('/api/icps');
     return res.json();
@@ -14,6 +64,7 @@ export const api = {
     return res.json();
   },
 
+  // Leads
   async getLeads(icpId = null) {
     const url = icpId ? `/api/leads?icpId=${icpId}` : '/api/leads';
     const res = await fetch(url);
@@ -76,6 +127,11 @@ export const api = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ leadId, replyText, sentiment })
     });
+    return res.json();
+  },
+
+  async getTemplates() {
+    const res = await fetch('/api/templates');
     return res.json();
   }
 };

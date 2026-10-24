@@ -72,9 +72,10 @@ sequenceDiagram
 
 | Module | What It Does | Why It Matters |
 |---|---|---|
+| **📦 Product & Feature Catalog (Twenty CRM Style)** | Document your company's product identity, list all 10–15 features in a monolith inventory, and calculate your De-Engineering Ratio. | Crucial for a company to know its full feature catalog before unbundling it into wedges. |
 | **🧪 Multi-ICP Comparison Lab** | Compare 3–5 candidate audiences side-by-side with live validation scores (0–100%). | Prevents betting your startup on a single unvalidated audience hypothesis. |
-| **🔪 The 1-Feature Wedge Studio** | Forces you to define the single 10% slice of your product to pitch, plus a **"Discarded Features"** list. | Stops founders from overwhelming prospects with 12 features on call #1. |
-| **📋 Discovery CRM Pipeline** | Twenty CRM-inspired Kanban board (`Outreach Active` ➔ `In Conversation` ➔ `Call Scheduled` ➔ `Call Logged` ➔ `⭐ Validated`). | Built specifically for *learning loops* rather than quota management. |
+| **🔪 The 1-Feature Wedge Studio** | Select a single 10% slice from your product catalog, with automatic calculation of **Discarded Features**. | Stops founders from overwhelming prospects with 12 features on call #1. |
+| **📋 Discovery CRM Pipeline** | Twenty CRM-inspired Kanban board (`Outreach Active` ➔ `In Conversation` ➔ `Call Scheduled` ➔ `Call Logged` ➔ `Target Validated`). | Built specifically for *learning loops* rather than quota management. |
 | **📬 Unified Discovery Inbox** | Multi-domain split view with automatic sequence kill and 1-click **"Propose 15-Min Coffee Chat"** templates. | Eliminates embarrassing robotic follow-ups after a prospect has already replied. |
 | **🧠 AI Call & Transcript Analyzer** | Heuristic natural language parser converting messy Zoom notes into Pain Score (1–5) and Willingness to Pay ($/mo). | Replaces founder gut-feeling with objective, quantifiable validation metrics. |
 | **🛡️ Safe Dispatcher & Warmup Pool** | Strict daily sending throttles (25–35 emails/domain) across rotated secondary domains with deliverability meters. | Protects your primary domain from spam filters and blacklists. |

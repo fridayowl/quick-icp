@@ -68,6 +68,98 @@ function recalculateIcpMetrics(icp, leads) {
 
 // ==================== ROUTES ====================
 
+// 0. Product & Feature Inventory Endpoints
+app.get('/api/product', async (req, res) => {
+  try {
+    const store = await readStore();
+    res.json(store.product || {});
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put('/api/product', async (req, res) => {
+  try {
+    const store = await readStore();
+    store.product = { ...(store.product || {}), ...req.body };
+    await writeStore(store);
+    res.json(store.product);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/product/features', async (req, res) => {
+  try {
+    const store = await readStore();
+    if (!store.product) store.product = { features: [] };
+    if (!store.product.features) store.product.features = [];
+
+    const newFeature = {
+      id: 'feat_' + Date.now().toString(36),
+      name: req.body.name || 'Untitled Feature',
+      category: req.body.category || 'General',
+      complexity: req.body.complexity || 'Medium',
+      status: req.body.status || 'Shipped',
+      description: req.body.description || '',
+      isWedgeFor: req.body.isWedgeFor || []
+    };
+
+    store.product.features.push(newFeature);
+    await writeStore(store);
+    res.status(201).json(newFeature);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put('/api/product/features/:id', async (req, res) => {
+  try {
+    const store = await readStore();
+    if (!store.product || !store.product.features) return res.status(404).json({ error: 'Features not found' });
+    const index = store.product.features.findIndex(f => f.id === req.params.id);
+    if (index === -1) return res.status(404).json({ error: 'Feature not found' });
+
+    store.product.features[index] = { ...store.product.features[index], ...req.body };
+    await writeStore(store);
+    res.json(store.product.features[index]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete('/api/product/features/:id', async (req, res) => {
+  try {
+    const store = await readStore();
+    if (!store.product || !store.product.features) return res.status(404).json({ error: 'Features not found' });
+    store.product.features = store.product.features.filter(f => f.id !== req.params.id);
+    await writeStore(store);
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/product/onboarding', async (req, res) => {
+  try {
+    const store = await readStore();
+    const { name, tagline, description, category, features } = req.body;
+    store.product = {
+      name: name || store.product?.name || 'SyncFlow',
+      tagline: tagline || store.product?.tagline || '',
+      description: description || store.product?.description || '',
+      category: category || store.product?.category || 'SaaS',
+      stage: 'Alpha Discovery',
+      onboardingCompleted: true,
+      features: Array.isArray(features) && features.length > 0 ? features : (store.product?.features || [])
+    };
+    await writeStore(store);
+    res.json({ success: true, product: store.product });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // 1. Get all ICPs with live metrics
 app.get('/api/icps', async (req, res) => {
   try {
