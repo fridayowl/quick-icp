@@ -20,8 +20,9 @@
   <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/product-catalog.css">
   <link rel="stylesheet" href="css/founder-guide.css">
+  <link rel="stylesheet" href="css/simple-workbook.css">
 </head>
-<body>
+<body class="simple-mode-active">
 
   <!-- Top Technical Navigation Bar -->
   <header class="app-header">
@@ -65,6 +66,12 @@
       </button>
     </nav>
 
+    <!-- Mode Switcher: Simple (Beginner) vs Pro (Advanced) -->
+    <div class="mode-switch-container" id="app-mode-switch">
+      <button class="mode-switch-btn active" id="btn-mode-simple" data-mode="simple">✦ Simple Mode</button>
+      <button class="mode-switch-btn" id="btn-mode-pro" data-mode="pro">⚙ Pro Dashboard</button>
+    </div>
+
     <!-- Real-time Top Wedge Signal -->
     <div class="header-actions">
       <div class="top-wedge-telemetry" title="Leading candidate ICP by multi-factor validation score">
@@ -76,6 +83,9 @@
 
   <!-- Main Workspace -->
   <main class="app-container">
+    
+    <!-- Simple 3-Question Workbook View (Active by default) -->
+    <section id="view-simple-workbook" class="simple-workbook-view"></section>
     
     <!-- Asymmetric Editorial Brief & Live Telemetry -->
     <section class="editorial-brief-grid">

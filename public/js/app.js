@@ -1,4 +1,5 @@
 import { api } from './api.js';
+import { renderSimpleWorkbook } from './simple-workbook.js';
 import { renderFounderGuide } from './founder-guide.js';
 import { renderIcpLab } from './icp-lab.js';
 import { renderKanban } from './kanban.js';
@@ -16,6 +17,7 @@ const state = {
   leads: [],
   inboxes: [],
   templates: [],
+  appMode: 'simple', // 'simple' or 'pro'
   activeTab: 'guide',
   selectedLeadId: null,
   activeIcpFilter: null,
@@ -26,6 +28,7 @@ const state = {
 
 // Initialization
 async function init() {
+  setupModeSwitcher();
   setupTabs();
   setupAddIcpModal();
   setupAddLeadModal();
@@ -61,6 +64,45 @@ async function init() {
   }
 
   await refreshData();
+}
+
+function setupModeSwitcher() {
+  const btnSimple = document.getElementById('btn-mode-simple');
+  const btnPro = document.getElementById('btn-mode-pro');
+
+  function setMode(mode) {
+    state.appMode = mode;
+    document.body.classList.toggle('simple-mode-active', mode === 'simple');
+    btnSimple?.classList.toggle('active', mode === 'simple');
+    btnPro?.classList.toggle('active', mode === 'pro');
+    if (mode === 'simple') {
+      renderSimpleMode();
+    } else {
+      renderCurrentTab();
+    }
+  }
+
+  btnSimple?.addEventListener('click', () => setMode('simple'));
+  btnPro?.addEventListener('click', () => setMode('pro'));
+
+  document.body.classList.toggle('simple-mode-active', state.appMode === 'simple');
+}
+
+function renderSimpleMode() {
+  const container = document.getElementById('view-simple-workbook');
+  if (container) {
+    renderSimpleWorkbook(
+      container,
+      state,
+      () => {
+        const btnPro = document.getElementById('btn-mode-pro');
+        btnPro?.click();
+      },
+      async () => {
+        await refreshData();
+      }
+    );
+  }
 }
 
 function setupActionButtons() {
@@ -112,7 +154,11 @@ async function refreshData() {
 
     updateHeaderStats();
     populateProductFeatureDropdown();
-    renderCurrentTab();
+    if (state.appMode === 'simple') {
+      renderSimpleMode();
+    } else {
+      renderCurrentTab();
+    }
   } catch (err) {
     console.error('Failed to load Quick ICP data:', err);
   }
