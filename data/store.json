@@ -1,0 +1,350 @@
+{
+  "icps": [
+    {
+      "id": "icp_agency",
+      "name": "Boutique Performance & SEO Agencies",
+      "tier": "Tier 1",
+      "tierColor": "#10b981",
+      "targetRole": "Agency Owner / Head of Client Ops",
+      "companySize": "5 - 35 employees",
+      "industry": "Marketing & Creative Services",
+      "coreProblem": "Spends 3-5 hours every Friday manually pulling metrics from Meta/Google Ads into Google Slides/Sheets for client reports.",
+      "currentWorkaround": "Manual copy-paste, broken Supermetrics sheets, frustrated junior account managers.",
+      "productWedge": "1-Click Automated White-label Client Report Generator (Single Feature Slice)",
+      "discardedFeatures": "Complex API webhooks, multi-database sync, custom JavaScript transform nodes",
+      "validationThreshold": "5 calls with pain severity >= 4 and WTP >= $100/mo",
+      "status": "Active Testing",
+      "metrics": {
+        "leadsContacted": 3,
+        "repliesCount": 2,
+        "replyRate": 66.7,
+        "callsBooked": 2,
+        "callsCompleted": 1,
+        "avgPainScore": 5,
+        "validatedCount": 1,
+        "validationScore": 78
+      }
+    },
+    {
+      "id": "icp_saas_cto",
+      "name": "Seed / Series-A B2B SaaS Founders",
+      "tier": "Tier 2",
+      "tierColor": "#3b82f6",
+      "targetRole": "CTO / Technical Co-founder",
+      "companySize": "10 - 40 employees",
+      "industry": "B2B Software",
+      "coreProblem": "Sales reps complain customer usage data is locked in PostgreSQL database, not visible in their CRM.",
+      "currentWorkaround": "Engineers writing ad-hoc cron scripts or building hacky Zapier loops that break silently.",
+      "productWedge": "Postgres-to-CRM Webhook Sync Bridge (Instant schema mirror)",
+      "discardedFeatures": "PDF report generators, drag-and-drop form builders, visual charting widgets",
+      "validationThreshold": "5 calls with pain severity >= 4 and WTP >= $200/mo",
+      "status": "Active Testing",
+      "metrics": {
+        "leadsContacted": 2,
+        "repliesCount": 2,
+        "replyRate": 100,
+        "callsBooked": 1,
+        "callsCompleted": 1,
+        "avgPainScore": 2,
+        "validatedCount": 0,
+        "validationScore": 48
+      }
+    },
+    {
+      "id": "icp_ecom_ops",
+      "name": "Mid-Market E-commerce Operators",
+      "tier": "Tier 3",
+      "tierColor": "#8b5cf6",
+      "targetRole": "Head of Operations & Logistics",
+      "companySize": "$3M - $15M GMV",
+      "industry": "D2C & Retail",
+      "coreProblem": "Inventory stockouts on Amazon while stock sits idle in 3PL warehouse due to disjointed sync.",
+      "currentWorkaround": "ERP software that costs $30k/year or daily manual CSV uploads.",
+      "productWedge": "3PL-to-Amazon Live Inventory Alert Trigger",
+      "discardedFeatures": "Full CRM suite, lead scoring, email dispatchers",
+      "validationThreshold": "5 calls with pain severity >= 4 and WTP >= $150/mo",
+      "status": "Needs Revision",
+      "metrics": {
+        "leadsContacted": 1,
+        "repliesCount": 1,
+        "replyRate": 100,
+        "callsBooked": 0,
+        "callsCompleted": 1,
+        "avgPainScore": 1,
+        "validatedCount": 0,
+        "validationScore": 35
+      }
+    }
+  ],
+  "inboxes": [
+    {
+      "id": "inbox_1",
+      "email": "alex@outreach-syncflow.io",
+      "provider": "Google Workspace (Secondary Domain)",
+      "dailyLimit": 35,
+      "sentToday": 18,
+      "healthScore": 98,
+      "status": "Optimal",
+      "warmupMode": "Gradual Ramp",
+      "rotationWeight": 1
+    },
+    {
+      "id": "inbox_2",
+      "email": "alex.v@syncflowapp.co",
+      "provider": "Microsoft 365 (Secondary Domain)",
+      "dailyLimit": 30,
+      "sentToday": 15,
+      "healthScore": 95,
+      "status": "Optimal",
+      "warmupMode": "Active",
+      "rotationWeight": 1
+    },
+    {
+      "id": "inbox_3",
+      "email": "hello@syncflow-labs.com",
+      "provider": "Custom SMTP/IMAP",
+      "dailyLimit": 25,
+      "sentToday": 8,
+      "healthScore": 92,
+      "status": "Warming Up",
+      "warmupMode": "Warmup (Day 12)",
+      "rotationWeight": 0.8
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_101",
+      "name": "Sarah Jenkins",
+      "title": "Managing Director",
+      "company": "Apex Growth Studio",
+      "email": "sarah@apexgrowth.agency",
+      "icpId": "icp_agency",
+      "stage": "validated",
+      "inboxId": "inbox_1",
+      "lastContacted": "2026-10-23T14:20:00Z",
+      "sentiment": "Enthusiastic / Design Partner",
+      "threads": [
+        {
+          "sender": "outbound",
+          "from": "alex@outreach-syncflow.io",
+          "subject": "Quick question on Apex Friday reporting",
+          "body": "Hey Sarah, noticed you lead client accounts at Apex Growth. Most agency founders tell me they spend 3-4 hours every Friday manually pulling client reports from 3 dashboards.\n\nAre you guys handling that manually, or did you build an internal script for it? Not selling anything—built a quick prototype that automates the export in 1 click and curious if that headache even registers on your radar.",
+          "timestamp": "2026-10-20T10:14:00Z"
+        },
+        {
+          "sender": "inbound",
+          "from": "sarah@apexgrowth.agency",
+          "subject": "Re: Quick question on Apex Friday reporting",
+          "body": "Hi Alex! Honestly, you struck a nerve. Every single Friday my team complains about pulling Meta ad stats into Google slides. We tried a tool last year but it broke whenever Meta updated its API. How does your prototype work?",
+          "timestamp": "2026-10-20T14:45:00Z"
+        },
+        {
+          "sender": "outbound",
+          "from": "alex@outreach-syncflow.io",
+          "subject": "Re: Quick question on Apex Friday reporting",
+          "body": "That API break problem is exactly why we stripped away all the bloat and just focused on robust export. Would you have 15 mins Tuesday to show me what your ideal 1-page report looks like? Happy to share our prototype for free.",
+          "timestamp": "2026-10-21T09:00:00Z"
+        },
+        {
+          "sender": "inbound",
+          "from": "sarah@apexgrowth.agency",
+          "subject": "Re: Quick question on Apex Friday reporting",
+          "body": "Sounds great. Tuesday 2pm works. Send over a calendar invite!",
+          "timestamp": "2026-10-21T11:30:00Z"
+        }
+      ],
+      "callNotes": {
+        "callDate": "2026-10-23",
+        "durationMinutes": 18,
+        "painSeverity": 5,
+        "wedgeResonance": "Obsessed with the 1-Click PDF export. Showed me their messy 12-tab Google Sheet.",
+        "discardedFeatures": "Didn't care at all about live dashboards or client login portals. Just wants an unbranded clean PDF export sent automatically every Friday 9am.",
+        "willingnessToPay": "$150 - $250 / month",
+        "verbatimQuotes": "\"If this saves my account managers 12 collective hours every week, $200 a month is a total no-brainer. Take my card.\"",
+        "outcome": "Validated ICP. Agreed to be Design Partner Alpha #1."
+      }
+    },
+    {
+      "id": "lead_102",
+      "name": "Marcus Vance",
+      "title": "Founder & CEO",
+      "company": "Vance Digital Group",
+      "email": "marcus@vancedigital.co",
+      "icpId": "icp_agency",
+      "stage": "call_scheduled",
+      "inboxId": "inbox_2",
+      "lastContacted": "2026-10-24T09:15:00Z",
+      "sentiment": "High Interest",
+      "threads": [
+        {
+          "sender": "outbound",
+          "from": "alex.v@syncflowapp.co",
+          "subject": "quick question re Vance Digital client reports",
+          "body": "Hey Marcus, loved your recent post on scaling retainer accounts. Curious—as you grow, how do you handle weekly client metrics reporting across your 18 retainers? Still manual or automated?",
+          "timestamp": "2026-10-22T11:00:00Z"
+        },
+        {
+          "sender": "inbound",
+          "from": "marcus@vancedigital.co",
+          "subject": "Re: quick question re Vance Digital client reports",
+          "body": "Hey Alex, good timing. We literally had a client yell at us yesterday over a formula error in an Excel report. Definitely looking for a cleaner way. Got 10 mins Monday?",
+          "timestamp": "2026-10-22T16:12:00Z"
+        }
+      ],
+      "callNotes": null
+    },
+    {
+      "id": "lead_103",
+      "name": "Devin Chen",
+      "title": "VP Engineering",
+      "company": "MetricStack.io",
+      "email": "devin@metricstack.io",
+      "icpId": "icp_saas_cto",
+      "stage": "in_conversation",
+      "inboxId": "inbox_1",
+      "lastContacted": "2026-10-24T12:00:00Z",
+      "sentiment": "Cautious / Evaluating",
+      "threads": [
+        {
+          "sender": "outbound",
+          "from": "alex@outreach-syncflow.io",
+          "subject": "HubSpot to Postgres sync at MetricStack",
+          "body": "Hey Devin, saw MetricStack just closed your Series A, congrats! Usually when product teams hit 20 engineers, sales starts demanding live database usage metrics inside HubSpot.\n\nAre you guys hacking that with Airbyte/cron or did you buy something off the shelf?",
+          "timestamp": "2026-10-23T15:20:00Z"
+        },
+        {
+          "sender": "inbound",
+          "from": "devin@metricstack.io",
+          "subject": "Re: HubSpot to Postgres sync at MetricStack",
+          "body": "We have an internal worker script on AWS Lambda right now. It works okay, but fails when schema migrations happen. What security certifications does your tool have (SOC2)?",
+          "timestamp": "2026-10-24T08:45:00Z"
+        }
+      ],
+      "callNotes": null
+    },
+    {
+      "id": "lead_104",
+      "name": "Elena Rostova",
+      "title": "Co-founder & Head of Product",
+      "company": "Kinetix Cloud",
+      "email": "elena@kinetixcloud.com",
+      "icpId": "icp_saas_cto",
+      "stage": "call_completed",
+      "inboxId": "inbox_3",
+      "lastContacted": "2026-10-22T17:00:00Z",
+      "sentiment": "Moderate Interest / Objection",
+      "threads": [
+        {
+          "sender": "outbound",
+          "from": "hello@syncflow-labs.com",
+          "subject": "Product usage data in CRM for Kinetix",
+          "body": "Hey Elena, quick question on Kinetix—how does your sales team know when an active user hits usage limits? Is it synced directly or do they have to ask engineering?",
+          "timestamp": "2026-10-18T10:00:00Z"
+        },
+        {
+          "sender": "inbound",
+          "from": "elena@kinetixcloud.com",
+          "subject": "Re: Product usage data in CRM for Kinetix",
+          "body": "We're using Census right now for reverse ETL. Let's chat briefly though to see what you're doing differently.",
+          "timestamp": "2026-10-19T14:10:00Z"
+        }
+      ],
+      "callNotes": {
+        "callDate": "2026-10-22",
+        "durationMinutes": 15,
+        "painSeverity": 2,
+        "wedgeResonance": "Liked our lightweight setup, but already locked into Census on an annual contract.",
+        "discardedFeatures": "Didn't need any new alerting or transformations.",
+        "willingnessToPay": "$0 (Current contract ends in 8 months)",
+        "verbatimQuotes": "\"Census is pricey at $400/mo, but our engineers already set it up. Switching cost is too high right now.\"",
+        "outcome": "Disqualified for now (timing mismatch). Check back in Q3."
+      }
+    },
+    {
+      "id": "lead_105",
+      "name": "Tyler Brooks",
+      "title": "Director of Supply Chain",
+      "company": "Solstice Apparel",
+      "email": "t.brooks@solsticeapparel.com",
+      "icpId": "icp_ecom_ops",
+      "stage": "disqualified",
+      "inboxId": "inbox_2",
+      "lastContacted": "2026-10-21T16:00:00Z",
+      "sentiment": "Disqualified / Wrong Persona",
+      "threads": [
+        {
+          "sender": "outbound",
+          "from": "alex.v@syncflowapp.co",
+          "subject": "Shopify-3PL inventory sync question",
+          "body": "Hey Tyler, quick operational question—when Solstice runs flash sales, does your warehouse sync inventory in real time or do you occasionally oversell?",
+          "timestamp": "2026-10-19T11:20:00Z"
+        },
+        {
+          "sender": "inbound",
+          "from": "t.brooks@solsticeapparel.com",
+          "subject": "Re: Shopify-3PL inventory sync question",
+          "body": "We migrated our ERP to Netsuite last month. That handles all our inventory now. We don't need any outside tools.",
+          "timestamp": "2026-10-20T13:40:00Z"
+        }
+      ],
+      "callNotes": {
+        "callDate": "2026-10-21",
+        "durationMinutes": 10,
+        "painSeverity": 1,
+        "wedgeResonance": "Zero resonance. Mid-market e-commerce already spends $50k+ on Netsuite/SAP.",
+        "discardedFeatures": "Everything.",
+        "willingnessToPay": "$0",
+        "verbatimQuotes": "\"Everything goes through Netsuite. We aren't looking at unvetted third-party apps.\"",
+        "outcome": "Wrong ICP. Enterprise ERPs crowd out point solutions in this tier."
+      }
+    },
+    {
+      "id": "lead_106",
+      "name": "Chloe Martin",
+      "title": "Operations Lead",
+      "company": "Horizon Media Partners",
+      "email": "chloe@horizonmedia.co",
+      "icpId": "icp_agency",
+      "stage": "contacted",
+      "inboxId": "inbox_1",
+      "lastContacted": "2026-10-24T14:10:00Z",
+      "sentiment": "Waiting for Reply",
+      "threads": [
+        {
+          "sender": "outbound",
+          "from": "alex@outreach-syncflow.io",
+          "subject": "quick question re Horizon client reporting",
+          "body": "Hey Chloe, noticed Horizon handles growth for 25+ e-com brands. How much time does your team lose every Friday assembling weekly client slide decks?\n\nCurious if that's a real pain or already handled smoothly.",
+          "timestamp": "2026-10-24T14:10:00Z"
+        }
+      ],
+      "callNotes": null
+    }
+  ],
+  "templates": [
+    {
+      "id": "tpl_agency_1",
+      "icpId": "icp_agency",
+      "touch": 1,
+      "subject": "Quick question on {{company}} Friday reporting",
+      "body": "Hey {{firstName}}, noticed you lead client accounts at {{company}}. Most agency founders tell me they spend 3-4 hours every Friday manually pulling client reports from multiple ad platforms.\n\nAre you guys handling that manually, or did you build an internal script for it? Not selling anything—built a quick prototype that automates the export in 1 click and curious if that headache even registers on your radar.",
+      "delayDays": 0
+    },
+    {
+      "id": "tpl_agency_2",
+      "icpId": "icp_agency",
+      "touch": 2,
+      "subject": "Re: Quick question on {{company}} Friday reporting",
+      "body": "Hey {{firstName}}, quick bump on this. Another boutique agency lead told me yesterday that client formatting complaints were hurting their retention more than the time spent building decks.\n\nIs client presentation formatting something you wrestle with too?",
+      "delayDays": 3
+    },
+    {
+      "id": "tpl_saas_1",
+      "icpId": "icp_saas_cto",
+      "touch": 1,
+      "subject": "CRM usage sync at {{company}}",
+      "body": "Hey {{firstName}}, quick engineering question—how does your sales team currently see live Postgres product usage metrics inside your CRM? Did you guys write an internal cron job or buy something off the shelf?",
+      "delayDays": 0
+    }
+  ]
+}

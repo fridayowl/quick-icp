@@ -1,0 +1,41 @@
+{
+  "name": "quick-icp",
+  "version": "1.0.0",
+  "description": "The Hypothesis-to-Conversation Discovery Engine for Early Founders. De-engineer over-engineered products, discover your true ICP, and turn cold outreach into validated customer conversations.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --check server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fridayowl/quick-icp.git"
+  },
+  "keywords": [
+    "icp-discovery",
+    "customer-development",
+    "the-mom-test",
+    "founder-led-sales",
+    "cold-email",
+    "crm",
+    "product-market-fit",
+    "kanban",
+    "early-stage-startups",
+    "open-source"
+  ],
+  "author": "Quick ICP Contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fridayowl/quick-icp/issues"
+  },
+  "homepage": "https://github.com/fridayowl/quick-icp#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick ICP - The Hypothesis-to-Conversation Discovery Engine</title>
+  <meta name="description" content="Quick ICP helps solo founders and early-stage startups discover their winning ICP, unbundle over-engineered products into sharp wedges, and manage discovery conversations.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/icp-lab.css">
+  <link rel="stylesheet" href="css/kanban.css">
+  <link rel="stylesheet" href="css/inbox.css">
+  <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+
+  <!-- Top Navigation & Brand Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-logo">Q</div>
+      <div>
+        <span class="brand-title">Quick ICP</span>
+        <span class="founder-badge">Founder Mode</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Main Navigation">
+      <button class="nav-tab-btn active" data-tab="icp-lab" id="tab-btn-icp-lab">
+        <span>🧪 ICP Lab & Matrix</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="kanban" id="tab-btn-kanban">
+        <span>📊 Discovery Pipeline</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="inbox" id="tab-btn-inbox">
+        <span>💬 Discovery Inbox</span>
+        <span class="tab-badge" id="badge-inbox-count">2</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="dispatcher" id="tab-btn-dispatcher">
+        <span>⚡ Multi-Inbox & Dispatch</span>
+      </button>
+    </nav>
+
+    <!-- Top Winning Signal Indicator -->
+    <div class="header-actions">
+      <div class="header-metric-pill" title="Current Leading ICP by Validation Score">
+        <span style="color: var(--text-dim); font-size: 0.72rem; text-transform: uppercase; font-weight: 700;">Top Wedge:</span>
+        <span class="header-metric-val" id="header-top-icp">Boutique Agencies (82%)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace Container -->
+  <main class="app-container">
+    
+    <!-- Founder Guidance Banner -->
+    <section class="founder-insight-banner">
+      <div class="banner-content">
+        <div class="banner-icon">🎯</div>
+        <div class="banner-text">
+          <h1>Hypothesis-Driven Customer Discovery & ICP Validation</h1>
+          <p>Don't pitch all 15 features of your product. Test a single <strong>1-feature wedge</strong> per ICP until one emerges with high urgency and clear willingness to pay.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-time Stats Strip -->
+    <section class="stats-strip" aria-label="Discovery Performance Metrics">
+      <div class="stat-card">
+        <div class="stat-label">
+          <span>Active Hypotheses</span>
+          <span>🧪</span>
+        </div>
+        <div class="stat-number" id="stat-active-icps">3</div>
+        <div class="stat-subtext">Testing in parallel</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">
+          <span>Target Contacts</span>
+          <span>📬</span>
+        </div>
+        <div class="stat-number" id="stat-contacted">64</div>
+        <div class="stat-subtext">Dispatched via rotated inboxes</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">
+          <span>In Conversation</span>
+          <span>💬</span>
+        </div>
+        <div class="stat-number" style="color: var(--accent-cyan);" id="stat-in-conversation">5</div>
+        <div class="stat-subtext"><span class="trend-up">Sequence auto-paused</span></div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">
+          <span>Discovery Calls</span>
+          <span>🎙️</span>
+        </div>
+        <div class="stat-number" style="color: var(--accent-emerald);" id="stat-calls-booked">4</div>
+        <div class="stat-subtext">15-min pain interviews</div>
+      </div>
+    </section>
+
+    <!-- TAB 1: Multi-ICP Lab & Comparison Matrix -->
+    <section id="view-icp-lab" class="tab-view active"></section>
+
+    <!-- TAB 2: Discovery CRM Kanban Pipeline -->
+    <section id="view-kanban" class="tab-view"></section>
+
+    <!-- TAB 3: Unified Discovery Inbox -->
+    <section id="view-inbox" class="tab-view"></section>
+
+    <!-- TAB 4: Multi-Inbox Dispatcher (UZonMail Engine) -->
+    <section id="view-dispatcher" class="tab-view"></section>
+
+  </main>
+
+  <!-- ==================== MODALS (Native HTML5 Dialogs) ==================== -->
+
+  <!-- Modal: Call Notes & AI Insight Extractor -->
+  <dialog id="call-notes-modal"></dialog>
+
+  <!-- Modal: Add New ICP Hypothesis -->
+  <dialog id="add-icp-modal">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <h3>Create New ICP Hypothesis</h3>
+        <p>Define a candidate customer, their bleeding-neck pain, and the single wedge feature.</p>
+      </div>
+      <button class="modal-close-btn" id="modal-close-icp">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Hypothesis Name</label>
+        <input type="text" class="form-input" id="icp-name-input" placeholder="e.g. Fintech Series A Compliance Leads">
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-group">
+          <label class="form-label">Priority Tier</label>
+          <select class="form-select" id="icp-tier-select">
+            <option value="Tier 1">Tier 1 (High Priority / Urgency)</option>
+            <option value="Tier 2" selected>Tier 2 (Moderate Priority)</option>
+            <option value="Tier 3">Tier 3 (Experimental)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Target Role / Title</label>
+          <input type="text" class="form-input" id="icp-role-input" placeholder="e.g. Head of Compliance / VP Eng">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Industry & Vertical</label>
+        <input type="text" class="form-input" id="icp-industry-input" placeholder="e.g. B2B FinTech / RegTech">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Hair-on-Fire Pain (Problem Hypothesis)</label>
+        <textarea class="form-textarea" id="icp-problem-input" rows="2" placeholder="What is breaking for them today? (e.g. Manual audit reconciliations take 20 hours every month)"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Current Workaround</label>
+        <input type="text" class="form-input" id="icp-workaround-input" placeholder="e.g. Shared Google Sheets + Slack chaos">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          <span>⚡ The 1-Feature Wedge (Single Slice)</span>
+          <span style="color: var(--accent-cyan); font-size: 0.72rem;">What 10% of your product are you pitching?</span>
+        </label>
+        <input type="text" class="form-input" id="icp-wedge-input" placeholder="e.g. 1-Click SOC2 Evidence Export Bot">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          <span>🚫 Features To Discard / Stop Pitching</span>
+          <span style="color: var(--accent-rose); font-size: 0.72rem;">De-engineer the monster!</span>
+        </label>
+        <input type="text" class="form-input" id="icp-discarded-input" placeholder="e.g. Custom database connector, visual drag-and-drop workflow editor">
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" id="btn-cancel-icp">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="btn-submit-icp">Add Hypothesis to Lab</button>
+    </div>
+  </dialog>
+
+  <!-- Modal: Add Lead -->
+  <dialog id="add-lead-modal">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <h3>Add Prospect to Discovery Outreach</h3>
+        <p>Assign a lead directly to an ICP cohort and dispatch a casual discovery touch.</p>
+      </div>
+      <button class="modal-close-btn" id="modal-close-lead">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-group">
+          <label class="form-label">Prospect Name</label>
+          <input type="text" class="form-input" id="lead-name-input" placeholder="e.g. Daniel Miller">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="lead-email-input" placeholder="daniel@company.com">
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-group">
+          <label class="form-label">Job Title</label>
+          <input type="text" class="form-input" id="lead-title-input" placeholder="e.g. Founder & CEO">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Company Name</label>
+          <input type="text" class="form-input" id="lead-company-input" placeholder="e.g. Miller Logistics">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Assign to ICP Hypothesis</label>
+        <select class="form-select" id="lead-icp-select"></select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Casual Discovery Question (Touch 1)</label>
+        <textarea class="form-textarea" id="lead-touch-input" rows="3" placeholder="Hey Daniel, curious how your team currently handles..."></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" id="btn-cancel-lead">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="btn-submit-lead">Enqueue Outreach</button>
+    </div>
+  </dialog>
+
+  <!-- Modal: Connect Sending Inbox -->
+  <dialog id="add-inbox-modal">
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <h3>Connect Secondary Sending Account</h3>
+        <p>Protect your primary brand domain. Add secondary inboxes for round-robin rotation.</p>
+      </div>
+      <button class="modal-close-btn" id="modal-close-inbox">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="inbox-email-input" placeholder="alex@getcompany.io">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Account Provider</label>
+        <select class="form-select" id="inbox-provider-select">
+          <option value="Google Workspace (Secondary Domain)">Google Workspace (Secondary Domain)</option>
+          <option value="Microsoft 365 (Secondary Domain)">Microsoft 365 (Secondary Domain)</option>
+          <option value="Custom SMTP/IMAP">Custom SMTP/IMAP (Roundcube/Zoho)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Safe Daily Dispatch Cap</label>
+        <input type="number" class="form-input" id="inbox-limit-input" value="30" min="10" max="60">
+        <span style="font-size: 0.72rem; color: var(--text-dim); margin-top: 0.2rem;">Recommended for new domains: 25 - 35 emails/day</span>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" id="btn-cancel-inbox">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="btn-submit-inbox">Connect Inbox</button>
+    </div>
+  </dialog>
+
+  <!-- App Bootstrap JS -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
