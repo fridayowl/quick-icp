@@ -1,99 +1,100 @@
 :root {
   /* ==========================================================
-     SKETCH DESIGN SYSTEM // AUTHORITATIVE TOKENS
-     Shared working sheet with warm paper, dark pencil ink,
-     blue notes, red corrections, and yellow highlights.
+     SWISS MINIMALIST DESIGN SYSTEM // AUTHORITATIVE TOKENS
+     Continuous typographic grid in white, black, pale grey,
+     with small red signals. Host Grotesk throughout.
      ========================================================== */
 
-  /* Authoritative Sketch Tokens */
-  --dp-color-ground: #f7f2e7;
-  --dp-color-ink: #38352f;
-  --dp-color-ink-muted: #514d44;
-  --dp-color-line: #b3ac9d;
-  --dp-color-accent: #9e3a2e;
-  --dp-color-annotation: #344c69;
-  --dp-color-highlight: #f0dfa0;
-  --dp-color-scrap: #fcf8ef;
+  /* Authoritative Tokens */
+  --dp-color-ground: #ffffff;
+  --dp-color-ink: #000000;
+  --dp-color-surface: #f0f0f0;
+  --dp-color-accent: #c90000;
+  
+  --dp-typography-face: "SwissMinimalistHost", "Host Grotesk", Arial, sans-serif;
+  --dp-typography-body: 16px;
+  --dp-typography-label: 12px;
+  --dp-typography-metadata: 14px;
+  --dp-typography-lead: 17px;
+  --dp-typography-item-title: 24px;
+  --dp-typography-regular: 400;
+  --dp-typography-strong: 700;
+  --dp-typography-display: 750;
+  --dp-typography-label-tracking: 0.12em;
+  --dp-typography-body-leading: 1.5;
+  
+  --dp-spacing-gutter: clamp(20px, 3.3333cqw, 64px);
+  --dp-radius-control: 0;
+  --dp-border-rule: 2px;
+  --dp-motion-feedback: 0s;
 
-  --dp-typography-reading-face: "Sketch Working Hand", "Patrick Hand", "Kalam", "Caveat", cursive;
-  --dp-typography-display-face: "Sketch Working Marker", "Permanent Marker", "Kalam", cursive;
-  --dp-typography-body: 24px;
-  --dp-typography-reading: 23px;
-  --dp-typography-detail: 21px;
-
-  --dp-spacing-item-gap: 16px;
-  --dp-radius-control: 9px 4px 17px 5px / 4px 12px 5px 9px;
-  --dp-radius-scrap: 7px 14px 5px 12px / 12px 5px 14px 6px;
-  --dp-border-fine-stroke: 1.5px;
-  --dp-motion-control: 100ms;
-
-  /* Mapped Component Compatibility Tokens */
+  /* Semantic Component Mappings */
   --bg-canvas: var(--dp-color-ground);
-  --bg-surface: var(--dp-color-scrap);
-  --bg-surface-elevated: #ffffff;
-  --bg-elevated: #ffffff;
-  --bg-subtle: #f2ebdc;
+  --bg-surface: var(--dp-color-ground);
+  --bg-surface-elevated: var(--dp-color-surface);
+  --bg-elevated: var(--dp-color-surface);
+  --bg-subtle: var(--dp-color-surface);
   --bg-input: #ffffff;
-  --bg-hover: #ede6d6;
+  --bg-hover: var(--dp-color-surface);
 
-  /* Structural Pencil Strokes */
-  --border-hairline: rgba(179, 172, 157, 0.45);
-  --border-default: var(--dp-color-line);
-  --border-strong: var(--dp-color-ink-muted);
-  --border-focus: var(--dp-color-annotation);
+  /* Dividing Rules (Visible, exposed, razor-sharp) */
+  --border-hairline: #e0e0e0;
+  --border-default: #000000;
+  --border-strong: #000000;
+  --border-focus: #000000;
 
-  /* Pencil & Ink Typography */
-  --text-primary: var(--dp-color-ink);
-  --text-secondary: var(--dp-color-ink-muted);
-  --text-tertiary: #767064;
-  --text-muted: #767064;
-  --text-inverse: #fcf8ef;
+  /* Typography Colors */
+  --text-primary: #000000;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #757575;
+  --text-muted: #757575;
+  --text-inverse: #ffffff;
 
-  /* Red Action & Highlight Accents */
+  /* Red Signals & Compact Markers */
   --accent-terracotta: var(--dp-color-accent);
-  --accent-terracotta-hover: #7e2b21;
+  --accent-terracotta-hover: #a10000;
   --terracotta: var(--dp-color-accent);
-  --terracotta-hover: #7e2b21;
-  --terracotta-deep: #fde8e5;
-  --terracotta-tint: #fae1dd;
+  --terracotta-hover: #a10000;
+  --terracotta-deep: #ffebeb;
+  --terracotta-tint: #ffebeb;
   --terracotta-border: var(--dp-color-accent);
 
-  /* Annotation & Status */
+  /* Functional Status */
   --status-active: var(--dp-color-accent);
-  --status-positive: #2d6a4f;
-  --status-positive-bg: #e8f5ee;
-  --status-positive-border: #52b788;
-  --status-neutral: var(--dp-color-annotation);
+  --status-positive: #000000;
+  --status-positive-bg: var(--dp-color-surface);
+  --status-positive-border: #000000;
+  --status-neutral: #555555;
   --status-danger: var(--dp-color-accent);
-  --status-danger-bg: #fae5e3;
+  --status-danger-bg: #ffebeb;
 
-  /* Cohort Tiers (Hand-annotated bracket index) */
+  /* Cohort Tiers */
   --tier-1-color: var(--dp-color-accent);
-  --tier-1-bg: #fae5e3;
-  --tier-2-color: var(--dp-color-annotation);
-  --tier-2-bg: #e9f0f8;
-  --tier-3-color: var(--dp-color-ink-muted);
-  --tier-3-bg: #ede7d8;
+  --tier-1-bg: #ffebeb;
+  --tier-2-color: #000000;
+  --tier-2-bg: var(--dp-color-surface);
+  --tier-3-color: #555555;
+  --tier-3-bg: var(--dp-color-surface);
 
-  /* Fonts */
-  --font-serif: var(--dp-typography-display-face);
-  --font-sans: var(--dp-typography-reading-face);
+  /* Typography Families (Host Grotesk throughout) */
+  --font-serif: var(--dp-typography-face);
+  --font-sans: var(--dp-typography-face);
   --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Geometry & Metrics */
-  --radius-sharp: 2px;
-  --radius-subtle: var(--dp-radius-control);
-  --radius-pill: 999px;
+  /* Geometry & Metrics: Strictly Square */
+  --radius-sharp: 0px;
+  --radius-subtle: 0px;
+  --radius-pill: 0px;
 
-  /* Pencil & Red Hard Offset Shadows */
-  --shadow-hard: 2px 3px 0px var(--dp-color-ink);
-  --shadow-hard-sm: 2px 2px 0px var(--dp-color-ink);
-  --shadow-hard-terracotta: 2px 2px 0px var(--dp-color-accent);
-  --shadow-sm: 2px 2px 0px rgba(56, 53, 47, 0.15);
-  --shadow-md: 2px 4px 0px rgba(56, 53, 47, 0.2);
-  --shadow-lg: 3px 5px 0px rgba(56, 53, 47, 0.25);
+  /* Direct Black/White States: Zero fuzzy or floating shadows */
+  --shadow-hard: none;
+  --shadow-hard-sm: none;
+  --shadow-hard-terracotta: none;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 
-  /* Transitions */
-  --ease-mechanical: ease;
-  --transition-fast: var(--dp-motion-control) ease;
+  /* Motion */
+  --ease-mechanical: linear;
+  --transition-fast: var(--dp-motion-feedback);
 }

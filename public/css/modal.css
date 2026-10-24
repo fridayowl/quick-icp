@@ -1,45 +1,31 @@
 /* ==========================================================
-   MODAL & NATIVE HTML5 DIALOG (Sketch Working Sheet Dialog)
+   MODAL & NATIVE HTML5 DIALOG (Swiss Minimalist Dialog)
    ========================================================== */
 
 dialog {
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-scrap);
-  background: var(--dp-color-scrap);
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  border-radius: 0;
+  background: var(--dp-color-ground);
   color: var(--dp-color-ink);
   padding: 0;
   max-width: 680px;
   width: 92vw;
-  box-shadow: 5px 6px 0px var(--dp-color-ink);
+  box-shadow: none;
   margin: auto;
   overflow: hidden;
   overscroll-behavior: contain;
-  font-family: var(--dp-typography-reading-face);
+  font-family: var(--dp-typography-face);
   position: relative;
 }
 
-/* Tape strip on modal */
-dialog::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 50px;
-  width: 80px;
-  height: 22px;
-  background: rgba(220, 214, 195, 0.7);
-  border: 1px solid rgba(179, 172, 157, 0.45);
-  transform: rotate(-2deg);
-  z-index: 10;
-}
-
 dialog::backdrop {
-  background: rgba(56, 53, 47, 0.45);
-  backdrop-filter: blur(1px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: none;
 }
 
 .modal-header {
   padding: 1.5rem 2rem;
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  border-bottom: 1px solid var(--dp-color-ink);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -48,45 +34,44 @@ dialog::backdrop {
 
 .modal-kicker {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--dp-typography-label);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--dp-typography-label-tracking);
   color: var(--dp-color-accent);
+  text-transform: uppercase;
   margin-bottom: 0.25rem;
 }
 
 .modal-title-group h3 {
-  font-family: var(--dp-typography-display-face);
+  font-family: var(--dp-typography-face);
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: var(--dp-typography-display);
   color: var(--dp-color-ink);
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 .modal-title-group p {
-  font-size: 1.05rem;
-  color: var(--dp-color-ink-muted);
+  font-size: var(--dp-typography-metadata);
+  color: var(--text-secondary);
   margin-top: 0.25rem;
-  font-family: var(--dp-typography-reading-face);
 }
 
 .modal-close-btn {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-control);
+  background: var(--dp-color-ground);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   color: var(--dp-color-ink);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  padding: 0.2rem 0.65rem;
+  padding: 0.25rem 0.65rem;
   line-height: 1;
-  transition: all var(--dp-motion-control) ease;
-  box-shadow: 1px 1px 0px var(--dp-color-ink);
+  transition: background var(--dp-motion-feedback), color var(--dp-motion-feedback);
 }
 
 .modal-close-btn:hover {
-  background: var(--dp-color-accent);
-  color: #ffffff;
-  transform: rotate(3deg);
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
 }
 
 .modal-body {
@@ -98,43 +83,46 @@ dialog::backdrop {
 
 .modal-footer {
   padding: 1.25rem 2rem;
-  border-top: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  border-top: 1px solid var(--dp-color-ink);
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
-  background: var(--dp-color-ground);
+  background: var(--dp-color-surface);
 }
 
 /* Call Analysis Specific Blocks */
 .analysis-transcript-box {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
+  background: #ffffff;
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   padding: 1rem;
-  font-family: var(--dp-typography-reading-face);
-  font-size: 1rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-metadata);
   color: var(--dp-color-ink);
   min-height: 110px;
+  line-height: var(--dp-typography-body-leading);
 }
 
 .insight-metric-card {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-control);
-  padding: 1rem;
-  box-shadow: 2px 2px 0px rgba(56,53,47,0.15);
+  background: var(--dp-color-surface);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 1rem 1.25rem;
 }
 
 .insight-metric-label {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--dp-color-annotation);
+  color: var(--dp-color-ink);
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .insight-metric-val {
-  font-family: var(--dp-typography-display-face);
+  font-family: var(--dp-typography-face);
   font-size: 1.8rem;
   color: var(--dp-color-ink);
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }

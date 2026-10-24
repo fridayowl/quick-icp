@@ -1,7 +1,7 @@
 /* ==========================================================================
-   SIMPLE FOUNDER WORKBOOK // SKETCH DESIGN SYSTEM
-   Warm paper, handwritten notes, pencil drawings, blue notes, red corrections,
-   yellow highlights, irregular lines, and taped references.
+   SIMPLE FOUNDER WORKBOOK // SWISS MINIMALIST DESIGN SYSTEM
+   Continuous typographic grid in white, black, and pale grey,
+   with small red signals. Host Grotesk throughout.
    ========================================================================== */
 
 /* Mode Visibility Toggles */
@@ -16,159 +16,152 @@ body:not(.simple-mode-active) #view-simple-workbook {
   display: none !important;
 }
 
-/* 1. Header Mode Switcher (Drawn Button Pill) */
+/* 1. Header Mode Switcher (Ruled Rectangular Units) */
 .mode-switch-container {
   display: flex;
   align-items: center;
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-control);
-  padding: 0.2rem;
-  gap: 0.35rem;
-  box-shadow: 2px 2px 0px var(--dp-color-ink);
+  background: var(--dp-color-ground);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 0;
 }
 
 .mode-switch-btn {
-  font-family: var(--dp-typography-display-face);
-  font-size: 0.95rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-metadata);
   font-weight: 700;
-  padding: 0.35rem 0.95rem;
-  border: 1px solid transparent;
-  border-radius: var(--dp-radius-control);
+  padding: 0.45rem 1rem;
+  border: none;
+  border-right: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   background: transparent;
-  color: var(--dp-color-ink-muted);
+  color: var(--text-secondary);
   cursor: pointer;
-  transition: all var(--dp-motion-control) ease;
+  transition: background var(--dp-motion-feedback), color var(--dp-motion-feedback);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
 }
 
+.mode-switch-btn:last-child {
+  border-right: none;
+}
+
 .mode-switch-btn.active {
-  background: var(--dp-color-accent);
-  color: #ffffff;
-  border-color: var(--dp-color-ink);
-  box-shadow: 1px 2px 0px var(--dp-color-ink);
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
 }
 
 .mode-switch-btn:hover:not(.active) {
+  background: var(--dp-color-surface);
   color: var(--dp-color-ink);
-  background: var(--dp-color-highlight);
 }
 
 /* 2. Main Wrapper Layout */
 .simple-workbook-wrap {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 1.5rem 0 5rem;
+  padding: 1rem 0 5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.25rem;
 }
 
-/* 3. Hero Card (Working Sheet with Tape Strip) */
+/* 3. Hero Card (Ruled Swiss Header) */
 .workbook-hero-card {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-scrap);
-  padding: 2.5rem 2.75rem;
+  background: var(--dp-color-ground);
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 2.5rem 3rem;
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
-  box-shadow: 3px 4px 0px var(--dp-color-ink);
+  gap: 1.25rem;
   position: relative;
-}
-
-/* Taped reference strip on the top edge */
-.workbook-hero-card::before {
-  content: "";
-  position: absolute;
-  top: -9px;
-  right: 60px;
-  width: 100px;
-  height: 24px;
-  background: rgba(220, 214, 195, 0.7);
-  border: 1px solid rgba(179, 172, 157, 0.45);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  transform: rotate(2.5deg);
-  z-index: 5;
 }
 
 .workbook-hero-tag {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--dp-typography-label);
   font-weight: 700;
   color: var(--dp-color-accent);
-  letter-spacing: 0.08em;
+  letter-spacing: var(--dp-typography-label-tracking);
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
+}
+
+.workbook-hero-tag::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--dp-color-accent);
 }
 
 .workbook-hero-title {
-  font-family: var(--dp-typography-display-face);
-  font-size: 2.6rem;
-  font-weight: 700;
+  font-family: var(--dp-typography-face);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: var(--dp-typography-display);
   color: var(--dp-color-ink);
   margin: 0;
-  line-height: 1.15;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
 }
 
 .workbook-hero-desc {
-  font-size: 1.2rem;
-  color: var(--dp-color-ink-muted);
-  line-height: 1.6;
+  font-size: var(--dp-typography-lead);
+  color: var(--text-secondary);
+  line-height: var(--dp-typography-body-leading);
   margin: 0;
-  max-width: 720px;
-  font-family: var(--dp-typography-reading-face);
+  max-width: 75ch;
+  font-weight: var(--dp-typography-regular);
 }
 
 /* Quick Fill Preset Pills */
 .quick-fill-strip {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  padding-top: 0.85rem;
-  border-top: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--dp-color-ink);
 }
 
 .quick-fill-label {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--dp-typography-label);
   font-weight: 700;
-  color: var(--dp-color-annotation);
-  letter-spacing: 0.06em;
+  color: var(--dp-color-ink);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .preset-chip {
-  font-family: var(--dp-typography-reading-face);
-  font-size: 1rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-metadata);
   font-weight: 600;
-  padding: 0.35rem 0.85rem;
-  background: #ffffff;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
+  padding: 0.4rem 0.85rem;
+  background: var(--dp-color-surface);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   color: var(--dp-color-ink);
   cursor: pointer;
-  transition: all var(--dp-motion-control) ease;
+  transition: background var(--dp-motion-feedback), color var(--dp-motion-feedback);
   user-select: none;
-  box-shadow: 1px 1px 0px rgba(56, 53, 47, 0.15);
 }
 
 .preset-chip:hover {
-  background: var(--dp-color-highlight);
-  border-color: var(--dp-color-ink);
-  transform: rotate(-1deg) translate(-1px, -1px);
-  box-shadow: 2px 2px 0px var(--dp-color-ink);
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
 }
 
-/* 4. Three-Step Navigation Tabs (Drawn Index Notes) */
+/* 4. Three-Step Navigation Tabs (Ruled Index Rail) */
 .simple-step-tabs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  background: var(--dp-color-ground);
 }
 
 @media (max-width: 700px) {
@@ -178,31 +171,40 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .simple-step-indicator {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
-  padding: 1.15rem 1.4rem;
+  background: var(--dp-color-ground);
+  border: none;
+  border-right: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
   cursor: pointer;
-  transition: all var(--dp-motion-control) ease;
+  transition: background var(--dp-motion-feedback);
   text-align: left;
-  box-shadow: 2px 2px 0px rgba(56, 53, 47, 0.12);
+}
+
+.simple-step-tabs .simple-step-indicator:last-child {
+  border-right: none;
+}
+
+@media (max-width: 700px) {
+  .simple-step-indicator {
+    border-right: none;
+    border-bottom: 1px solid var(--dp-color-ink);
+  }
+  .simple-step-tabs .simple-step-indicator:last-child {
+    border-bottom: none;
+  }
 }
 
 .simple-step-indicator:hover {
-  background: #ffffff;
-  border-color: var(--dp-color-ink);
-  transform: rotate(-0.5deg) translate(-1px, -1px);
-  box-shadow: 3px 3px 0px var(--dp-color-ink);
+  background: var(--dp-color-surface);
 }
 
 .simple-step-indicator.active {
-  background: var(--dp-color-highlight);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  box-shadow: 2px 3px 0px var(--dp-color-ink);
-  transform: rotate(0.5deg);
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
 }
 
 .step-indicator-top {
@@ -213,20 +215,26 @@ body:not(.simple-mode-active) #view-simple-workbook {
 
 .simple-step-num {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--dp-color-annotation);
+  color: var(--text-tertiary);
+}
+
+.simple-step-indicator.active .simple-step-num {
+  color: var(--dp-color-accent);
 }
 
 .step-badge-status {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .step-badge-status.done {
-  color: var(--status-positive);
+  color: var(--dp-color-accent);
 }
 
 .step-badge-status.current {
@@ -234,43 +242,29 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .simple-step-label {
-  font-family: var(--dp-typography-display-face);
-  font-size: 1.25rem;
+  font-family: var(--dp-typography-face);
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--dp-color-ink);
-  line-height: 1.2;
+  color: inherit;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
-/* 5. Main Card Panel (Clean Paper Working Sheet) */
+/* 5. Main Card Panel (Ruled Document Structure) */
 .simple-card-panel {
-  background: #ffffff;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-scrap);
-  padding: 2.75rem;
+  background: var(--dp-color-ground);
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
-  box-shadow: 4px 5px 0px var(--dp-color-ink);
+  gap: 2.5rem;
   position: relative;
 }
 
-/* Tape strip on top left of paper */
-.simple-card-panel::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 40px;
-  width: 80px;
-  height: 22px;
-  background: rgba(220, 214, 195, 0.65);
-  border: 1px solid rgba(179, 172, 157, 0.4);
-  transform: rotate(-3deg);
-  z-index: 5;
-}
-
 .simple-card-header {
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
-  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--dp-color-ink);
+  padding-bottom: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -278,29 +272,40 @@ body:not(.simple-mode-active) #view-simple-workbook {
 
 .simple-card-step-kicker {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--dp-typography-label);
   font-weight: 700;
   color: var(--dp-color-accent);
-  letter-spacing: 0.08em;
+  letter-spacing: var(--dp-typography-label-tracking);
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.simple-card-step-kicker::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--dp-color-accent);
 }
 
 .simple-card-title {
-  font-family: var(--dp-typography-display-face);
-  font-size: 2.1rem;
-  font-weight: 700;
+  font-family: var(--dp-typography-face);
+  font-size: 2.2rem;
+  font-weight: var(--dp-typography-display);
   color: var(--dp-color-ink);
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .simple-card-sub {
-  font-size: 1.15rem;
-  color: var(--dp-color-ink-muted);
-  line-height: 1.6;
+  font-size: var(--dp-typography-lead);
+  color: var(--text-secondary);
+  line-height: var(--dp-typography-body-leading);
   margin: 0;
-  max-width: 740px;
-  font-family: var(--dp-typography-reading-face);
+  max-width: 75ch;
 }
 
 /* 6. Form Fields & Controls */
@@ -311,8 +316,8 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .easy-label {
-  font-family: var(--dp-typography-reading-face);
-  font-size: 1.2rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-metadata);
   font-weight: 700;
   color: var(--dp-color-ink);
   display: flex;
@@ -321,73 +326,74 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .easy-label-hint {
-  font-family: var(--dp-typography-reading-face);
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--dp-color-annotation);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
 }
 
 .easy-input {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
-  padding: 0.85rem 1.15rem;
-  font-size: 1.15rem;
+  background: #ffffff;
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 0.8rem 1rem;
+  font-size: var(--dp-typography-body);
   color: var(--dp-color-ink);
-  font-family: var(--dp-typography-reading-face);
-  transition: all var(--dp-motion-control) ease;
+  font-family: var(--dp-typography-face);
+  transition: border-color var(--dp-motion-feedback);
 }
 
 .easy-input:focus {
-  border-color: var(--dp-color-annotation);
-  background: #ffffff;
+  border-width: 2px;
+  border-color: var(--dp-color-ink);
 }
 
 .easy-textarea {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
-  padding: 0.85rem 1.15rem;
-  font-size: 1.15rem;
+  background: #ffffff;
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 0.8rem 1rem;
+  font-size: var(--dp-typography-body);
   color: var(--dp-color-ink);
-  font-family: var(--dp-typography-reading-face);
+  font-family: var(--dp-typography-face);
   resize: vertical;
   min-height: 90px;
-  line-height: 1.6;
-  transition: all var(--dp-motion-control) ease;
+  line-height: var(--dp-typography-body-leading);
+  transition: border-color var(--dp-motion-feedback);
 }
 
 .easy-textarea:focus {
-  border-color: var(--dp-color-annotation);
-  background: #ffffff;
+  border-width: 2px;
+  border-color: var(--dp-color-ink);
 }
 
 /* Feature Item Row */
 .easy-feature-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .easy-feature-row {
   display: flex;
-  gap: 0.65rem;
+  gap: 0.5rem;
   align-items: center;
 }
 
 .feature-num-badge {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--dp-color-annotation);
-  background: var(--dp-color-scrap);
-  border: 1px solid var(--dp-color-line);
-  border-radius: 4px;
-  width: 32px;
-  height: 32px;
+  color: var(--dp-color-ink);
+  background: var(--dp-color-surface);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  width: 36px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .easy-feature-row input {
@@ -395,32 +401,31 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .easy-btn-remove {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
-  color: var(--dp-color-ink-muted);
-  width: 44px;
-  height: 44px;
+  background: var(--dp-color-surface);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  color: var(--dp-color-ink);
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1.35rem;
-  transition: all var(--dp-motion-control) ease;
+  font-size: 1.1rem;
+  transition: background var(--dp-motion-feedback), color var(--dp-motion-feedback);
 }
 
 .easy-btn-remove:hover {
-  color: var(--dp-color-accent);
-  border-color: var(--dp-color-accent);
-  background: #fae5e3;
-  transform: rotate(2deg);
+  color: #ffffff;
+  background: var(--dp-color-accent);
 }
 
-/* 7. Step 2 Comparison Cards (Hand-mounted Scraps) */
+/* 7. Step 2 Comparison Cards (Equal Ruled Columns) */
 .cohort-comparison-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.75rem;
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  background: var(--dp-color-ground);
 }
 
 @media (max-width: 768px) {
@@ -430,44 +435,58 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .cohort-card-builder {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-scrap);
-  padding: 1.75rem;
+  background: var(--dp-color-ground);
+  border: none;
+  border-right: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  box-shadow: 2px 3px 0px rgba(56, 53, 47, 0.12);
   position: relative;
 }
 
+.cohort-card-builder:last-child {
+  border-right: none;
+}
+
+@media (max-width: 768px) {
+  .cohort-card-builder {
+    border-right: none;
+    border-bottom: 1px solid var(--dp-color-ink);
+  }
+  .cohort-card-builder:last-child {
+    border-bottom: none;
+  }
+}
+
 .cohort-card-builder:first-child {
-  border-color: var(--dp-color-accent);
-  background: #fdfaf6;
+  background: #ffffff;
 }
 
 .cohort-builder-tag {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--dp-typography-label);
   font-weight: 700;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 0.6rem;
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--dp-color-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* Yellow Highlight Box for the 1 Wedge */
+/* Featured Signal Box for the 1 Wedge */
 .wedge-highlight-box {
-  background: var(--dp-color-highlight);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-control);
-  padding: 0.85rem 1.15rem;
+  background: var(--dp-color-surface);
+  border: 1px solid var(--dp-color-ink);
+  border-left: 4px solid var(--dp-color-accent);
+  border-radius: 0;
+  padding: 1rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  box-shadow: 2px 2px 0px var(--dp-color-ink);
-  transform: rotate(-0.5deg);
+  gap: 0.4rem;
 }
 
 .wedge-box-label {
@@ -476,6 +495,7 @@ body:not(.simple-mode-active) #view-simple-workbook {
   font-weight: 700;
   color: var(--dp-color-accent);
   text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 /* 8. Step 3 Action Plan Cards */
@@ -486,164 +506,169 @@ body:not(.simple-mode-active) #view-simple-workbook {
 }
 
 .cheat-sheet-block {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-scrap);
-  padding: 1.85rem 2rem;
+  background: var(--dp-color-ground);
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 2rem 2.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  box-shadow: 3px 4px 0px var(--dp-color-ink);
+  gap: 1.25rem;
 }
 
 .cheat-sheet-tag {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--dp-typography-label);
   font-weight: 700;
   color: var(--dp-color-accent);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .cheat-sheet-headline {
-  font-family: var(--dp-typography-display-face);
-  font-size: 1.65rem;
-  font-weight: 700;
+  font-family: var(--dp-typography-face);
+  font-size: 1.75rem;
+  font-weight: var(--dp-typography-display);
   color: var(--dp-color-ink);
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
-/* Terminal / Note Window */
+/* Terminal / Message Box Window */
 .terminal-message-window {
   background: #ffffff;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-control);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   position: relative;
   overflow: hidden;
-  box-shadow: 2px 3px 0px rgba(56, 53, 47, 0.15);
 }
 
 .terminal-window-bar {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.6rem 1rem;
-  background: var(--dp-color-scrap);
-  border-bottom: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  padding: 0.65rem 1rem;
+  background: var(--dp-color-surface);
+  border-bottom: 1px solid var(--dp-color-ink);
 }
 
 .dot-circle {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid var(--dp-color-ink);
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  background: var(--dp-color-ink);
 }
 
 .terminal-title {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--dp-color-annotation);
+  color: var(--dp-color-ink);
   font-weight: 700;
   margin-left: 0.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .cheat-sheet-box {
-  padding: 1.25rem 1.5rem;
-  font-family: var(--dp-typography-reading-face);
-  font-size: 1.15rem;
+  padding: 1.5rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-body);
   color: var(--dp-color-ink);
-  line-height: 1.65;
+  line-height: var(--dp-typography-body-leading);
   white-space: pre-wrap;
   position: relative;
 }
 
 .cheat-sheet-copy-btn {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-control);
-  color: var(--dp-color-ink);
-  font-family: var(--dp-typography-display-face);
-  font-size: 0.95rem;
+  background: var(--dp-color-ink);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  color: var(--dp-color-ground);
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-label);
   font-weight: 700;
-  padding: 0.45rem 0.95rem;
+  padding: 0.45rem 1rem;
   cursor: pointer;
-  transition: all var(--dp-motion-control) ease;
+  transition: background var(--dp-motion-feedback);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  box-shadow: 1px 2px 0px var(--dp-color-ink);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .cheat-sheet-copy-btn:hover {
   background: var(--dp-color-accent);
-  color: #ffffff;
-  transform: rotate(-0.5deg) translate(-1px, -1px);
-  box-shadow: 2px 3px 0px var(--dp-color-ink);
+  border-color: var(--dp-color-accent);
 }
 
 /* 9. Question Bank Styling */
 .question-item-row {
   display: flex;
-  gap: 0.85rem;
+  gap: 1rem;
   align-items: flex-start;
-  padding: 0.75rem 0;
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-hairline);
 }
 
 .q-num-badge {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--dp-color-accent);
-  background: var(--dp-color-highlight);
-  padding: 0.2rem 0.55rem;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: 4px;
+  color: var(--dp-color-ground);
+  background: var(--dp-color-ink);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0;
   flex-shrink: 0;
-  box-shadow: 1px 1px 0px var(--dp-color-ink);
 }
 
 .q-text-body {
-  font-size: 1.15rem;
+  font-size: var(--dp-typography-body);
   color: var(--dp-color-ink);
   line-height: 1.5;
-  font-family: var(--dp-typography-reading-face);
+  font-family: var(--dp-typography-face);
 }
 
 .q-text-reason {
-  font-size: 0.95rem;
-  color: var(--dp-color-annotation);
+  font-size: var(--dp-typography-label);
+  color: var(--text-tertiary);
   display: block;
   margin-top: 0.25rem;
-  font-family: var(--dp-typography-reading-face);
 }
 
 /* 10. 5 Contacts Simple Tracker Table */
 .simple-contacts-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 1.05rem;
+  font-size: var(--dp-typography-metadata);
   margin-top: 0.5rem;
-  font-family: var(--dp-typography-reading-face);
+  font-family: var(--dp-typography-face);
+  border: 1px solid var(--dp-color-ink);
 }
 
 .simple-contacts-table th {
   text-align: left;
-  padding: 0.85rem;
+  padding: 0.85rem 1rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--dp-color-annotation);
-  border-bottom: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  background: var(--dp-color-scrap);
+  font-size: var(--dp-typography-label);
+  color: var(--dp-color-ink);
+  border-bottom: 1px solid var(--dp-color-ink);
+  background: var(--dp-color-surface);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .simple-contacts-table td {
-  padding: 0.65rem 0.75rem;
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-hairline);
   color: var(--dp-color-ink);
+}
+
+.simple-contacts-table tr:last-child td {
+  border-bottom: none;
 }
 
 .contact-progress-strip {
@@ -651,9 +676,9 @@ body:not(.simple-mode-active) #view-simple-workbook {
   align-items: center;
   gap: 1rem;
   padding: 0.85rem 1.25rem;
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
+  background: var(--dp-color-surface);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   margin-bottom: 0.5rem;
 }
 
@@ -661,8 +686,8 @@ body:not(.simple-mode-active) #view-simple-workbook {
   flex: 1;
   height: 8px;
   background: #ffffff;
-  border: 1px solid var(--dp-color-line);
-  border-radius: 4px;
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   position: relative;
   overflow: hidden;
 }
@@ -670,7 +695,6 @@ body:not(.simple-mode-active) #view-simple-workbook {
 .contact-progress-fill {
   height: 100%;
   background: var(--dp-color-accent);
-  transition: width 0.3s ease;
 }
 
 /* Footer Action Buttons */
@@ -678,8 +702,8 @@ body:not(.simple-mode-active) #view-simple-workbook {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
-  padding-top: 1.85rem;
+  border-top: 1px solid var(--dp-color-ink);
+  padding-top: 2rem;
   margin-top: 0.5rem;
   flex-wrap: wrap;
   gap: 1rem;

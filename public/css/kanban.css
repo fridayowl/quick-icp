@@ -1,10 +1,12 @@
 /* ==========================================================
-   KANBAN DISCOVERY PIPELINE (Sketch Working Sheet Columns)
+   KANBAN DISCOVERY PIPELINE (Swiss Minimalist Columns)
+   Continuous typographic grid in white, black, and pale grey,
+   with small red signals. Host Grotesk throughout.
    ========================================================== */
 
 .kanban-wrapper {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.5rem;
   overflow-x: auto;
   padding-bottom: 2rem;
   min-height: calc(100vh - 300px);
@@ -12,23 +14,22 @@
 
 .kanban-column {
   flex: 0 0 320px;
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-scrap);
+  background: var(--dp-color-ground);
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   max-height: calc(100vh - 300px);
-  box-shadow: 2px 3px 0px rgba(56, 53, 47, 0.15);
 }
 
 .kanban-column-header {
-  padding: 0.95rem 1.15rem;
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--dp-color-ink);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--dp-color-ground);
-  border-radius: var(--dp-radius-scrap) var(--dp-radius-scrap) 0 0;
+  background: var(--dp-color-surface);
+  border-radius: 0;
 }
 
 .col-title-group {
@@ -38,64 +39,61 @@
 }
 
 .col-indicator {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  border: 1px solid var(--dp-color-ink);
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  background: var(--dp-color-ink);
   flex-shrink: 0;
 }
 
 .col-title {
-  font-family: var(--dp-typography-display-face);
-  font-size: 1.15rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-lead);
   font-weight: 700;
   color: var(--dp-color-ink);
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
 }
 
 .col-count {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--dp-typography-label);
   font-weight: 700;
   background: #ffffff;
-  border: 1px solid var(--dp-color-line);
-  border-radius: 4px;
-  padding: 0.1rem 0.5rem;
-  color: var(--dp-color-annotation);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 0.1rem 0.45rem;
+  color: var(--dp-color-ink);
 }
 
 .kanban-cards-container {
-  padding: 0.85rem;
+  padding: 1rem;
   overflow-y: auto;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
-/* Individual Prospect Card (Paper Note) */
+/* Individual Prospect Card */
 .lead-card {
   background: #ffffff;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
-  padding: 1rem 1.15rem;
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 1.15rem;
   cursor: grab;
-  transition: all var(--dp-motion-control) ease;
+  transition: background var(--dp-motion-feedback);
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  box-shadow: 1px 2px 0px rgba(56, 53, 47, 0.12);
   user-select: none;
 }
 
 .lead-card:hover {
-  border-color: var(--dp-color-ink);
-  transform: rotate(-0.5deg) translate(-1px, -1px);
-  box-shadow: 2px 3px 0px var(--dp-color-ink);
+  background: var(--dp-color-surface);
 }
 
 .lead-card.dragging {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: grabbing;
 }
 
@@ -106,54 +104,58 @@
 }
 
 .lead-name {
-  font-family: var(--dp-typography-display-face);
-  font-size: 1.25rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-lead);
   font-weight: 700;
   color: var(--dp-color-ink);
   line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .lead-company {
-  font-size: 0.95rem;
-  color: var(--dp-color-ink-muted);
-  font-family: var(--dp-typography-reading-face);
+  font-size: var(--dp-typography-metadata);
+  color: var(--text-secondary);
+  font-family: var(--dp-typography-face);
 }
 
 .lead-cohort-tag {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  color: var(--dp-color-annotation);
+  color: var(--dp-color-ink);
   font-weight: 700;
-  background: var(--dp-color-scrap);
+  background: var(--dp-color-surface);
   padding: 0.15rem 0.45rem;
-  border: 1px solid var(--dp-color-line);
-  border-radius: 3px;
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   align-self: flex-start;
+  text-transform: uppercase;
 }
 
 .lead-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
-  padding-top: 0.5rem;
-  font-size: 0.85rem;
+  border-top: 1px solid var(--border-hairline);
+  padding-top: 0.6rem;
+  font-size: var(--dp-typography-label);
 }
 
 .lead-action-btn {
   background: transparent;
-  border: 1px solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
-  padding: 0.2rem 0.55rem;
-  font-size: 0.85rem;
-  font-family: var(--dp-typography-reading-face);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 0.25rem 0.65rem;
+  font-size: var(--dp-typography-label);
+  font-family: var(--dp-typography-face);
+  font-weight: 700;
   color: var(--dp-color-ink);
   cursor: pointer;
-  transition: all var(--dp-motion-control) ease;
+  transition: background var(--dp-motion-feedback), color var(--dp-motion-feedback);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .lead-action-btn:hover {
-  background: var(--dp-color-highlight);
-  border-color: var(--dp-color-ink);
-  color: var(--dp-color-ink);
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
 }

@@ -1,7 +1,7 @@
 /* ==========================================================
-   SKETCH DESIGN SYSTEM // CORE MAIN STYLESHEET
-   A shared working sheet with warm paper, dark pencil ink,
-   pencil-like drawings, blue notes, red corrections, and yellow highlights.
+   SWISS MINIMALIST DESIGN SYSTEM // CORE MAIN STYLESHEET
+   Continuous typographic grid in white, black, and pale grey,
+   with small red signals. Host Grotesk throughout.
    ========================================================== */
 
 * {
@@ -11,14 +11,9 @@
 }
 
 body {
-  font-family: var(--dp-typography-reading-face);
-  font-size: var(--dp-typography-reading);
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-body);
   background-color: var(--dp-color-ground);
-  background-image: 
-    radial-gradient(#dfd7c2 0.75px, transparent 0.75px), 
-    radial-gradient(#dfd7c2 0.75px, var(--dp-color-ground) 0.75px);
-  background-size: 28px 28px;
-  background-position: 0 0, 14px 14px;
   color: var(--dp-color-ink);
   min-height: 100vh;
   display: flex;
@@ -26,80 +21,91 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.55;
+  line-height: var(--dp-typography-body-leading);
+  letter-spacing: -0.01em;
 }
 
-/* Typographic Hierarchy: Working Sheet Marker for Headings */
+/* Typographic Hierarchy: Host Grotesk Display Headings */
 h1, h2, h3, h4 {
-  font-family: var(--dp-typography-display-face);
+  font-family: var(--dp-typography-face);
   color: var(--dp-color-ink);
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+  font-weight: var(--dp-typography-display);
+  letter-spacing: -0.03em;
+  line-height: 0.98;
 }
 
 p {
-  line-height: 1.6;
-  color: var(--dp-color-ink-muted);
+  line-height: var(--dp-typography-body-leading);
+  color: var(--text-secondary);
 }
 
-/* Text selections with pencil highlighter */
+/* Text selections */
 ::selection {
-  background: var(--dp-color-highlight);
-  color: var(--dp-color-ink);
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
 }
 
 /* ==========================================================
-   APP HEADER: Warm Working Sheet Top Banner
+   APP HEADER: Stark Ruled Grid Header
    ========================================================== */
 .app-header {
-  min-height: 72px;
+  min-height: 64px;
   background: var(--dp-color-ground);
-  border-bottom: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
   position: sticky;
   top: 0;
   z-index: 100;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  padding: 0.75rem 2.5rem;
+  padding: 0 2rem;
   gap: 2rem;
-  box-shadow: 0 2px 8px rgba(56, 53, 47, 0.06);
 }
 
 .brand-section {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
-/* Hand-stamped drawn brand mark */
+/* Swiss Minimalist Brand Mark */
 .brand-mark {
-  width: 40px;
-  height: 40px;
-  background: var(--dp-color-accent);
-  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: var(--dp-typography-display-face);
-  font-weight: 700;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-control);
-  box-shadow: 2px 2px 0px var(--dp-color-ink);
-  transform: rotate(-1.5deg);
+  font-family: var(--dp-typography-face);
+  font-weight: 800;
+  border-radius: 0;
+  position: relative;
+}
+
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 6px;
+  height: 6px;
+  background: var(--dp-color-accent);
 }
 
 .mark-letter {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   line-height: 1;
+  font-weight: 800;
 }
 
 .mark-sub {
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   line-height: 1;
   font-family: var(--font-mono);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  font-weight: 700;
 }
 
 .brand-meta {
@@ -108,68 +114,70 @@ p {
 }
 
 .brand-title {
-  font-family: var(--dp-typography-display-face);
-  font-size: 1.45rem;
-  font-weight: 700;
+  font-family: var(--dp-typography-face);
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--dp-color-ink);
+  letter-spacing: -0.03em;
   line-height: 1.1;
 }
 
 .brand-index-tag {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--dp-color-annotation);
-  letter-spacing: 0.05em;
+  font-size: 0.68rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.08em;
   font-weight: 600;
 }
 
-/* Navigation Tabs: Hand-drawn Pencil Notes */
+/* Navigation Tabs: Ruled Rectangular Units */
 .nav-tabs {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0;
   justify-content: center;
-  flex-wrap: wrap;
+  border-left: 1px solid var(--dp-color-ink);
+  border-right: 1px solid var(--dp-color-ink);
 }
 
 .nav-tab-btn {
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
-  color: var(--dp-color-ink-muted);
-  padding: 0.4rem 0.95rem;
-  font-size: 0.95rem;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  color: var(--text-secondary);
+  padding: 0.85rem 1.2rem;
+  font-size: var(--dp-typography-metadata);
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  transition: all var(--dp-motion-control) ease;
-  font-family: var(--dp-typography-reading-face);
-  box-shadow: 1px 2px 0px rgba(56, 53, 47, 0.15);
+  gap: 0.5rem;
+  transition: background var(--dp-motion-feedback);
+  font-family: var(--dp-typography-face);
+  letter-spacing: -0.01em;
+}
+
+.nav-tab-btn:last-child {
+  border-right: none;
 }
 
 .nav-tab-btn .tab-index {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--dp-color-annotation);
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
   font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
 .nav-tab-btn:hover {
-  background: #ffffff;
+  background: var(--dp-color-surface);
   color: var(--dp-color-ink);
-  border-color: var(--dp-color-ink);
-  transform: rotate(-0.5deg) translate(-1px, -1px);
-  box-shadow: 2px 3px 0px var(--dp-color-ink);
 }
 
 .nav-tab-btn.active {
-  background: var(--dp-color-highlight);
-  color: var(--dp-color-ink);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  box-shadow: 2px 2px 0px var(--dp-color-ink);
-  transform: rotate(0.5deg);
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
 }
 
 .nav-tab-btn.active .tab-index {
@@ -180,14 +188,14 @@ p {
   background: var(--dp-color-accent);
   color: #ffffff;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  padding: 0.1rem 0.4rem;
-  border-radius: 4px;
-  line-height: 1.1;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0;
+  line-height: 1;
 }
 
-/* Header Telemetry Pill (Drawn bracket note) */
+/* Header Telemetry */
 .header-actions {
   display: flex;
   justify-content: flex-end;
@@ -197,19 +205,18 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: var(--dp-color-scrap);
-  border: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
+  background: var(--dp-color-surface);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   padding: 0.4rem 0.85rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  box-shadow: 1px 1px 0px rgba(56,53,47,0.1);
+  font-size: 0.75rem;
 }
 
 .telemetry-label {
-  color: var(--dp-color-annotation);
-  font-size: 0.72rem;
-  font-weight: 700;
+  color: var(--text-tertiary);
+  font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.05em;
 }
 
@@ -219,49 +226,32 @@ p {
 }
 
 /* ==========================================================
-   APP CONTAINER & EDITORIAL BRIEF (Working Sheet Grid)
+   APP CONTAINER & EDITORIAL BRIEF (Continuous 12-Column Grid)
    ========================================================== */
 .app-container {
   flex: 1;
-  max-width: 1360px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 2.5rem 4rem;
+  padding: 2.5rem 2rem 5rem;
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
+  gap: 2.5rem;
 }
 
-/* Editorial Sheet Card */
+/* Editorial Statement Grid: 9-col Statement + 3-col Telemetry */
 .editorial-brief-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-scrap);
-  background: var(--dp-color-scrap);
-  box-shadow: 3px 4px 0px var(--dp-color-ink);
+  grid-template-columns: 2.2fr 1fr;
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  border-radius: 0;
+  background: var(--dp-color-ground);
   position: relative;
-  overflow: hidden;
-}
-
-/* Simulated piece of tape holding the sheet */
-.editorial-brief-grid::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 45px;
-  width: 90px;
-  height: 24px;
-  background: rgba(220, 214, 195, 0.68);
-  border: 1px solid rgba(179, 172, 157, 0.4);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  transform: rotate(-2.5deg);
-  z-index: 5;
 }
 
 .brief-manifesto {
-  padding: 2.5rem 2.75rem;
-  border-right: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding: 3rem;
+  border-right: var(--dp-border-rule) solid var(--dp-color-ink);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -269,75 +259,73 @@ p {
 
 .manifesto-kicker {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
+  font-size: var(--dp-typography-label);
+  letter-spacing: var(--dp-typography-label-tracking);
   color: var(--dp-color-accent);
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.manifesto-headline {
-  font-size: 2.4rem;
-  line-height: 1.15;
-  margin-bottom: 0.85rem;
-  color: var(--dp-color-ink);
-  font-family: var(--dp-typography-display-face);
-  position: relative;
+.manifesto-kicker::before {
+  content: "";
   display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--dp-color-accent);
 }
 
-/* Irregular hand-drawn underline */
-.manifesto-headline::after {
-  content: "";
-  display: block;
-  width: 65%;
-  height: 4px;
-  background: var(--dp-color-highlight);
-  border-radius: 4px;
-  margin-top: 4px;
+.manifesto-headline {
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  line-height: 0.95;
+  margin-bottom: 1.25rem;
+  color: var(--dp-color-ink);
+  font-family: var(--dp-typography-face);
+  font-weight: var(--dp-typography-display);
+  letter-spacing: -0.04em;
 }
 
 .manifesto-body {
-  font-size: 1.15rem;
-  color: var(--dp-color-ink-muted);
-  line-height: 1.6;
-  max-width: 60ch;
-  font-family: var(--dp-typography-reading-face);
+  font-size: var(--dp-typography-lead);
+  color: var(--text-secondary);
+  line-height: var(--dp-typography-body-leading);
+  max-width: 65ch;
+  font-weight: var(--dp-typography-regular);
 }
 
-/* Blue Pencil Telemetry Grid */
+/* Telemetry Grid (Ruled 4-cell matrix) */
 .brief-telemetry-panel {
   display: flex;
   flex-direction: column;
-  background: #fdfaf3;
+  background: var(--dp-color-ground);
 }
 
 .telemetry-header {
-  padding: 0.85rem 1.5rem;
-  border-bottom: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--dp-color-ink);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--dp-color-ground);
+  background: var(--dp-color-surface);
 }
 
 .telemetry-code {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  color: var(--dp-color-annotation);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--dp-color-ink);
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .telemetry-status-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--status-positive);
-  border: 1px solid var(--dp-color-ink);
+  width: 8px;
+  height: 8px;
+  background: var(--dp-color-accent);
+  border-radius: 0;
 }
 
 .telemetry-grid {
@@ -347,15 +335,15 @@ p {
 }
 
 .telemetry-cell {
-  padding: 1.35rem 1.5rem;
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--dp-color-ink);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .telemetry-cell:nth-child(odd) {
-  border-right: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  border-right: 1px solid var(--dp-color-ink);
 }
 
 .telemetry-cell:nth-child(3),
@@ -365,25 +353,29 @@ p {
 
 .telemetry-cell .cell-index {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--dp-color-annotation);
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
   font-weight: 700;
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
 }
 
 .telemetry-cell .cell-number {
-  font-family: var(--dp-typography-display-face);
-  font-size: 2.4rem;
-  font-weight: 700;
+  font-family: var(--dp-typography-face);
+  font-size: 2.5rem;
+  font-weight: 800;
   color: var(--dp-color-ink);
   line-height: 1;
+  letter-spacing: -0.04em;
   margin-bottom: 0.25rem;
 }
 
 .telemetry-cell .cell-label {
-  font-size: 0.95rem;
-  color: var(--dp-color-ink-muted);
-  font-family: var(--dp-typography-reading-face);
+  font-size: var(--dp-typography-label);
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .telemetry-cell.highlight-terracotta .cell-number {
@@ -391,78 +383,69 @@ p {
 }
 
 /* ==========================================================
-   BUTTONS: Hand-drawn Irregular Edges & Offset Shadows
+   BUTTONS: Rectangular Direct Black-and-White States
    ========================================================== */
 .btn {
-  font-family: var(--dp-typography-display-face);
-  font-size: 1.15rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-metadata);
   font-weight: 700;
-  padding: 0.6rem 1.35rem;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-control);
+  padding: 0.65rem 1.4rem;
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  border-radius: 0;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  transition: all var(--dp-motion-control) ease;
   text-decoration: none;
   line-height: 1.2;
+  letter-spacing: -0.01em;
+  transition: background var(--dp-motion-feedback), color var(--dp-motion-feedback);
 }
 
-/* Focus visibility requirement: Dashed blue focus outline */
+/* Focus visibility requirement: Clear visible outline */
 .btn:focus-visible,
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px dashed var(--dp-color-annotation) !important;
+  outline: 2px solid var(--dp-color-ink) !important;
   outline-offset: 3px !important;
 }
 
-/* Primary Action: Red ink stamp */
+/* Primary Action: Solid Black Field */
 .btn-primary {
-  background: var(--dp-color-accent);
-  color: #ffffff;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  box-shadow: 2px 3px 0px var(--dp-color-ink);
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
 }
 
 .btn-primary:hover {
-  background: var(--accent-terracotta-hover);
-  transform: rotate(-0.5deg) translate(-1px, -1px);
-  box-shadow: 3px 4px 0px var(--dp-color-ink);
+  background: #252525;
 }
 
 .btn-primary:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px var(--dp-color-ink);
+  background: #000000;
 }
 
-/* Secondary Action: Warm paper scrap */
+/* Secondary Action: White Field */
 .btn-secondary {
-  background: var(--dp-color-scrap);
+  background: var(--dp-color-ground);
   color: var(--dp-color-ink);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  box-shadow: 2px 2px 0px var(--dp-color-line);
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
 }
 
 .btn-secondary:hover {
-  background: #ffffff;
-  border-color: var(--dp-color-ink);
-  color: var(--dp-color-ink);
-  transform: rotate(-0.5deg) translate(-1px, -1px);
-  box-shadow: 3px 3px 0px var(--dp-color-ink);
+  background: var(--dp-color-surface);
 }
 
 .btn-secondary:active {
-  transform: translate(1px, 1px);
-  box-shadow: 0px 0px 0px;
+  background: #e0e0e0;
 }
 
 .btn-sm {
-  padding: 0.35rem 0.85rem;
-  font-size: 0.95rem;
+  padding: 0.4rem 0.85rem;
+  font-size: var(--dp-typography-label);
 }
 
 /* Section Header Structure */
@@ -470,22 +453,23 @@ textarea:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 1.75rem;
-  border-bottom: var(--dp-border-fine-stroke) solid var(--dp-color-line);
+  margin-bottom: 2rem;
+  border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
   padding-bottom: 1.25rem;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
 
 .section-title-group h2 {
-  font-size: 2rem;
-  margin-bottom: 0.25rem;
+  font-size: 2.2rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.35rem;
   color: var(--dp-color-ink);
 }
 
 .section-title-group p {
-  font-size: 1.1rem;
-  color: var(--dp-color-ink-muted);
+  font-size: var(--dp-typography-lead);
+  color: var(--text-secondary);
 }
 
 /* Tab Views */
@@ -497,35 +481,34 @@ textarea:focus-visible {
   display: block;
 }
 
-/* Form Controls (Pencil Drawn Inputs) */
+/* Form Controls (Ruled Rectangular) */
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .form-label {
-  font-size: 1rem;
+  font-size: var(--dp-typography-metadata);
   font-weight: 700;
   color: var(--dp-color-ink);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: var(--dp-typography-reading-face);
 }
 
 .label-aside {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--dp-color-annotation);
-  font-weight: 700;
+  color: var(--text-tertiary);
+  font-weight: 600;
 }
 
 .label-aside-warn {
@@ -537,35 +520,33 @@ textarea:focus-visible {
 
 .form-input, .form-select, .form-textarea {
   background: #ffffff;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   color: var(--dp-color-ink);
-  padding: 0.65rem 0.95rem;
-  font-family: var(--dp-typography-reading-face);
-  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-body);
   outline: none;
-  transition: all var(--dp-motion-control) ease;
-  box-shadow: inset 1px 1px 2px rgba(56, 53, 47, 0.05);
+  transition: border-color var(--dp-motion-feedback);
 }
 
 .form-textarea {
   resize: vertical;
-  line-height: 1.5;
+  line-height: var(--dp-typography-body-leading);
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
-  border-color: var(--dp-color-annotation);
-  background: #ffffff;
-  box-shadow: 0 0 0 1px var(--dp-color-annotation);
+  border-width: 2px;
+  border-color: var(--dp-color-ink);
 }
 
 .form-hint {
-  font-size: 0.85rem;
-  color: var(--dp-color-ink-muted);
-  font-family: var(--dp-typography-reading-face);
+  font-size: var(--dp-typography-label);
+  color: var(--text-tertiary);
+  line-height: 1.4;
 }
 
-/* Toast Container (Taped Note Style) */
+/* Toast Container (Ruled Box with Red Signal) */
 .toast-container {
   position: fixed;
   bottom: 2rem;
@@ -577,46 +558,62 @@ textarea:focus-visible {
 }
 
 .toast {
-  background: var(--dp-color-scrap);
+  background: var(--dp-color-ground);
   color: var(--dp-color-ink);
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-left: 4px solid var(--dp-color-accent);
-  border-radius: var(--dp-radius-control);
-  padding: 0.85rem 1.4rem;
-  font-family: var(--dp-typography-reading-face);
-  font-size: 1.05rem;
-  box-shadow: 3px 4px 0px var(--dp-color-ink);
-  animation: toastIn var(--dp-motion-control) ease-out;
-}
-
-@keyframes toastIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  border-left: 6px solid var(--dp-color-accent);
+  border-radius: 0;
+  padding: 1rem 1.5rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-metadata);
+  font-weight: 600;
+  box-shadow: none;
 }
 
 /* Reduced Motion Preference Constraint */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    transform: none !important;
     transition: none !important;
     animation: none !important;
   }
 }
 
 /* Responsive adjustments */
-@media (max-width: 960px) {
-  .app-header {
-    grid-template-columns: 1fr;
-    height: auto;
-    padding: 1rem 1.5rem;
-    gap: 1rem;
-  }
+@media (max-width: 1050px) {
   .editorial-brief-grid {
     grid-template-columns: 1fr;
   }
   .brief-manifesto {
     border-right: none;
-    border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
-    padding: 1.75rem;
+    border-bottom: var(--dp-border-rule) solid var(--dp-color-ink);
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .app-header {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .nav-tabs {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid var(--dp-color-ink);
+    border-bottom: 1px solid var(--dp-color-ink);
+    flex-wrap: wrap;
+  }
+  .nav-tab-btn {
+    flex: 1 1 auto;
+    text-align: center;
+    justify-content: center;
+    padding: 0.6rem 0.8rem;
+  }
+  .app-container {
+    padding: 1.5rem 1rem 3rem;
+  }
+  .form-grid-2 {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,45 +1,46 @@
 /* ==========================================================
-   UNIFIED DISCOVERY INBOX (Sketch Speech Note & Thread Sheet)
+   UNIFIED DISCOVERY INBOX (Swiss Minimalist Grid)
+   Continuous typographic grid in white, black, and pale grey,
+   with small red signals. Host Grotesk throughout.
    ========================================================== */
 
 .inbox-layout {
   display: grid;
   grid-template-columns: 380px 1fr;
   background: #ffffff;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  border-radius: var(--dp-radius-scrap);
+  border: var(--dp-border-rule) solid var(--dp-color-ink);
+  border-radius: 0;
   overflow: hidden;
   height: calc(100vh - 240px);
-  box-shadow: 4px 5px 0px var(--dp-color-ink);
 }
 
 /* Left: Threads Sidebar */
 .threads-sidebar {
-  border-right: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
+  border-right: 1px solid var(--dp-color-ink);
   display: flex;
   flex-direction: column;
-  background: var(--dp-color-scrap);
+  background: var(--dp-color-surface);
 }
 
 .threads-search-bar {
   padding: 1rem 1.25rem;
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  border-bottom: 1px solid var(--dp-color-ink);
 }
 
 .search-input {
   width: 100%;
   background: #ffffff;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
-  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
+  padding: 0.65rem 0.85rem;
   color: var(--dp-color-ink);
-  font-family: var(--dp-typography-reading-face);
-  font-size: 1.05rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-body);
   outline: none;
 }
 
 .search-input:focus {
-  border-color: var(--dp-color-annotation);
+  border-width: 2px;
 }
 
 .threads-list {
@@ -50,10 +51,10 @@
 }
 
 .thread-item {
-  padding: 1rem 1.25rem;
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding: 1.15rem 1.25rem;
+  border-bottom: 1px solid var(--border-hairline);
   cursor: pointer;
-  transition: all var(--dp-motion-control) ease;
+  transition: background var(--dp-motion-feedback);
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -64,7 +65,7 @@
 }
 
 .thread-item.active {
-  background: var(--dp-color-highlight);
+  background: #ffffff;
   border-left: 4px solid var(--dp-color-accent);
 }
 
@@ -75,33 +76,34 @@
 }
 
 .thread-lead-name {
-  font-family: var(--dp-typography-display-face);
+  font-family: var(--dp-typography-face);
   font-weight: 700;
   color: var(--dp-color-ink);
-  font-size: 1.15rem;
+  font-size: var(--dp-typography-lead);
+  letter-spacing: -0.01em;
 }
 
 .thread-time {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--dp-color-annotation);
+  color: var(--text-tertiary);
 }
 
 .thread-subject {
-  font-size: 0.95rem;
+  font-size: var(--dp-typography-metadata);
   color: var(--dp-color-ink);
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: var(--dp-typography-reading-face);
+  font-family: var(--dp-typography-face);
 }
 
 .thread-snippet {
-  font-size: 0.9rem;
-  color: var(--dp-color-ink-muted);
+  font-size: var(--dp-typography-label);
+  color: var(--text-secondary);
   line-height: 1.4;
-  font-family: var(--dp-typography-reading-face);
+  font-family: var(--dp-typography-face);
 }
 
 .thread-badge-row {
@@ -115,11 +117,12 @@
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
-  color: var(--dp-color-annotation);
-  background: #ffffff;
-  border: 1px solid var(--dp-color-line);
-  border-radius: 3px;
+  color: var(--dp-color-ink);
+  background: var(--dp-color-surface);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   padding: 0.1rem 0.4rem;
+  text-transform: uppercase;
 }
 
 /* Right: Active Conversation Panel */
@@ -131,8 +134,8 @@
 }
 
 .thread-detail-header {
-  padding: 1.25rem 1.75rem;
-  border-bottom: var(--dp-border-fine-stroke) dashed var(--dp-color-line);
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--dp-color-ink);
   background: var(--dp-color-ground);
   display: flex;
   justify-content: space-between;
@@ -140,49 +143,50 @@
 }
 
 .thread-contact-info h3 {
-  font-family: var(--dp-typography-display-face);
-  font-size: 1.6rem;
+  font-family: var(--dp-typography-face);
+  font-size: 1.75rem;
+  font-weight: var(--dp-typography-display);
   margin: 0;
   color: var(--dp-color-ink);
+  letter-spacing: -0.03em;
 }
 
 .thread-contact-meta {
-  font-size: 0.95rem;
-  color: var(--dp-color-ink-muted);
-  font-family: var(--dp-typography-reading-face);
+  font-size: var(--dp-typography-metadata);
+  color: var(--text-secondary);
+  font-family: var(--dp-typography-face);
 }
 
 .messages-container {
   flex: 1;
   overflow-y: auto;
-  padding: 1.75rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   background: #ffffff;
 }
 
-/* Speech Notes for Messages */
+/* Message Cards */
 .message-card {
   padding: 1.25rem 1.5rem;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   max-width: 82%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  box-shadow: 1px 2px 0px rgba(56,53,47,0.1);
 }
 
 .message-card.outbound {
   align-self: flex-end;
-  background: var(--dp-color-scrap);
+  background: var(--dp-color-surface);
   border-color: var(--dp-color-ink);
 }
 
 .message-card.inbound {
   align-self: flex-start;
-  background: var(--dp-color-highlight);
+  background: #ffffff;
   border-color: var(--dp-color-ink);
 }
 
@@ -191,25 +195,27 @@
   justify-content: space-between;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--dp-color-annotation);
+  color: var(--text-tertiary);
   font-weight: 700;
-  border-bottom: 1px dashed rgba(56, 53, 47, 0.2);
+  border-bottom: 1px solid var(--border-hairline);
   padding-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .message-body {
-  font-size: 1.1rem;
+  font-size: var(--dp-typography-body);
   color: var(--dp-color-ink);
-  line-height: 1.6;
+  line-height: var(--dp-typography-body-leading);
   white-space: pre-wrap;
-  font-family: var(--dp-typography-reading-face);
+  font-family: var(--dp-typography-face);
 }
 
 /* Thread Composer */
 .thread-composer {
-  padding: 1.25rem 1.75rem;
-  border-top: var(--dp-border-fine-stroke) solid var(--dp-color-ink);
-  background: var(--dp-color-scrap);
+  padding: 1.25rem 2rem;
+  border-top: 1px solid var(--dp-color-ink);
+  background: var(--dp-color-surface);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -219,17 +225,17 @@
   width: 100%;
   min-height: 85px;
   background: #ffffff;
-  border: var(--dp-border-fine-stroke) solid var(--dp-color-line);
-  border-radius: var(--dp-radius-control);
+  border: 1px solid var(--dp-color-ink);
+  border-radius: 0;
   padding: 0.85rem;
   color: var(--dp-color-ink);
-  font-family: var(--dp-typography-reading-face);
-  font-size: 1.1rem;
+  font-family: var(--dp-typography-face);
+  font-size: var(--dp-typography-body);
   resize: vertical;
 }
 
 .composer-textarea:focus {
-  border-color: var(--dp-color-annotation);
+  border-width: 2px;
 }
 
 .composer-actions {
