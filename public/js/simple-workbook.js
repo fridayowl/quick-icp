@@ -3,6 +3,54 @@
 // ==========================================================================
 import { api } from './api.js';
 
+const PRESETS = [
+  {
+    name: 'InvoiceBot AI',
+    desc: 'Turns client PDF invoices and messy email attachments into organized Stripe payment links in 1 click.',
+    features: [
+      '1-Click PDF to Stripe Invoice generator',
+      'Automated overdue email reminder sequence',
+      'Multi-currency tax calculator'
+    ],
+    audience1: 'Freelance Web Designers & Devs',
+    pain1: 'Chasing clients for unpaid invoices and manually creating line-items',
+    wedge1: '1-Click PDF to Stripe Invoice generator',
+    audience2: 'Boutique Marketing Agencies (5-15 people)',
+    pain2: 'Spending 8 hours every Friday reconciling bank accounts with Excel',
+    wedge2: 'Automated overdue email reminder sequence'
+  },
+  {
+    name: 'SyncFlow',
+    desc: 'Connects production PostgreSQL databases to customer CRMs and sends instant webhook alerts on schema changes.',
+    features: [
+      'Postgres-to-CRM Realtime Webhook Bridge',
+      'Audit-Ready Webhook Replay Log',
+      'Dead Letter Queue Slack Alerter'
+    ],
+    audience1: 'FinTech Compliance Leads',
+    pain1: 'Manual audit reconciliations taking 20 hours every month in Google Sheets',
+    wedge1: 'Audit-Ready Webhook Replay Log',
+    audience2: 'Solo SaaS Founders',
+    pain2: 'Losing trial signups due to silent Zapier webhook sync failures',
+    wedge2: 'Dead Letter Queue Slack Alerter'
+  },
+  {
+    name: 'NotionPress',
+    desc: 'Publishes private Notion workspace documents directly into ultra-fast, SEO-optimized blog articles.',
+    features: [
+      'Instant Notion page to HTML static generator',
+      'Automatic OpenGraph banner image creator',
+      'Custom domain SSL routing'
+    ],
+    audience1: 'Content Marketers at Series A Startups',
+    pain1: 'Waiting 3 days for developers to deploy new marketing blog posts',
+    wedge1: 'Instant Notion page to HTML static generator',
+    audience2: 'Technical Newsletter Writers',
+    pain2: 'Formatting markdown code snippets across Substack and Ghost manually',
+    wedge2: 'Automatic OpenGraph banner image creator'
+  }
+];
+
 export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh) {
   let activeStep = 1;
 
@@ -24,9 +72,11 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh)
     simpleContacts: state.leads?.slice(0, 5).map(l => ({
       name: l.name,
       company: l.company,
-      channel: l.email || 'LinkedIn',
+      channel: l.email ? 'Email' : 'LinkedIn',
       status: l.stage
     })) || [
+      { name: 'Sarah Miller', company: 'Acme Cloud', channel: 'LinkedIn', status: 'not_contacted' },
+      { name: 'David Zhang', company: 'Veloce Labs', channel: 'LinkedIn', status: 'not_contacted' },
       { name: '', company: '', channel: 'LinkedIn', status: 'not_contacted' }
     ]
   };
@@ -44,11 +94,11 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh)
         <div class="workbook-hero-card">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
             <div>
-              <span class="workbook-hero-tag">FOUNDER STARTING POINT // ZERO JARGON</span>
+              <span class="workbook-hero-tag">FOUNDER BLUEPRINT // ZERO JARGON</span>
               <h1 class="workbook-hero-title">Find the first 5 people who want your product.</h1>
             </div>
             <div>
-              <button class="btn btn-secondary btn-sm" id="btn-toggle-pro-mode" style="font-family: var(--font-mono); font-size: 0.75rem;">
+              <button class="btn btn-secondary btn-sm" id="btn-toggle-pro-mode" style="font-family: var(--font-mono); font-size: 0.72rem; padding: 0.4rem 0.8rem;">
                 ⚙ Switch to Pro Mode
               </button>
             </div>
@@ -56,20 +106,47 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh)
           <p class="workbook-hero-desc">
             You don't need sales textbooks or complicated pipelines. Just answer 3 basic questions to get your 1-sentence pitch, a ready-to-send message, and 5 people to contact.
           </p>
+
+          <!-- Quick Fill Preset Strip -->
+          <div class="quick-fill-strip">
+            <span class="quick-fill-label">TRY AN EXAMPLE PRESET:</span>
+            ${PRESETS.map((p, idx) => `
+              <button class="preset-chip btn-load-preset" data-idx="${idx}">
+                ✦ ${p.name}
+              </button>
+            `).join('')}
+          </div>
         </div>
 
         <!-- 3-Step Navigation Tabs -->
         <div class="simple-step-tabs">
           <button class="simple-step-indicator ${activeStep === 1 ? 'active' : ''}" data-step="1">
-            <span class="simple-step-num">STEP 01</span>
+            <div class="step-indicator-top">
+              <span class="simple-step-num">STEP 01</span>
+              <span class="step-badge-status ${form.productName ? 'done' : (activeStep === 1 ? 'current' : '')}">
+                ${form.productName ? '[SAVED]' : (activeStep === 1 ? '[CURRENT]' : '[TODO]')}
+              </span>
+            </div>
             <span class="simple-step-label">1. What Did You Build?</span>
           </button>
+          
           <button class="simple-step-indicator ${activeStep === 2 ? 'active' : ''}" data-step="2">
-            <span class="simple-step-num">STEP 02</span>
+            <div class="step-indicator-top">
+              <span class="simple-step-num">STEP 02</span>
+              <span class="step-badge-status ${form.audience1 ? 'done' : (activeStep === 2 ? 'current' : '')}">
+                ${form.audience1 ? '[SAVED]' : (activeStep === 2 ? '[CURRENT]' : '[TODO]')}
+              </span>
+            </div>
             <span class="simple-step-label">2. Who Needs It Most?</span>
           </button>
+          
           <button class="simple-step-indicator ${activeStep === 3 ? 'active' : ''}" data-step="3">
-            <span class="simple-step-num">STEP 03</span>
+            <div class="step-indicator-top">
+              <span class="simple-step-num">STEP 03</span>
+              <span class="step-badge-status ${activeStep === 3 ? 'current' : ''}">
+                ${activeStep === 3 ? '[READY]' : '[ACTION]'}
+              </span>
+            </div>
             <span class="simple-step-label">3. Your Action Plan</span>
           </button>
         </div>
@@ -112,25 +189,26 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh)
 
         <div class="easy-field-group">
           <label class="easy-label">
-            <span>What are 2 or 3 specific things it can do?</span>
-            <span class="easy-label-hint">Features / capabilities</span>
+            <span>What are 2 or 3 specific capabilities you coded?</span>
+            <span class="easy-label-hint">${form.features.length} capabilities listed</span>
           </label>
           <div class="easy-feature-list" id="simple-feature-list">
             ${form.features.map((feat, idx) => `
               <div class="easy-feature-row">
+                <span class="feature-num-badge">0${idx + 1}</span>
                 <input type="text" class="easy-input feature-input" data-idx="${idx}" placeholder="e.g. One-click PDF export" value="${escapeHtml(feat)}">
                 ${form.features.length > 1 ? `<button class="easy-btn-remove btn-remove-feat" data-idx="${idx}" title="Remove">&times;</button>` : ''}
               </div>
             `).join('')}
           </div>
           <button class="btn btn-secondary btn-sm" id="btn-add-feature-row" style="align-self: flex-start; margin-top: 0.5rem;">
-            + Add Another Feature
+            + Add Another Capability
           </button>
         </div>
 
         <div class="simple-card-footer">
-          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">STEP 1 OF 3</span>
-          <button class="btn btn-primary" id="btn-step1-next">
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">STEP 1 OF 3 // FOUNDATION</span>
+          <button class="btn btn-primary" id="btn-step1-next" style="padding: 0.75rem 1.4rem;">
             Next: Who Needs This? &rarr;
           </button>
         </div>
@@ -145,55 +223,65 @@ export function renderSimpleWorkbook(container, state, onSwitchToPro, onRefresh)
           <p class="simple-card-sub">An "Ideal Customer" is just someone who is wasting time or money doing this manually. Let's pick 2 different groups to test.</p>
         </div>
 
-        <!-- Audience 1 -->
-        <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-default); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-          <div style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--accent-terracotta);">
-            [GROUP A] YOUR FIRST GUESS
+        <div class="cohort-comparison-grid">
+          
+          <!-- Cohort 1 -->
+          <div class="cohort-card-builder">
+            <div class="cohort-builder-tag">
+              <span style="color: var(--accent-terracotta);">[GROUP A] PRIMARY CANDIDATE</span>
+              <span style="color: var(--text-muted); font-size: 0.65rem;">TIER 1</span>
+            </div>
+
+            <div class="easy-field-group">
+              <label class="easy-label" for="inp-audience-1">Who are they?</label>
+              <input type="text" class="easy-input" id="inp-audience-1" placeholder="e.g. Product Managers at startups (20–100 people)" value="${escapeHtml(form.audience1)}">
+            </div>
+
+            <div class="easy-field-group">
+              <label class="easy-label" for="inp-pain-1">What are they annoyed by right now?</label>
+              <textarea class="easy-textarea" id="inp-pain-1" rows="2" placeholder="e.g. Manually copy-pasting customer bug reports from Slack into Jira every Friday">${escapeHtml(form.pain1)}</textarea>
+            </div>
+
+            <div class="wedge-highlight-box">
+              <span class="wedge-box-label">The 1-Feature Wedge to Pitch</span>
+              <select class="form-select" id="sel-wedge-1" style="font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg-canvas); margin-top: 0.2rem;">
+                ${form.features.map(f => `<option value="${escapeHtml(f)}" ${form.wedge1 === f ? 'selected' : ''}>${escapeHtml(f)}</option>`).join('')}
+              </select>
+            </div>
           </div>
 
-          <div class="easy-field-group">
-            <label class="easy-label" for="inp-audience-1">Who are they?</label>
-            <input type="text" class="easy-input" id="inp-audience-1" placeholder="e.g. Product Managers at startups (20–100 people)" value="${escapeHtml(form.audience1)}">
+          <!-- Cohort 2 -->
+          <div class="cohort-card-builder">
+            <div class="cohort-builder-tag">
+              <span style="color: var(--text-muted);">[GROUP B] COMPARISON CANDIDATE</span>
+              <span style="color: var(--text-muted); font-size: 0.65rem;">TIER 2</span>
+            </div>
+
+            <div class="easy-field-group">
+              <label class="easy-label" for="inp-audience-2">Who are they?</label>
+              <input type="text" class="easy-input" id="inp-audience-2" placeholder="e.g. Freelance Web Designers / Solo Agency Owners" value="${escapeHtml(form.audience2)}">
+            </div>
+
+            <div class="easy-field-group">
+              <label class="easy-label" for="inp-pain-2">What is their main daily friction?</label>
+              <textarea class="easy-textarea" id="inp-pain-2" rows="2" placeholder="e.g. Clients messaging them on WhatsApp and losing track of revision requests">${escapeHtml(form.pain2)}</textarea>
+            </div>
+
+            <div class="wedge-highlight-box">
+              <span class="wedge-box-label">The 1-Feature Wedge to Pitch</span>
+              <select class="form-select" id="sel-wedge-2" style="font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg-canvas); margin-top: 0.2rem;">
+                ${form.features.map((f, i) => `<option value="${escapeHtml(f)}" ${(form.wedge2 === f || (!form.wedge2 && i === 1)) ? 'selected' : ''}>${escapeHtml(f)}</option>`).join('')}
+              </select>
+            </div>
           </div>
 
-          <div class="easy-field-group">
-            <label class="easy-label" for="inp-pain-1">What are they annoyed by right now?</label>
-            <input type="text" class="easy-input" id="inp-pain-1" placeholder="e.g. Manually copy-pasting customer bug reports from Slack into Jira every Friday" value="${escapeHtml(form.pain1)}">
-          </div>
-
-          <div class="easy-field-group">
-            <label class="easy-label" for="inp-wedge-1">Which ONE feature from your list will solve that?</label>
-            <input type="text" class="easy-input" id="inp-wedge-1" placeholder="e.g. 1-click Slack-to-Jira sync" value="${escapeHtml(form.wedge1 || form.features[0] || '')}">
-          </div>
-        </div>
-
-        <!-- Audience 2 -->
-        <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-default); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-          <div style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">
-            [GROUP B] YOUR SECOND GUESS (FOR CONTRAST)
-          </div>
-
-          <div class="easy-field-group">
-            <label class="easy-label" for="inp-audience-2">Who are they?</label>
-            <input type="text" class="easy-input" id="inp-audience-2" placeholder="e.g. Freelance Web Designers / Solo Agency Owners" value="${escapeHtml(form.audience2)}">
-          </div>
-
-          <div class="easy-field-group">
-            <label class="easy-label" for="inp-pain-2">What is their main daily friction?</label>
-            <input type="text" class="easy-input" id="inp-pain-2" placeholder="e.g. Clients messaging them on WhatsApp and losing track of revision requests" value="${escapeHtml(form.pain2)}">
-          </div>
-
-          <div class="easy-field-group">
-            <label class="easy-label" for="inp-wedge-2">Which ONE feature solves that?</label>
-            <input type="text" class="easy-input" id="inp-wedge-2" placeholder="e.g. Client Feedback Portal" value="${escapeHtml(form.wedge2 || form.features[1] || '')}">
-          </div>
         </div>
 
         <div class="simple-card-footer">
           <button class="btn btn-secondary" id="btn-step2-prev">
-            &larr; Back
+            &larr; Back to Product
           </button>
-          <button class="btn btn-primary" id="btn-step2-next">
+          <button class="btn btn-primary" id="btn-step2-next" style="padding: 0.75rem 1.4rem;">
             Generate My Action Plan &rarr;
           </button>
         </div>
@@ -220,6 +308,9 @@ Curious how your team approaches it—doing some research in this space.
 Best,
 [Your Name]`;
 
+      const contactedCount = form.simpleContacts.filter(c => c.status !== 'not_contacted').length;
+      const progressPct = form.simpleContacts.length > 0 ? Math.round((contactedCount / form.simpleContacts.length) * 100) : 0;
+
       return `
         <div class="simple-card-header">
           <span class="simple-card-step-kicker">STEP 03 OF 03 // YOUR ACTION PLAN</span>
@@ -237,7 +328,7 @@ Best,
             </div>
             <h3 class="cheat-sheet-headline">${escapeHtml(pitch)}</h3>
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-              Use this when anyone asks "So what does your product do?". Notice how it mentions the pain, not just code.
+              Use this whenever anyone asks "So what does your product do?". Notice how it leads with the customer's headache, not code.
             </p>
           </div>
 
@@ -247,58 +338,122 @@ Best,
               <span>[02] THE 40-WORD MESSAGE (SEND TO 5 PEOPLE ON LINKEDIN OR EMAIL)</span>
               <button class="cheat-sheet-copy-btn" id="btn-copy-email">COPY MESSAGE</button>
             </div>
-            <div class="cheat-sheet-box">${escapeHtml(emailBody)}</div>
+
+            <div class="terminal-message-window">
+              <div class="terminal-window-bar">
+                <span class="dot-circle" style="background: #ef4444;"></span>
+                <span class="dot-circle" style="background: #eab308;"></span>
+                <span class="dot-circle" style="background: #22c55e;"></span>
+                <span class="terminal-title">outreach_touch_01.txt</span>
+              </div>
+              <div class="cheat-sheet-box">${escapeHtml(emailBody)}</div>
+            </div>
+
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-              <strong>Why this works:</strong> You are NOT asking them to buy, and you are NOT asking for a 15-minute demo. You are asking an authentic question. This gets a 25–40% reply rate.
+              <strong>Why this gets a 25–40% reply rate:</strong> You are NOT asking them to buy, and you are NOT pitching a 15-minute demo. You are asking an authentic peer question.
             </p>
           </div>
 
           <!-- Block 3: The 5 Golden Call Questions -->
           <div class="cheat-sheet-block">
             <div class="cheat-sheet-tag">
-              <span>[03] WHAT TO ASK WHEN THEY REPLY (THE 15-MIN CALL)</span>
+              <span>[03] WHAT TO ASK WHEN THEY REPLY (THE 15-MINUTE CALL)</span>
+              <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--status-danger);">[NEVER DEMO ON CALL 1]</span>
             </div>
-            <div class="cheat-sheet-box" style="line-height: 1.8;">
-1. "Walk me through the last time [Problem] happened at your company?"
-2. "How did you solve it? (What tools or spreadsheets did you use?)"
-3. "What did that cost your team in wasted hours or money?"
-4. "Have you tried paying for other tools before? Why didn't they work?"
-5. "If we had this fixed by next Monday, would you be open to testing it?"</div>
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-              <strong>Rule:</strong> Keep your laptop closed. Never show a demo on Call 1. Just listen.
-            </p>
+            
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <div class="question-item-row">
+                <span class="q-num-badge">Q1</span>
+                <div class="q-text-body">
+                  "Walk me through the last time [Problem] happened at your company?"
+                  <span class="q-text-reason">Forces them to recall real past behavior instead of theoretical wishes.</span>
+                </div>
+              </div>
+
+              <div class="question-item-row">
+                <span class="q-num-badge">Q2</span>
+                <div class="q-text-body">
+                  "How did you fix it? (What tools or spreadsheets did you use?)"
+                  <span class="q-text-reason">If they didn't try to fix it, the problem is not painful enough for them to pay.</span>
+                </div>
+              </div>
+
+              <div class="question-item-row">
+                <span class="q-num-badge">Q3</span>
+                <div class="q-text-body">
+                  "What did that cost your team in wasted hours or money?"
+                  <span class="q-text-reason">Establishes the anchor value for your future pricing.</span>
+                </div>
+              </div>
+
+              <div class="question-item-row">
+                <span class="q-num-badge">Q4</span>
+                <div class="q-text-body">
+                  "Have you tried paying for other software before? Why didn't you stick with it?"
+                  <span class="q-text-reason">Identifies competitor deficiencies and procurement friction.</span>
+                </div>
+              </div>
+
+              <div class="question-item-row">
+                <span class="q-num-badge">Q5</span>
+                <div class="q-text-body">
+                  "If we solved this by next Monday, would you be open to testing a prototype?"
+                  <span class="q-text-reason">Tests commitment currency without sounding like a pushy salesman.</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Block 4: Your 5 People Checklist -->
           <div class="cheat-sheet-block">
             <div class="cheat-sheet-tag">
               <span>[04] YOUR FIRST 5 TARGET CONTACTS</span>
-              <button class="btn btn-secondary btn-sm" id="btn-add-contact-row" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;">+ Add Person</button>
+              <button class="btn btn-secondary btn-sm" id="btn-add-contact-row" style="font-size: 0.7rem; padding: 0.25rem 0.6rem;">+ Add Person</button>
             </div>
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0 0 0.5rem;">
-              Find 5 real people on LinkedIn who match: <strong>${escapeHtml(targetAudience)}</strong>. Put their names here and message them tomorrow.
+            
+            <!-- Progress Strip -->
+            <div class="contact-progress-strip">
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-terracotta); font-weight: 700;">
+                OUTREACH PROGRESS: ${contactedCount} / ${form.simpleContacts.length} (${progressPct}%)
+              </span>
+              <div class="contact-progress-bar">
+                <div class="contact-progress-fill" style="width: ${progressPct}%;"></div>
+              </div>
+            </div>
+
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+              Search LinkedIn for: <strong>${escapeHtml(targetAudience)}</strong>. Enter 5 real names and update their status as you message them.
             </p>
+
             <table class="simple-contacts-table">
               <thead>
                 <tr>
-                  <th>NAME</th>
-                  <th>COMPANY</th>
-                  <th>WHERE TO MESSAGE</th>
-                  <th>STATUS</th>
+                  <th style="width: 25%;">NAME</th>
+                  <th style="width: 25%;">COMPANY</th>
+                  <th style="width: 22%;">CHANNEL</th>
+                  <th style="width: 28%;">STATUS</th>
                 </tr>
               </thead>
               <tbody id="simple-contacts-tbody">
                 ${form.simpleContacts.map((c, idx) => `
                   <tr>
-                    <td><input type="text" class="easy-input contact-inp-name" data-idx="${idx}" placeholder="e.g. Sarah Miller" value="${escapeHtml(c.name || '')}" style="padding: 0.4rem 0.6rem; font-size: 0.85rem; width: 100%;"></td>
-                    <td><input type="text" class="easy-input contact-inp-comp" data-idx="${idx}" placeholder="e.g. Acme FinTech" value="${escapeHtml(c.company || '')}" style="padding: 0.4rem 0.6rem; font-size: 0.85rem; width: 100%;"></td>
-                    <td><input type="text" class="easy-input contact-inp-chan" data-idx="${idx}" placeholder="LinkedIn / Email" value="${escapeHtml(c.channel || 'LinkedIn')}" style="padding: 0.4rem 0.6rem; font-size: 0.85rem; width: 100%;"></td>
+                    <td><input type="text" class="easy-input contact-inp-name" data-idx="${idx}" placeholder="e.g. Sarah Miller" value="${escapeHtml(c.name || '')}" style="padding: 0.45rem 0.65rem; font-size: 0.85rem; width: 100%;"></td>
+                    <td><input type="text" class="easy-input contact-inp-comp" data-idx="${idx}" placeholder="e.g. Acme FinTech" value="${escapeHtml(c.company || '')}" style="padding: 0.45rem 0.65rem; font-size: 0.85rem; width: 100%;"></td>
                     <td>
-                      <select class="form-select contact-inp-stat" data-idx="${idx}" style="padding: 0.4rem; font-size: 0.8rem; font-family: var(--font-mono);">
+                      <select class="form-select contact-inp-chan" data-idx="${idx}" style="padding: 0.45rem; font-size: 0.8rem; font-family: var(--font-mono);">
+                        <option value="LinkedIn" ${c.channel === 'LinkedIn' ? 'selected' : ''}>LinkedIn</option>
+                        <option value="Email" ${c.channel === 'Email' ? 'selected' : ''}>Email</option>
+                        <option value="Twitter / X" ${c.channel === 'Twitter / X' ? 'selected' : ''}>Twitter / X</option>
+                        <option value="Slack / Discord" ${c.channel === 'Slack / Discord' ? 'selected' : ''}>Slack / Discord</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-select contact-inp-stat" data-idx="${idx}" style="padding: 0.45rem; font-size: 0.8rem; font-family: var(--font-mono);">
                         <option value="not_contacted" ${c.status === 'not_contacted' ? 'selected' : ''}>[ ] Ready to Message</option>
-                        <option value="contacted" ${c.status === 'contacted' ? 'selected' : ''}>[>] Sent Message</option>
+                        <option value="contacted" ${c.status === 'contacted' ? 'selected' : ''}>[>] Message Sent</option>
                         <option value="in_conversation" ${c.status === 'in_conversation' ? 'selected' : ''}>[!] They Replied!</option>
                         <option value="call_scheduled" ${c.status === 'call_scheduled' ? 'selected' : ''}>[★] Call Booked</option>
+                        <option value="validated" ${c.status === 'validated' ? 'selected' : ''}>[✓] Validated Customer</option>
                       </select>
                     </td>
                   </tr>
@@ -313,11 +468,11 @@ Best,
           <button class="btn btn-secondary" id="btn-step3-edit">
             &larr; Edit Details
           </button>
-          <div style="display: flex; gap: 0.75rem;">
-            <button class="btn btn-primary" id="btn-save-workbook">
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="btn-save-workbook" style="padding: 0.75rem 1.4rem;">
               Save My Discovery Plan
             </button>
-            <button class="btn btn-secondary" id="btn-goto-pro">
+            <button class="btn btn-secondary" id="btn-goto-pro" style="padding: 0.75rem 1rem;">
               Open Full Pipeline (Pro Mode) &rarr;
             </button>
           </div>
@@ -330,6 +485,27 @@ Best,
     // Mode switch button
     container.querySelector('#btn-toggle-pro-mode')?.addEventListener('click', onSwitchToPro);
     container.querySelector('#btn-goto-pro')?.addEventListener('click', onSwitchToPro);
+
+    // Preset chips
+    container.querySelectorAll('.btn-load-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.idx, 10);
+        const preset = PRESETS[idx];
+        if (preset) {
+          form.productName = preset.name;
+          form.productDesc = preset.desc;
+          form.features = [...preset.features];
+          form.audience1 = preset.audience1;
+          form.pain1 = preset.pain1;
+          form.wedge1 = preset.wedge1;
+          form.audience2 = preset.audience2;
+          form.pain2 = preset.pain2;
+          form.wedge2 = preset.wedge2;
+          activeStep = 1;
+          render();
+        }
+      });
+    });
 
     // Step navigation tabs
     container.querySelectorAll('.simple-step-indicator').forEach(tab => {
@@ -394,7 +570,7 @@ Best,
     container.querySelector('#btn-copy-pitch')?.addEventListener('click', (e) => {
       const pitch = `We help ${form.audience1 || 'customers'} eliminate ${form.pain1 || 'friction'} using ${form.wedge1 || form.features[0] || 'our product'}.`;
       navigator.clipboard.writeText(pitch).then(() => {
-        e.target.textContent = 'COPIED!';
+        e.target.textContent = 'COPIED TO CLIPBOARD!';
         setTimeout(() => { e.target.textContent = 'COPY PITCH'; }, 1800);
       });
     });
@@ -414,7 +590,7 @@ Curious how your team approaches it—doing some research in this space.
 Best,
 [Your Name]`;
       navigator.clipboard.writeText(emailBody).then(() => {
-        e.target.textContent = 'COPIED!';
+        e.target.textContent = 'COPIED TO CLIPBOARD!';
         setTimeout(() => { e.target.textContent = 'COPY MESSAGE'; }, 1800);
       });
     });
@@ -424,6 +600,14 @@ Best,
       saveCurrentInput();
       form.simpleContacts.push({ name: '', company: '', channel: 'LinkedIn', status: 'not_contacted' });
       render();
+    });
+
+    // Status Change listener for live progress
+    container.querySelectorAll('.contact-inp-stat').forEach(sel => {
+      sel.addEventListener('change', () => {
+        saveCurrentInput();
+        render();
+      });
     });
 
     // Save Workbook to Backend
@@ -455,8 +639,8 @@ Best,
     const p1Inp = container.querySelector('#inp-pain-1');
     if (p1Inp) form.pain1 = p1Inp.value.trim();
 
-    const w1Inp = container.querySelector('#inp-wedge-1');
-    if (w1Inp) form.wedge1 = w1Inp.value.trim();
+    const w1Sel = container.querySelector('#sel-wedge-1');
+    if (w1Sel) form.wedge1 = w1Sel.value;
 
     const a2Inp = container.querySelector('#inp-audience-2');
     if (a2Inp) form.audience2 = a2Inp.value.trim();
@@ -464,8 +648,8 @@ Best,
     const p2Inp = container.querySelector('#inp-pain-2');
     if (p2Inp) form.pain2 = p2Inp.value.trim();
 
-    const w2Inp = container.querySelector('#inp-wedge-2');
-    if (w2Inp) form.wedge2 = w2Inp.value.trim();
+    const w2Sel = container.querySelector('#sel-wedge-2');
+    if (w2Sel) form.wedge2 = w2Sel.value;
 
     // Step 3 Contacts
     const nameInps = container.querySelectorAll('.contact-inp-name');
@@ -477,7 +661,7 @@ Best,
       form.simpleContacts = Array.from(nameInps).map((inp, idx) => ({
         name: inp.value.trim(),
         company: compInps[idx]?.value.trim() || '',
-        channel: chanInps[idx]?.value.trim() || 'LinkedIn',
+        channel: chanInps[idx]?.value || 'LinkedIn',
         status: statInps[idx]?.value || 'not_contacted'
       }));
     }
@@ -507,7 +691,7 @@ Best,
           problem: form.pain1 || 'Operational friction',
           workaround: 'Manual work',
           wedgeFeature: form.wedge1 || form.features[0] || 'Core feature',
-          discardedFeatures: form.features.slice(1).join(', ')
+          discardedFeatures: form.features.filter(f => f !== form.wedge1).join(', ')
         }
       ]
     };
