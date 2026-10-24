@@ -30,6 +30,17 @@ export function renderKanban(container, leads, icps, activeIcpFilter, onStageCha
       </div>
     </div>
 
+    ${filteredLeads.length === 0 ? `
+      <div style="margin-bottom: 1.5rem; padding: 1.5rem 1.75rem; background: var(--bg-surface); border: 1px dashed var(--border-default); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-terracotta); font-weight: 700;">[PIPELINE READY]</span>
+          <div style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--text-primary); font-weight: 700; margin: 0.2rem 0;">No prospects enqueued in discovery pipeline yet.</div>
+          <div style="font-size: 0.88rem; color: var(--text-secondary);">Add 10 to 15 target prospects per cohort (Step 04) to test your candidate audiences.</div>
+        </div>
+        <button class="btn btn-primary btn-sm" id="btn-empty-banner-add-lead">+ Add First Prospect</button>
+      </div>
+    ` : ''}
+
     <div class="kanban-wrapper">
       ${STAGES.map((stage, idx) => {
         const stageLeads = filteredLeads.filter(l => l.stage === stage.id);
@@ -60,6 +71,7 @@ export function renderKanban(container, leads, icps, activeIcpFilter, onStageCha
 
   // Bind Add Lead
   document.getElementById('btn-add-lead')?.addEventListener('click', onAddLead);
+  document.getElementById('btn-empty-banner-add-lead')?.addEventListener('click', onAddLead);
 
   // Setup HTML5 Drag and Drop
   setupDragAndDrop(container, onStageChange);

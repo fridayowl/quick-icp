@@ -130,8 +130,14 @@ function renderFeatureRows(features, icps) {
   if (features.length === 0) {
     return `
       <tr>
-        <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-tertiary); font-family: var(--font-mono);">
-          [NO FEATURES FOUND IN CATALOG. CLICK "ADD PRODUCT FEATURE" TO ENROLL ONE]
+        <td colspan="6" style="text-align: center; padding: 3.5rem 1.5rem; color: var(--text-secondary); font-family: var(--font-mono);">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6rem;">
+            <span style="font-size: 0.72rem; color: var(--accent-terracotta); font-weight: 700;">[NO FEATURES IN CATALOG YET]</span>
+            <span style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-primary); text-transform: none; font-weight: 700;">What capabilities did you code into your product?</span>
+            <span style="font-size: 0.88rem; max-width: 480px; text-transform: none; line-height: 1.5; color: var(--text-secondary);">
+              List 4 to 8 features you've built so you can de-engineer the monolith into 1-feature wedges for specific buyers.
+            </span>
+          </div>
         </td>
       </tr>
     `;

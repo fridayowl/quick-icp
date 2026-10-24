@@ -12,11 +12,25 @@ export function renderIcpLab(container, icps, onSelectIcp, onOpenAddModal) {
     </div>
 
     <div class="icp-grid">
-      ${icps.map((icp, idx) => renderIcpCard(icp, idx)).join('')}
+      ${icps.length > 0 ? icps.map((icp, idx) => renderIcpCard(icp, idx)).join('') : `
+        <div style="grid-column: 1 / -1; padding: 3.5rem 2rem; background: var(--bg-surface); border: 1px dashed var(--border-default); text-align: center;">
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-terracotta); font-weight: 700;">[NO CANDIDATE AUDIENCES DEFINED]</span>
+          <h3 style="font-family: var(--font-serif); font-size: 1.6rem; margin: 0.75rem 0 0.5rem; color: var(--text-primary);">Who suffers from this friction every Tuesday?</h3>
+          <p style="color: var(--text-secondary); max-width: 520px; margin: 0 auto 1.5rem; font-size: 0.95rem; line-height: 1.5;">
+            Never bet your company on a single demographic guess. Define 2 to 3 candidate cohorts so you can pitch a 1-feature wedge and see who has real budget.
+          </p>
+          <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="btn-empty-add-icp">
+              + Add Candidate Hypothesis
+            </button>
+          </div>
+        </div>
+      `}
     </div>
   `;
 
   document.getElementById('btn-add-icp')?.addEventListener('click', onOpenAddModal);
+  document.getElementById('btn-empty-add-icp')?.addEventListener('click', onOpenAddModal);
 
   // Bind card action buttons
   container.querySelectorAll('.btn-view-pipeline').forEach(btn => {

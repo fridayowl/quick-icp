@@ -34,7 +34,7 @@ export function renderInbox(container, leads, icps, activeLeadId, onSelectLead, 
           <input type="text" class="search-input" id="thread-search" placeholder="FILTER CONVERSATIONS...">
         </div>
         <div class="threads-list" id="threads-container">
-          ${sortedLeads.map(lead => {
+          ${sortedLeads.length > 0 ? sortedLeads.map(lead => {
             const isSelected = selectedLead && selectedLead.id === lead.id;
             const icp = icps.find(i => i.id === lead.icpId) || { name: 'Cohort' };
             const lastMsg = lead.threads[lead.threads.length - 1];
@@ -50,19 +50,27 @@ export function renderInbox(container, leads, icps, activeLeadId, onSelectLead, 
                 <div class="thread-snippet">${lastMsg ? truncate(lastMsg.body, 55) : ''}</div>
                 <div class="thread-badge-row">
                   <span class="lead-icp-pill">${icp.name}</span>
-                  ${hasInbound ? `<span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--terracotta); font-weight: 700; background: var(--terracotta-deep); padding: 0.1rem 0.4rem; border: 1px solid var(--terracotta-border);">REPLIED</span>` : ''}
+                  ${hasInbound ? `<span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-terracotta); font-weight: 700; background: rgba(234,88,12,0.15); padding: 0.1rem 0.4rem; border: 1px solid rgba(234,88,12,0.3);">REPLIED</span>` : ''}
                 </div>
               </div>
             `;
-          }).join('')}
+          }).join('') : `
+            <div style="padding: 2.5rem 1rem; text-align: center; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.78rem;">
+              [NO ACTIVE CONVERSATIONS]
+            </div>
+          `}
         </div>
       </div>
 
       <!-- Active Conversation Panel -->
       <div class="thread-detail-pane">
         ${selectedLead ? renderActiveConversation(selectedLead, icps) : `
-          <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.85rem;">
-            [SELECT A THREAD FROM THE DIRECTORY TO REVIEW]
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary); text-align: center; padding: 2.5rem; gap: 0.75rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-terracotta); font-weight: 700;">[INBOX DORMANT]</span>
+            <div style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-primary); font-weight: 700;">No live replies yet</div>
+            <p style="font-size: 0.9rem; max-width: 440px; margin: 0; line-height: 1.5;">
+              Once you dispatch low-friction curiosity touches to your prospect list (Step 05), responses will route here and automated follow-ups will instantly terminate.
+            </p>
           </div>
         `}
       </div>
