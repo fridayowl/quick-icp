@@ -5,6 +5,7 @@ import { renderInbox } from './inbox.js';
 import { renderDispatcher } from './dispatcher.js';
 import { renderProductCatalog } from './product-catalog.js';
 import { setupOnboardingWizard } from './onboarding-wizard.js';
+import { setupIcpBuilderExercise } from './icp-builder-exercise.js';
 import { setupCallNotesModal } from './call-analyzer.js';
 
 // Application State
@@ -18,7 +19,8 @@ const state = {
   selectedLeadId: null,
   activeIcpFilter: null,
   callNotesModal: null,
-  onboardingWizard: null
+  onboardingWizard: null,
+  icpExerciseModal: null
 };
 
 // Initialization
@@ -27,6 +29,7 @@ async function init() {
   setupAddIcpModal();
   setupAddLeadModal();
   setupAddInboxModal();
+  setupActionButtons();
 
   // Setup Call Notes Modal
   const callNotesDialog = document.getElementById('call-notes-modal');
@@ -34,6 +37,16 @@ async function init() {
     state.callNotesModal = setupCallNotesModal(callNotesDialog, state.leads, async () => {
       await refreshData();
       showToast('Discovery call notes logged. Validation scorecard updated.');
+    });
+  }
+
+  // Setup Guided ICP Building Exercise Modal
+  const exerciseDialog = document.getElementById('icp-exercise-modal');
+  if (exerciseDialog) {
+    state.icpExerciseModal = setupIcpBuilderExercise(exerciseDialog, async (productName) => {
+      await refreshData();
+      switchTab('icp-lab');
+      showToast(`ICP Discovery Pipeline generated for "${productName}". Battle cards ready.`);
     });
   }
 
@@ -47,14 +60,31 @@ async function init() {
   }
 
   await refreshData();
+}
 
-  // Re-bind wizard if product was refreshed
-  if (onboardingDialog) {
-    state.onboardingWizard = setupOnboardingWizard(onboardingDialog, state.product, state.icps, async () => {
+function setupActionButtons() {
+  // 1. Launch Guided ICP Exercise From Scratch
+  document.getElementById('btn-launch-exercise')?.addEventListener('click', () => {
+    state.icpExerciseModal?.open(state.product);
+  });
+
+  // 2. Load Demo Dataset (SyncFlow)
+  document.getElementById('btn-load-demo')?.addEventListener('click', async () => {
+    await api.loadDemo();
+    await refreshData();
+    switchTab('icp-lab');
+    showToast('SyncFlow demo dataset loaded. Ready to inspect.');
+  });
+
+  // 3. Reset Canvas to Blank Scratch
+  document.getElementById('btn-reset-scratch')?.addEventListener('click', async () => {
+    if (confirm('Start fresh from scratch? This clears the demo data so you can enter your own product.')) {
+      await api.resetScratch();
       await refreshData();
-      showToast('Product and features registered. Discovery engine ready.');
-    });
-  }
+      state.icpExerciseModal?.open();
+      showToast('Canvas cleared. Enter your product to begin.');
+    }
+  });
 }
 
 // Data Refresh

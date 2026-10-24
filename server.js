@@ -160,6 +160,137 @@ app.post('/api/product/onboarding', async (req, res) => {
   }
 });
 
+// Full Guided ICP Exercise Submission
+app.post('/api/exercise/submit', async (req, res) => {
+  try {
+    const store = await readStore();
+    const { product, features, cohorts } = req.body;
+
+    // 1. Update product definition
+    store.product = {
+      name: product.name || 'My Product',
+      tagline: product.tagline || '',
+      description: product.description || '',
+      category: product.category || 'Software',
+      stage: 'Alpha Discovery',
+      onboardingCompleted: true,
+      features: features || []
+    };
+
+    // 2. Clear old hypotheses or append new ones
+    if (req.body.replaceExisting) {
+      store.icps = [];
+      store.leads = [];
+      store.templates = [];
+    }
+
+    // 3. Register cohorts
+    if (Array.isArray(cohorts)) {
+      cohorts.forEach((cohort, idx) => {
+        const icpId = 'icp_' + Date.now().toString(36) + idx;
+        const newIcp = {
+          id: icpId,
+          name: cohort.name || `Target Cohort 0${idx + 1}`,
+          tier: idx === 0 ? 'Tier 1' : idx === 1 ? 'Tier 2' : 'Tier 3',
+          tierColor: idx === 0 ? '#10b981' : idx === 1 ? '#3b82f6' : '#8b5cf6',
+          targetRole: cohort.targetRole || '',
+          companySize: cohort.companySize || '5 - 50 employees',
+          industry: cohort.industry || 'B2B Software & Services',
+          coreProblem: cohort.coreProblem || '',
+          currentWorkaround: cohort.currentWorkaround || '',
+          productWedge: cohort.productWedge || '',
+          discardedFeatures: cohort.discardedFeatures || '',
+          validationThreshold: '5 calls with pain severity >= 4 and WTP confirmed',
+          status: 'Active Testing',
+          metrics: {
+            leadsContacted: 0,
+            repliesCount: 0,
+            replyRate: 0,
+            callsBooked: 0,
+            callsCompleted: 0,
+            avgPainScore: 0,
+            validatedCount: 0,
+            validationScore: 0
+          }
+        };
+        store.icps.push(newIcp);
+
+        // Create touch 1 template
+        store.templates.push({
+          id: 'tpl_' + Date.now().toString(36) + idx,
+          icpId: icpId,
+          touch: 1,
+          subject: cohort.touchSubject || `Quick question on {{company}} workflow`,
+          body: cohort.touchBody || `Hey {{firstName}}, noticed you lead operations at {{company}}.\n\nQuick peer question—how does your team currently handle ${cohort.coreProblem || 'this workflow'}? Did you guys solve it, or is it still a headache? Not selling anything; we built a focused 1-feature wedge and curious if it's even a real problem.`,
+          delayDays: 0
+        });
+
+        // Mark feature as wedge if it matches
+        if (store.product.features) {
+          store.product.features.forEach(f => {
+            if (f.name.toLowerCase() === (cohort.productWedge || '').toLowerCase()) {
+              f.isWedgeFor = Array.from(new Set([...(f.isWedgeFor || []), icpId]));
+            }
+          });
+        }
+      });
+    }
+
+    await writeStore(store);
+    res.json({ success: true, product: store.product, icps: store.icps });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Reset to Clean Scratch Canvas
+app.post('/api/reset-scratch', async (req, res) => {
+  try {
+    const blankStore = {
+      product: {
+        name: "",
+        tagline: "",
+        description: "",
+        category: "",
+        stage: "Alpha Discovery",
+        onboardingCompleted: false,
+        features: []
+      },
+      icps: [],
+      leads: [],
+      inboxes: [
+        {
+          id: "inbox_1",
+          email: "founder@mybrand-outreach.io",
+          provider: "Google Workspace (Secondary Domain)",
+          dailyLimit: 30,
+          sentToday: 0,
+          healthScore: 100,
+          status: "Optimal"
+        }
+      ],
+      templates: []
+    };
+    await writeStore(blankStore);
+    res.json({ success: true, message: 'Canvas reset to scratch. Ready for new exercise.' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Load Pre-populated SyncFlow Demo
+app.post('/api/load-demo', async (req, res) => {
+  try {
+    const demoPath = path.join(__dirname, 'data', 'demo_store.json');
+    const demoContent = await fs.readFile(demoPath, 'utf-8');
+    const demoData = JSON.parse(demoContent);
+    await writeStore(demoData);
+    res.json({ success: true, message: 'Demo data loaded successfully.' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // 1. Get all ICPs with live metrics
 app.get('/api/icps', async (req, res) => {
   try {

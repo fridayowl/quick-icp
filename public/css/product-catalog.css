@@ -450,3 +450,24 @@
   margin-top: 0.2rem;
   accent-color: var(--terracotta);
 }
+
+/* ==========================================================
+   GUIDED STEP-BY-STEP ICP EXERCISE WORKBOOK
+   ========================================================== */
+.exercise-card-prompt {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--terracotta);
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.cohort-exercise-card {
+  transition: border-color var(--transition-fast);
+}
+
+.cohort-exercise-card:hover {
+  border-color: var(--border-strong);
+}
+

@@ -49,6 +49,29 @@ export const api = {
     return res.json();
   },
 
+  async submitExercise(data) {
+    const res = await fetch('/api/exercise/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async resetScratch() {
+    const res = await fetch('/api/reset-scratch', {
+      method: 'POST'
+    });
+    return res.json();
+  },
+
+  async loadDemo() {
+    const res = await fetch('/api/load-demo', {
+      method: 'POST'
+    });
+    return res.json();
+  },
+
   // ICP Hypotheses
   async getICPs() {
     const res = await fetch('/api/icps');

@@ -80,6 +80,19 @@
         <p class="manifesto-body">
           Stop pitching a 15-feature monolith. Test a single 10% wedge per cohort with curiosity-driven peer questions. When a prospect replies, all automated sequences terminate instantly so you can hold a real 15-minute discovery conversation.
         </p>
+
+        <!-- Quick Start Guided Exercise Action Bar -->
+        <div class="manifesto-action-bar" style="display: flex; gap: 0.75rem; margin-top: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <button class="btn btn-primary" id="btn-launch-exercise">
+            [+] Start ICP Exercise from Scratch
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btn-load-demo" title="Restore the complete SyncFlow demo dataset">
+            Load Example Demo
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btn-reset-scratch" style="color: var(--status-danger); border-color: var(--border-default);" title="Clear canvas to start your own blank exercise">
+            Reset to Scratch
+          </button>
+        </div>
       </div>
 
       <!-- Asymmetric Telemetry Metrics -->
@@ -135,6 +148,9 @@
   </main>
 
   <!-- ==================== NATIVE HTML5 DIALOG MODALS ==================== -->
+
+  <!-- Modal: Guided ICP Exercise from Scratch -->
+  <dialog id="icp-exercise-modal" style="max-width: 820px;"></dialog>
 
   <!-- Modal: Twenty CRM Product Onboarding Wizard -->
   <dialog id="product-onboarding-modal"></dialog>
